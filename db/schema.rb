@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_20_185019) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_20_194128) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,51 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_20_185019) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "airplanes", force: :cascade do |t|
+    t.string "model"
+    t.string "class"
+    t.string "tailnumber"
+    t.string "home_airport"
+    t.integer "minimum_hours"
+    t.string "required_licenses"
+    t.bigint "user_id", null: false
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_airplanes_on_user_id"
+  end
+
+  create_table "inquiries", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "airplane_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["airplane_id"], name: "index_inquiries_on_airplane_id"
+    t.index ["user_id"], name: "index_inquiries_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.bigint "inquiry_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["inquiry_id"], name: "index_messages_on_inquiry_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "airplane_id", null: false
+    t.bigint "user_id", null: false
+    t.text "content"
+    t.float "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["airplane_id"], name: "index_reviews_on_airplane_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -56,4 +101,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_20_185019) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "airplanes", "users"
+  add_foreign_key "inquiries", "airplanes"
+  add_foreign_key "inquiries", "users"
+  add_foreign_key "messages", "inquiries"
+  add_foreign_key "messages", "users"
+  add_foreign_key "reviews", "airplanes"
+  add_foreign_key "reviews", "users"
 end
