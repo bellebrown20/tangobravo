@@ -1,0 +1,18 @@
+<div class="container">
+
+
+
+      <% @inquiries.each do |inquiry| %>
+        <div data-inquiry-selector-target="box" data-action="click->inquiry-selector#updateInquiry">
+          <p>#<%= inquiry.airplane.make %></p>
+          <% if inquiry.user == current_user %>
+            <p> <%= inquiry.airplane.user  %></p>
+          <% else %>
+            <p> <%= inquiry.user  %></p>
+          <% end %>
+        </div>
+      <% end %>
+
+
+
+</div>
