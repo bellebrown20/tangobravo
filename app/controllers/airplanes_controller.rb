@@ -46,7 +46,6 @@ class AirplanesController < ApplicationController
   end
 
   def destroy
-
     @airplane.destroy
     # No need for app/views/airplanes/destroy.html.erb
     redirect_to airplanes_path, status: :see_other

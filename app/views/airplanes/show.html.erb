@@ -1,0 +1,35 @@
+<%= link_to "Back to all available planes", airplanes_path, class: "btn btn-dark ms-5 mt-4 mb-4" %>
+<div class="container w-100">
+  <div class="d-flex justify-content-around  border-dark">
+    <span class="align-self-center">
+        <div class="text-center">
+          <% if policy(@airplane).edit? %>
+             <%= link_to "Edit this airplane", edit_airplane_path(@airplane), class: "btn btn-dark mb-4" %>
+          <% end %>
+            <h3><%= @car.model %></h3>
+             <p>Class: <%= @airplane.class %></p>
+            <%= button_to "Destroy this planr", @airplane, method: :delete, class: "btn btn-dark mt-4" if policy(@airplane).destroy? %>
+        </div>
+    </span>
+    <div id="carouselExampleIndicators" style="height:50%"class="carousel slide w-75" data-bs-ride="carousel">
+      <div class="carousel-inner">
+      <% @airplane.photos.each_with_index do |photo, index| %>
+        <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
+                <%= cl_image_tag photo.key, class: "d-block w-100", crop: :fill %>
+              </div>
+        <% end %>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+      </div>
+    </div>
+</div>
+
+  <%= link_to "Inquire about this plane", new_car_reservation_path(@car), class: "btn btn-dark" if @car.user != current_user %>
+</div>

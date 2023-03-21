@@ -56,6 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_21_145236) do
     t.datetime "updated_at", null: false
     t.string "address"
     t.string "price_per_hour"
+    t.text "description"
     t.index ["user_id"], name: "index_airplanes_on_user_id"
   end
 

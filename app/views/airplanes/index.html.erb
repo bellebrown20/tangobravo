@@ -1,7 +1,43 @@
-<div class="container mt-5">
-  <div style="width: 100%; height: 600px;"
-    data-controller="map"
-    data-map-markers-value="<%= @markers.to_json %>"
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+<h1 class="ms-5 mb-3 mt-4">Available Airplanes</h1>
+<%= form_with url: airplanes_path, method: :get, class: "d-flex w-25 ms-5 mb-2 " do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control searching-airplanes-btn-focus",
+    placeholder: "Find a airplane..."
+  %>
+  <%= submit_tag "Search", class: "btn btn-dark text-light" %>
+<% end %>
+<%= link_to "Create new airplane", new_airplane_path, class: "btn btn-dark mt-2 ms-5"%>
+
+<div class="mt-4 mb-4" style="width: 100%; height: 450px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
+
+<div class="container">
+  <div class="row">
+      <% @airplanes.each do |airplane| %>
+        <div class = "col-3">
+          <div class="d-flex">
+
+        <%= link_to airplane_path(airplane), class: "text-decoration-none" do %>
+            <div class="card border-0 me-lg-4 mb-lg-0 mb-4 d-flex justify-content-center">
+              <div class="backgroundEffect">
+              </div>
+              <div class="pic"> <img class="" src='<%= cl_image_path car.photos[0].key, height: 350, width: 400, crop: :fill %>' alt="">
+              </div>
+              <div class="content">
+                <p class="h-1 mt-4"> <%= "#{airplane.model} #{airplane.class}, #{airplane.year}" %></p> <p class="text-muted mt-3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere, veritatis. Eveniet in vel illo, mollitia nemo architecto, voluptates ullam molestias.</p>
+                <div class="d-flex align-items-center justify-content-between mt-3 pb-3">
+                  <div class="btn btn-primary">Read More<span class="fas fa-arrow-right"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% end %>
+          </div>
+      </div>
+    <% end %>
   </div>
 </div>
