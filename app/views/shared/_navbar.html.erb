@@ -6,13 +6,18 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <div class="navbar-brand ms-4">
-      <%= link_to root_path do %>
+      <%= link_to image_tag('logo.png', alt: 'The logotipe'), home_path, class: 'navbar-brand' %>
         <%= image_tag("https://1000marcas.net/wp-content/uploads/2020/10/Proton-logo.png", alt: "Logo") %>
-      <% end %>
-    </div>
-      <ul class="navbar-nav me-4">
-        <% if user_signed_in? %>
-        <li>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+          </div>
+            <ul class="navbar-nav me-4">
+            <li class="nav-item">
+          <%= link_to 'Home', root_path, class: 'nav-link' %>
+              <% if user_signed_in? %>
+              <li>
                   <div class="px-2 bg-transparent border-light search_bar rounded-pill shadow-sm m-0">
               <div class="input-group">
            <%= form_with url: "mailto:hi@tangobravo.com", method: :get, class: " d-flex search me-4  searching" do %>
@@ -48,7 +53,7 @@
 
 
           <li class="nav-item dropdown ms-4 me-4">
-            <%= image_tag "https://avatars.githubusercontent.com/u/102123472?v=4", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <%= image_tag "https://avatars.githubusercontent.com/u/102123472?v=4", class: "", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "My profile", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
@@ -66,30 +71,27 @@
         <% else %>
 
 
-  <li>
-                  <div class="px-2 bg-transparent  search_bar rounded-pill shadow-sm m-0">
-              <div class="input-group">
-           <%= form_with url: "mailto:hi@tangobravo.com", method: :get, class: " d-flex search me-4  searching" do %>
-                <%= text_field_tag :query,
-                  params[:query],
-                  class: "form-control bg-transparent border-0 ",
-                  placeholder: "Search airports..."
-                %>
-              <%= submit_tag "S", class: "btn btn-link text-primary", id: "button-addon1"  %>
-             <% end %>
-                </div>
-            </div>
-          </li>
 
 
-          </li>
-          <li class="nav-item  SMN_effect-48">
+
+              <li class="nav-item  mt-4">
+    <form data-controller="search-bar" data-search-bar-target="form">
+      <span class="searchBtn" data-search-bar-target="searchBtn" data-action="click->search-bar#clicked" >
+        <em class="icon-search" data-search-bar-target="icon">
+          <svg id=Layer_1 style="enable-background:new 0 0 40 40"version=1.1 viewBox="0 0 40 40"x=0px xml:space=preserve xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink y=0px><g class=st0><g transform=matrix(1,0,0,1,-35.375,-39.25)><g transform=matrix(1,0,0,1,53.094,56.437)><path class=search1 d="M7.2,9.6c3.8-3,5.9-7.9,5.1-13.2C11.4-9.5,6.7-14.4,0.8-15.3C-8.9-17-17.2-8.7-15.6,1c1,6,6,10.8,12,11.6C-0.8,12.9,4.7,11.7,7.2,9.6"></path></g></g><g transform=matrix(1,0,0,1,-35.375,-39.25)><g transform=matrix(1,0,0,1,65.866,69.757)><path class=searchhandl d=M8,8.1c0,0-6.1-6-13.3-13></path></g></g><g transform=matrix(1,0,0,1,-35.375,-39.25)><g transform=matrix(1,0,0,1,65.866,69.757)><path class=searchline1 d=M8,8.1c0,0-16.9-16.6-36.5-35.9></path></g></g><g transform=matrix(1,0,0,1,-35.375,-39.25)><g transform=matrix(1,0,0,1,65.866,69.757)><path class=searchline2 d=M-28.2,8.4c0,0,16.6-16.9,35.9-36.5></path></g></g></g></svg>
+        </em>
+      </span>
+      <input placeholder="Search airports...">
+    </form>
+    </li>
+
+          <li class="nav-item  SMN_effect-48  mt-3">
             <%= link_to "Planes", "mailto:example@example.com", class: "nav-link text-light ms-4", id: "planes-link" %>
           </li>
-          <li class="nav-item  SMN_effect-48 ms-4">
+          <li class="nav-item  SMN_effect-48 ms-4  mt-3">
             <%= link_to "Contact", "mailto:hi@tangobravo.com", class: "nav-link text-light" %>
           </li>
-          <li class="nav-item  SMN_effect-48 ms-4 me-5">
+          <li class="nav-item  SMN_effect-48 ms-4 me-5  mt-3">
             <%= link_to "Login", "mailto:hi@tangobravo.com", class: "nav-link text-light" %>
           </li>
 
@@ -100,14 +102,19 @@
   </div>
 </div>
 
-
-        <%# <li>
-            <div class="px-2 bg-light search_bar rounded-pill shadow-sm">
-              <div class="input-group">
-                <input type="search" placeholder="Search airports..." aria-describedby="button-addon1" class="form-control bg-transparent border-0 bg-light">
-                <div class="input-group-append">
-                  <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
-                </div>
-              </div>
-            </div>
-        </li> %>
+ <%# <li> %>
+                  <%# <div class="px-2 bg-transparent  search_bar rounded-pill shadow-sm m-0"> %>
+              <%# <div class="input-group"> %>
+           <%# <%= form_with url: "mailto:hi@tangobravo.com", method: :get, class: " d-flex search me-4  searching" do %> %>
+                <%# <%= text_field_tag :query, %>
+                  <%# params[:query], %>
+                  <%# class: "form-control bg-transparent border-0 ", %>
+                  <%# placeholder: "Search airports..." %>
+                <%# %>
+              <%# <%= submit_tag "", class: "btn btn-link text-primary", id: "button-addon1" do %> %>
+                <%# <i class="fa fa-search"></i> %>
+              <%# <% end %>
+             <%# <% end %>
+            <%# </div> %>
+            <%# </div> %>
+          <%# </li> %>
