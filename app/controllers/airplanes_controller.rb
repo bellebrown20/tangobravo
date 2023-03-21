@@ -5,13 +5,13 @@ class AirplanesController < ApplicationController
   def index
     @airplanes = Airplane.all
 
-    @markers = @airplanes.geocoded.map do |airplane|
-      {
-        lat: airplane.latitude,
-        lng: airplane.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: { airplane: airplane })
-      }
-    end
+    # @markers = @airplanes.geocoded.map do |airplane|
+    #   {
+    #     lat: airplane.latitude,
+    #     lng: airplane.longitude,
+    #     info_window_html: render_to_string(partial: "info_window", locals: { airplane: airplane })
+    #   }
+    # end
   end
 
   def my_airplanes
@@ -45,7 +45,6 @@ class AirplanesController < ApplicationController
   end
 
   def destroy
-
     @airplane.destroy
     # No need for app/views/airplanes/destroy.html.erb
     redirect_to airplanes_path, status: :see_other
