@@ -15,17 +15,17 @@ User.destroy_all
 end
 
 Airplane.destroy_all
-
 Airplane.create!([{
-  model: "Soul",
-  class: "Pete Docter",
-  tailnumber: "",
-  home_airport: "1.week.ago"
-  minimum_hours: "After landing the gig of a lifetime, a New York jazz pianist suddenly finds himself trapped in a strange land between Earth and the afterlife.",
-  required_licenses: "1.week.ago"
-  user_id: users.sample.id
-  latitude: "Pete Docter",
-  longitude: "After landing the gig of a lifetime, a New York jazz pianist suddenly finds himself trapped in a strange land between Earth and the afterlife.",
-  description: "1.week.ago"
-},
-{
+  Airplane.create!(
+    make: "C172S",
+    engines: "Single-Engine",
+    tailnumber: "N423SC",
+    home_airport: "KSDL",
+    minimum_hours: 100,
+    required_licenses: "Private Pilot",
+    user: User.first,
+    description: "2020 Cessna 172 with integrated Garmin G1000 avionics.",
+    price_per_hour: 200,
+    address: "15000 N Airport Dr, Scottsdale, AZ 85260"
+  )
+},])
