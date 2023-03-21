@@ -8,15 +8,12 @@
           <% end %>
             <h3><%= @car.model %></h3>
              <p>Class: <%= @airplane.class %></p>
-            <p>Year: <%= @car.year %></p>
-            <p>Price per night: $<%= @car.price %></p>
-            <p>Contact the owner: <%= @car.user.email %></p>
-            <%= button_to "Destroy this car", @car, method: :delete, class: "btn btn-dark mt-4" if policy(@car).destroy? %>
+            <%= button_to "Destroy this planr", @airplane, method: :delete, class: "btn btn-dark mt-4" if policy(@airplane).destroy? %>
         </div>
     </span>
     <div id="carouselExampleIndicators" style="height:50%"class="carousel slide w-75" data-bs-ride="carousel">
       <div class="carousel-inner">
-      <% @car.photos.each_with_index do |photo, index| %>
+      <% @airplane.photos.each_with_index do |photo, index| %>
         <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
                 <%= cl_image_tag photo.key, class: "d-block w-100", crop: :fill %>
               </div>
@@ -33,26 +30,6 @@
       </div>
     </div>
 </div>
-  <% if @car.user == current_user %>
-  <div class="ms-5 mt-4">
-    <h2 class="text-center mb-4">Reservations for this car</h2>
-      <%@car.reservations.each do |reservation| %>
-        <div class="m-2 border-bottom text-center">
-          <p class="mb-2">Requested by: <%= reservation.user.email %></p>
-          <p class="mb-2">Date of Rental: <%= reservation.rented_from%></p>
-          <p class="mb-2">Date of return: <%= reservation.rented_until%></p>
-          <p class="mb-2" <%= reservation.status == "accepted" ? 'text-success' : '' %> <%= reservation.status == "denied" ? 'text-danger' : '' %>">Status: <%= reservation.status %></p>
-          <%= simple_form_for [@car, reservation] do |f| %>
-            <%=f.hidden_field :rented_from %>
-            <%= f.hidden_field :rented_until %>
-            <% if reservation.status == "pending" %>
-              <%= f.input :status, collection: ["pending", "accepted", "denied"] %>
-              <%= f.button :submit, class:"btn btn-dark"%>
-            <% end %>
-            </div>
-          <% end %>
-        </div>
-      <%end %>
-  <%end %>
-  <%= link_to "Request to reserve this car", new_car_reservation_path(@car), class: "btn btn-dark" if @car.user != current_user %>
+
+  <%= link_to "Inquire about this plane", new_car_reservation_path(@car), class: "btn btn-dark" if @car.user != current_user %>
 </div>
