@@ -43,8 +43,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_21_154237) do
   end
 
   create_table "airplanes", force: :cascade do |t|
-    t.string "model"
-    t.string "class"
+    t.string "make"
+    t.string "engines"
     t.string "tailnumber"
     t.string "home_airport"
     t.integer "minimum_hours"
