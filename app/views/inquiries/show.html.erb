@@ -5,7 +5,7 @@
     <div class="col-2" data-inquiry-selector-target="list">
       <% @inquiries.each do |inquiry| %>
         <div data-inquiry-selector-target="box" data-action="click->inquiry-selector#updateInquiry">
-          <p>#<%= @inquiry.airplane.model %></p>
+          <p>#<%= inquiry.airplane.make %></p>
           <% if inquiry.user == current_user %>
             <p> <%= inquiry.airplane.user  %></p>
           <% else %>
@@ -20,7 +20,7 @@
           data-controller="inquiry-subscription"
           data-inquiry-subscription-inquiry-id-value="<%= @inquiry.id %>"
         >
-          <h2>#<%= @inquiry.airplane.model %></h2>
+          <h2>#<%= @inquiry.airplane.make %></h2>
 
           <div class="messages" data-inquiry-subscription-target="messages">
             <% @inquiry.messages.each do |message| %>
@@ -48,7 +48,7 @@
       </div>
       <div class="w-50">
         <% @airplane = @inquiry.airplane  %>
-        <%=  cl_image_tag @cairplnear.photos.first.key, height: 400, width: 600, crop: :fill  %>
+        <%# <%=  cl_image_tag @airplane.photos.first.key, height: 400, width: 600, crop: :fill  %> %>
         <p><%= @airplane.make %> <%= @airplane.engines %> <%= @airplane.tailnumber %> </p>
         <p><%= @airplane.user.name %></p>
         <%= link_to "View Plane", airplane_path(@airplane), class: "btn btn-dark mt-2 ms-5"%>
