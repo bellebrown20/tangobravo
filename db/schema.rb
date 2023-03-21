@@ -54,9 +54,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_21_162647) do
     t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
     t.string "address"
     t.string "price_per_hour"
-    t.text "description"
     t.index ["user_id"], name: "index_airplanes_on_user_id"
   end
 

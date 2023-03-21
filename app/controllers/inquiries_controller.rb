@@ -2,10 +2,9 @@ class InquiriesController < ApplicationController
   before_action :set_airplane, only: %i[new create]
 
   def index
-    if user.role == "pilot"
-      @inquiries = Inquiry.where(user == current_user)
-    else
-      @inquiries = Inquiry.where(airplane.user == current_user)
+    @inquiries = []
+    Inquiry.all.each do |inquiry|
+      @inquiries << inquiry if inquiry.user == current_user || inquiry.airplane.user == current_user
     end
   end
 
@@ -20,10 +19,11 @@ class InquiriesController < ApplicationController
   end
 
   def create
-    # @review = Review.new(review_params)
-    # @review.restaurant = @restaurant
-    # @review.save
-    # redirect_to restaurant_path(@restaurant)
+    if user.role == "pilot"
+      @inquiries = Inquiry.where(user == current_user)
+    else
+      @inquiries = Inquiry.where(airplane.user == current_user)
+    end
     @inquiry = Inquiry.new
     @inquiry.airplane = @airplane
     @inquiry.user = current_user
