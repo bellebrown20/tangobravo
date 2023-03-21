@@ -9,10 +9,9 @@ class Airplane < ApplicationRecord
   has_many :users, through: :inquiries
 
   has_many_attached :photos
-  validates :model, presence: true
-  validates :class, presence: true
-  validates :year, presence: true, numericality: { only_integer: true }
-  validates :tail_number, presence: true
+  validates :make, presence: true
+  validates :engines, presence: true
+  validates :tailnumber, presence: true
   validates :home_airport, presence: true
 
   # include PgSearch::Model
