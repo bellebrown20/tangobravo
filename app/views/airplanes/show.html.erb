@@ -8,7 +8,7 @@
           <% end %>
             <h3><%= @car.model %></h3>
              <p>Class: <%= @airplane.class %></p>
-            <%= button_to "Destroy this planr", @airplane, method: :delete, class: "btn btn-dark mt-4" if policy(@airplane).destroy? %>
+            <%= button_to "Destroy this plane", @airplane, method: :delete, class: "btn btn-dark mt-4" if policy(@airplane).destroy? %>
         </div>
     </span>
     <div id="carouselExampleIndicators" style="height:50%"class="carousel slide w-75" data-bs-ride="carousel">
@@ -31,5 +31,14 @@
     </div>
 </div>
 
-  <%= link_to "Inquire about this plane", new_car_reservation_path(@car), class: "btn btn-dark" if @car.user != current_user %>
+ <%= link_to "Inquire about this plane", new_inquiry_path(@airplane), class: "btn btn-dark" if @airplane.user != current_user %>
+
+<%# <% if @airplane.user != current_user %>
+  <%# <h1>Inquire about this plane</h1> %>
+  <%# <%= simple_form_for [@airplane, @message] do |f| %>
+    <%# <%= f.input :content %>
+    <%# <%= f.submit "Submit Inquiry", class: "btn btn-primary" %>
+  <%# <% end %>
+<%# <% end %>
+
 </div>
