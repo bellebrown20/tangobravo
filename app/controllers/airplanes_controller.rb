@@ -5,13 +5,14 @@ class AirplanesController < ApplicationController
   def index
     @airplanes = Airplane.all
 
-    # @markers = @airplanes.geocoded.map do |airplane|
-    #   {
-    #     lat: airplane.latitude,
-    #     lng: airplane.longitude,
-    #     info_window_html: render_to_string(partial: "info_window", locals: { airplane: airplane })
-    #   }
-    # end
+    @markers = @airplanes.geocoded.map do |airplane|
+      {
+        lat: airplane.latitude,
+        lng: airplane.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { airplane: airplane }),
+        marker_html: render_to_string(partial: "marker")
+      }
+    end
   end
 
   def my_airplanes
