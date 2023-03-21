@@ -15,6 +15,7 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
+    <%= f.input :license, collection: ["Private Pilot", "Commercial Pilot"], input_html: { multiple: true } %>
   </div>
 
   <div class="form-actions">
