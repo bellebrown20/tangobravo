@@ -1,7 +1,7 @@
 <div class="ms-5 mt-4 w-25">
   <%= simple_form_for(@car) do |f| %>
-    <%= f.input :model %>
-    <%= f.input :class %>
+    <%= f.input :make %>
+    <%= f.input :engines %>
     <%= f.input :tailnumber %>
     <%= f.input :minimum_hours %>
     <%= f.input :required_licenses, collection: ["Private Pilot", "Commercial Pilot"], input_html: { multiple: true } %>

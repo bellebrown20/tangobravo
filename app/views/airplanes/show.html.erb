@@ -6,9 +6,9 @@
           <% if policy(@airplane).edit? %>
              <%= link_to "Edit this airplane", edit_airplane_path(@airplane), class: "btn btn-dark mb-4" %>
           <% end %>
-            <h3><%= @car.model %></h3>
-             <p>Class: <%= @airplane.class %></p>
-            <%= button_to "Destroy this planr", @airplane, method: :delete, class: "btn btn-dark mt-4" if policy(@airplane).destroy? %>
+            <h3><%= @airplane.make %></h3>
+             <p>Class: <%= @airplane.engines %></p>
+            <%= button_to "Destroy this plane", @airplane, method: :delete, class: "btn btn-dark mt-4" if policy(@airplane).destroy? %>
         </div>
     </span>
     <div id="carouselExampleIndicators" style="height:50%"class="carousel slide w-75" data-bs-ride="carousel">
@@ -31,5 +31,14 @@
     </div>
 </div>
 
-  <%= link_to "Inquire about this plane", new_car_reservation_path(@car), class: "btn btn-dark" if @car.user != current_user %>
+ <%= link_to "Inquire about this plane", new_airplane_inquiry(@airplane), class: "btn btn-dark" if @airplane.user != current_user %>
+
+<%# <% if @airplane.user != current_user %>
+  <%# <h1>Inquire about this plane</h1> %>
+  <%# <%= simple_form_for [@airplane, @message] do |f| %>
+    <%# <%= f.input :content %>
+    <%# <%= f.submit "Submit Inquiry", class: "btn btn-primary" %>
+  <%# <% end %>
+<%# <% end %>
+
 </div>

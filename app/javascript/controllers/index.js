@@ -4,8 +4,16 @@
 
 import { application } from "./application"
 
+import ChatroomSubscriptionController from "./chatroom_subscription_controller"
+application.register("chatroom-subscription", ChatroomSubscriptionController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import SearchBarController from "./search_bar_controller"
+application.register("search-bar", SearchBarController)
+import InquirySubscriptionController from "./inquiry_subscription_controller"
+application.register("inquiry-subscription", InquirySubscriptionController)
 
 import MapController from "./map_controller"
 application.register("map", MapController)
