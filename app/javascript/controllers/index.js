@@ -4,11 +4,11 @@
 
 import { application } from "./application"
 
-import ChatroomSubscriptionController from "./chatroom_subscription_controller"
-application.register("chatroom-subscription", ChatroomSubscriptionController)
-
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import InquirySelectorController from "./inquiry_selector_controller"
+application.register("inquiry-selector", InquirySelectorController)
 
 import InquirySubscriptionController from "./inquiry_subscription_controller"
 application.register("inquiry-subscription", InquirySubscriptionController)
