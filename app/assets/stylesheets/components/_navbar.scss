@@ -1,4 +1,9 @@
-.navbar {
+
+body {
+  font-family: "Roboto", sans-serif;
+  }
+
+  .navbar {
   background-color: transparent;
   position: fixed;
   top: 0;
@@ -119,4 +124,152 @@ cursor: pointer;
 }
 .search_bar{
   border: 1px solid #a1a1a1;
+}
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap");
+
+
+
+form {
+  position: relative;
+  transform: translate(-50%, -50%);
+  transition: all .6s;
+  width: 40px;
+  height: 50px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  overflow: hidden;
+
+  input {
+    position: relative;
+    width: calc(100% - 70px);
+    height: 100%;
+    line-height: 30px;
+    outline: 0;
+    border: 0;
+    display: block;
+    padding: 0 50px 0 20px;
+    opacity: 1;
+    display: block;
+    background-color: transparent;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  &.active {
+    height: 90%;
+    width: 300px;
+    background-color: transparent;
+    color: white;
+  }
+
+  &.active input{
+
+    color: white;
+  }
+  .searchBtn {
+    position: absolute;
+    right: -2px;
+    z-index: 99;
+    top: 65%;
+    transform: translate(0%, -50%);
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    .icon-search {
+      width: 20px;
+      height: 20px;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      .searchhandl {
+        fill-opacity: 0;
+        stroke: white;
+        stroke-width: 3;
+        stroke-miterlimit: 10;
+      }
+
+      .search1 {
+        fill-opacity: 0;
+        stroke: white;
+        stroke-width: 3;
+        stroke-miterlimit: 10;
+        stroke-dasharray: 135px;
+        stroke-dashoffset: 270;
+        -webkit-transition: all 0.5s ease-out 0s;
+        -o-transition: all 0.5s ease-out 0s;
+        transition: all 0.5s ease-out 0s;
+        -webkit-transition-delay: 0.2s;
+        -o-transition-delay: 0.2s;
+        transition-delay: 0.2s;
+      }
+
+      .searchline1 {
+        fill-opacity: 0;
+        stroke: rgb(255, 255, 255);
+        stroke-width: 3;
+        stroke-miterlimit: 10;
+        stroke-dasharray: 135px;
+        stroke-dashoffset: 140;
+        -webkit-transition: all 0.5s ease-out 0s;
+        -o-transition: all 0.5s ease-out 0s;
+        transition: all 0.5s ease-out 0s;
+        -webkit-transition-delay: 0s;
+        -o-transition-delay: 0s;
+        transition-delay: 0s;
+      }
+
+      .searchline2 {
+        fill-opacity: 0;
+        stroke: white;
+        stroke-width: 3;
+        stroke-miterlimit: 10;
+        stroke-dasharray: 135px;
+        stroke-dashoffset: 200;
+        -webkit-transition: all 0.5s ease-out 0s;
+        -o-transition: all 0.5s ease-out 0s;
+        transition: all 0.5s ease-out 0s;
+        -webkit-transition-delay: 0s;
+        -o-transition-delay: 0s;
+        transition-delay: 0s;
+      }
+
+      .searchhandl {
+        fill-opacity: 0;
+        stroke: white;
+        stroke-width: 3;
+        stroke-miterlimit: 10;
+      }
+
+      &.searchbtnActive {
+        .search1 {
+          stroke: white;
+          stroke-dashoffset: 180;
+          -webkit-transition-delay: 0s;
+          -o-transition-delay: 0s;
+          transition-delay: 0s;
+        }
+
+        .searchline1 {
+          stroke: white;
+          stroke-dashoffset: 70;
+          -webkit-transition-delay: 0.2s;
+          -o-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+        }
+
+        .searchline2 {
+          stroke: white;
+          stroke-dashoffset: 280;
+          -webkit-transition-delay: 0.2s;
+          -o-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+        }
+
+        .searchhandl {
+          stroke: white;
+        }
+      }
+    }
+  }
 }

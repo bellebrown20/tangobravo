@@ -10,6 +10,8 @@ application.register("chatroom-subscription", ChatroomSubscriptionController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import SearchBarController from "./search_bar_controller"
+application.register("search-bar", SearchBarController)
 import InquirySubscriptionController from "./inquiry_subscription_controller"
 application.register("inquiry-subscription", InquirySubscriptionController)
 
