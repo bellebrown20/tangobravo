@@ -9,7 +9,8 @@ class AirplanesController < ApplicationController
       {
         lat: airplane.latitude,
         lng: airplane.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: { airplane: airplane })
+        info_window_html: render_to_string(partial: "info_window", locals: { airplane: airplane }),
+        marker_html: render_to_string(partial: "marker")
       }
     end
   end
