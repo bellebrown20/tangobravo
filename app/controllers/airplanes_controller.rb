@@ -5,13 +5,14 @@ class AirplanesController < ApplicationController
   def index
     @airplanes = Airplane.all
 
-    # @markers = @airplanes.geocoded.map do |airplane|
-    #   {
-    #     lat: airplane.latitude,
-    #     lng: airplane.longitude,
-    #     info_window_html: render_to_string(partial: "info_window", locals: { airplane: airplane })
-    #   }
-    # end
+    @markers = @airplanes.geocoded.map do |airplane|
+      {
+        lat: airplane.latitude,
+        lng: airplane.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { airplane: airplane }),
+        marker_html: render_to_string(partial: "marker")
+      }
+    end
   end
 
   def my_airplanes
@@ -57,6 +58,6 @@ class AirplanesController < ApplicationController
   end
 
   def airplane_params
-    params.require(:airplane).permit(:model, :class, :tailnumber, :minimum_hours, :requireed_licenses, :home_airport, photos: [])
+    params.require(:airplane).permit(:model, :class, :tailnumber, :minimum_hours, :required_licenses, :home_airport, :address, :description, :price_per_hour, photos: [])
   end
 end

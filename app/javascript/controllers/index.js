@@ -12,3 +12,6 @@ application.register("hello", HelloController)
 
 import InquirySubscriptionController from "./inquiry_subscription_controller"
 application.register("inquiry-subscription", InquirySubscriptionController)
+
+import MapController from "./map_controller"
+application.register("map", MapController)
