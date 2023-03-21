@@ -1,0 +1,29 @@
+<div class="container inquiry"
+  data-controller="inquiry-subscription"
+  data-inquiry-subscription-inquiry-id-value="<%= @inquiry.id %>"
+>
+  <h1>#<%= @inquiry.airplane.model %></h1>
+
+  <div class="messages" data-inquiry-subscription-target="messages">
+    <% @inquiry.messages.each do |message| %>
+      <div id="message-<%= message.id %>">
+        <small>
+          <strong><%= message.user.name %></strong>
+          <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+        </small>
+        <p><%= message.content %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= simple_form_for [@inquiry, @message],
+  html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex" } do |f|
+%>
+  <%= f.input :content,
+    label: false,
+    placeholder: "Type here",
+    wrapper_html: {class: "flex-grow-1"}
+  %>
+  <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+<% end %>
