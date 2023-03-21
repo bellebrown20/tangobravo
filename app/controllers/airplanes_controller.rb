@@ -9,7 +9,8 @@ class AirplanesController < ApplicationController
       {
         lat: airplane.latitude,
         lng: airplane.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: { airplane: airplane })
+        info_window_html: render_to_string(partial: "info_window", locals: { airplane: airplane }),
+        marker_html: render_to_string(partial: "marker")
       }
     end
   end
@@ -45,7 +46,6 @@ class AirplanesController < ApplicationController
   end
 
   def destroy
-
     @airplane.destroy
     # No need for app/views/airplanes/destroy.html.erb
     redirect_to airplanes_path, status: :see_other
@@ -58,6 +58,6 @@ class AirplanesController < ApplicationController
   end
 
   def airplane_params
-    params.require(:airplane).permit(:model, :class, :tailnumber, :minimum_hours, :requireed_licenses, :home_airport, photos: [])
+    params.require(:airplane).permit(:make, :engines, :tailnumber, :minimum_hours, :required_licenses, :home_airport, :address, :description, :price_per_hour, photos: [])
   end
 end
