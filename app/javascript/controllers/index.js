@@ -10,6 +10,9 @@ application.register("hello", HelloController)
 import InquirySelectorController from "./inquiry_selector_controller"
 application.register("inquiry-selector", InquirySelectorController)
 
+import SearchBarController from "./search_bar_controller"
+application.register("search-bar", SearchBarController)
+
 import InquirySubscriptionController from "./inquiry_subscription_controller"
 application.register("inquiry-subscription", InquirySubscriptionController)
 
