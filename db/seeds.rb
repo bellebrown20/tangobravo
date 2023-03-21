@@ -20,7 +20,8 @@ Airplane.create!([{
     user_id: users.sample.id,
     description: "2020 Cessna 172 with integrated Garmin G1000 avionics. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
     price_per_hour: 200,
-    address: "15000 N Airport Dr, Scottsdale, AZ 85260"
+    address: "15000 N Airport Dr, Scottsdale, AZ 85260",
+    # image.attach(io: File.open('../../last.jpg'), filename: 'last.jpg', content_type: 'image/jpg')
 },
 {
   make: "C172S",
@@ -32,7 +33,8 @@ Airplane.create!([{
   user_id: users.sample.id,
   description: "2001 Cessna 172 Skyhawk with traditional six pack. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
   price_per_hour: 175,
-  address: "100 Arrival Ave, Ronkonkoma, NY 11779"
+  address: "100 Arrival Ave, Ronkonkoma, NY 11779",
+  # image.attach(io: file , filename: 'cessnascaone.jpg', content_type: 'image/jpg')
 },
 {
   make: "PA-18",
@@ -72,3 +74,7 @@ Airplane.create!([{
 }
 ])
 puts "Done"
+a = Airplane.find_by(tailnumber: "N423SC")
+file = URI.open("https://sierracharlieaviation.com/wp-content/uploads/2022/09/SierraCharlie_Cessna-172-Skyhawk_Gallery_Resilient-Airframe-1.jpg")
+a.photos.attach(io: file, filename: "last.jpg", content_type: "image/jpg")
+a.save
