@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema[7.0].define(version: 2023_03_21_205528) do
-=======
-ActiveRecord::Schema[7.0].define(version: 2023_03_21_204352) do
->>>>>>> b1511e5da2894e96ab44758940d10f99c72125b7
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,10 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_21_204352) do
     t.text "description"
     t.string "address"
     t.string "price_per_hour"
-<<<<<<< HEAD
     t.string "photos"
-=======
->>>>>>> b1511e5da2894e96ab44758940d10f99c72125b7
     t.index ["user_id"], name: "index_airplanes_on_user_id"
   end
 
@@ -109,11 +102,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_21_204352) do
     t.string "license"
     t.integer "fly_hours"
     t.string "role"
-<<<<<<< HEAD
-    t.string "nickname"
-=======
     t.string "name"
->>>>>>> b1511e5da2894e96ab44758940d10f99c72125b7
+    t.string "nickname"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
