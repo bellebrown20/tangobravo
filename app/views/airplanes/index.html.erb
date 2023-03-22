@@ -26,7 +26,8 @@
               <div class="backgroundEffect">
               </div>
               <% if airplane.photos.attached? %>
-                <div class="pic"> <img class="" src='<%= cl_image_path airplane.photos[0].key, height: 350, width: 400, crop: :fill %>' alt="">
+                <%# <div class="pic"> <img class="" src='<%= cl_image_path airplane.photos[0].key, height: 350, width: 400, crop: :fill %>
+                <%# ' alt=""> %>
               <% end %>
               </div>
               <div class="content">
