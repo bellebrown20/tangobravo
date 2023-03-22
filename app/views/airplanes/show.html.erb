@@ -8,7 +8,7 @@
           <% end %>
             <h3><%= @airplane.make %></h3>
              <p>Class: <%= @airplane.engines %></p>
-             <p>Tail number</p>
+             <p>Tailnumber</p>
             <%= button_to "Destroy this plane", @airplane, method: :delete, class: "btn btn-dark mt-4" if current_user == @airplane.user %>
         </div>
     </span>
