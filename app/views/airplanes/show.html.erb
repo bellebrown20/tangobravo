@@ -2,14 +2,21 @@
 <div class="container w-100">
   <div class="d-flex justify-content-around  border-dark">
     <span class="align-self-center">
-        <div class="text-center">
+        <div class="text-left" id= "this">
           <% if current_user == @airplane.user %>
              <%= link_to "Edit this airplane", edit_airplane_path(@airplane), class: "btn btn-dark mb-4" %>
           <% end %>
-            <h3><%= @airplane.make %></h3>
-             <p>Class: <%= @airplane.engines %></p>
-             <p>Tailnumber</p>
-            <%= button_to "Destroy this plane", @airplane, method: :delete, class: "btn btn-dark mt-4" if current_user == @airplane.user %>
+            <h3><%= @airplane.tailnumber %></h3>
+             <h4><%= "#{@airplane.engines} #{@airplane.make} based at #{@airplane.home_airport}"%></h4>
+             <h5> <u>Qualifications to Rent</u></h5>
+             <ul>
+             <li><p><b>Total Hours:</b> <%= @airplane.minimum_hours %> </p></li>
+             <li><p><b>PIC Hours in Same Type:</b> <%=(@airplane.minimum_hours)/3%></p></li>
+             <li><p><b>Minimum License:</b> <%= @airplane.required_licenses %></p></li>
+             </ul>
+             <h6>Wet Rate per Hour: $<%= @airplane.price_per_hour %></h6>
+             <p class="text-muted mt-3"><%= @airplane.description%></p>
+             <%= button_to "Destroy this plane", @airplane, method: :delete, class: "btn btn-dark mt-4" if current_user == @airplane.user %>
         </div>
     </span>
     <div id="carouselExampleIndicators" style="height:50%"class="carousel slide w-75" data-bs-ride="carousel">
