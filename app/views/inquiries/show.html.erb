@@ -53,6 +53,14 @@
         <p><%= @airplane.make %> <%= @airplane.engines %> <%= @airplane.tailnumber %> </p>
         <p><%= @airplane.user.nickname %></p>
         <%= link_to "View Plane", airplane_path(@airplane), class: "btn btn-dark mt-2 ms-5"%>
+        <% if @inquiry.airplane.user == current_user && @inquiry.status == false %>
+          <p> Has <%= @inquiry.user.nickname %> flown with you? </p>
+          <%= simple_form_for [@inquiry] do |f| %>
+              <%= f.input :status, collection: [false, true] %>
+              <%= f.button :submit, class:"btn btn-dark"%>
+            <% end %>
+            </div>
+          <% end %>
       </div>
     </div>
   </div>

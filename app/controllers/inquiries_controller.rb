@@ -9,14 +9,7 @@ class InquiriesController < ApplicationController
   end
 
   def show
-    # chatboxes = Chatbox.joins(:messages).group('chatboxes.id').order('MAX(messages.created_at) DESC')
     @inquiries = Inquiry.where(user: current_user).joins(:airplane).or(Inquiry.joins(:airplane).where(airplane: { user: current_user })).joins(:last_message).order('messages.created_at ASC')
-    # .order('messages.created_at DESC')
-    # @inquiries = @inquiries.order(message.created_at: :desc)
-    # .order('MAX(messages.created_at) DESC')
-    # Inquiry.all.each do |inquiry|
-    #   @inquiries << inquiry if inquiry.user == current_user || inquiry.airplane.user == current_user
-    # end
     @inquiry = Inquiry.find(params[:id])
     @message = Message.new
   end
@@ -24,7 +17,6 @@ class InquiriesController < ApplicationController
   def new
     @airplane = Airplane.find(params[:airplane_id])
     @inquiry = Inquiry.new
-    # authorize @reservation
   end
 
   def create
@@ -39,6 +31,19 @@ class InquiriesController < ApplicationController
     end
   end
 
+  def edit
+    @inquiry = Inquiry.find(params[:id])
+    @airplane = @inquiry.airplane
+    @user = current_user
+  end
+
+  def update
+    @inquiry = Inquiry.find(params[:id])
+    @airplane = @inquiry.airplane
+    @inquiry.update(inquiry_params) # Will raise ActiveModel::ForbiddenAttributesError
+    redirect_to inquiry_path(@inquiry)
+  end
+
   private
 
   # def set_airplane
@@ -47,5 +52,9 @@ class InquiriesController < ApplicationController
 
   def set_inquiry
     @inquiry = Inquiry.find(params[:id])
+  end
+
+  def inquiry_params
+    params.require(:inquiry).permit(:status)
   end
 end
