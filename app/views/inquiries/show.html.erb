@@ -31,8 +31,6 @@
             <%= render "messages/message", message: message %>
           <% end %>
           </div>
-        </div>
-        <div>
           <%= simple_form_for [@inquiry, @message],
             html: { data: { action: "turbo:submit-end->inquiry-subscription#resetForm" }, class: "d-flex" } do |f|
           %>
