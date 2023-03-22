@@ -63,8 +63,8 @@ Airplane.create!([{
 {
   make: "PA-28",
   engines: "Single-Engine",
-  tailnumber: "N987SC",
-  home_airport: "KJFK",
+  tailnumber: "N222BB",
+  home_airport: "KOSH",
   minimum_hours: 100,
   required_licenses: "Private Pilot",
   user_id: users.sample.id,
@@ -78,3 +78,23 @@ a = Airplane.find_by(tailnumber: "N423SC")
 file = URI.open("https://sierracharlieaviation.com/wp-content/uploads/2022/09/SierraCharlie_Cessna-172-Skyhawk_Gallery_Resilient-Airframe-1.jpg")
 a.photos.attach(io: file, filename: "last.jpg", content_type: "image/jpg")
 a.save
+
+b = Airplane.find_by(tailnumber: "N105HF")
+file = URI.open("https://www.vaughn.edu/wp-content/uploads/2021/08/Heritage-Flight-Academy-1200x630-1.jpg")
+b.photos.attach(io: file, filename: "heritage.jpg", content_type: "image/jpg")
+b.save
+
+c = Airplane.find_by(tailnumber: "N620SC")
+file = URI.open("https://images.flyingmag.com/flyingma/wp-content/uploads/2021/08/25162148/FLY0820_APP__002-1.jpg")
+c.photos.attach(io: file, filename: "skycatcher.jpg", content_type: "image/jpg")
+c.save
+
+d = Airplane.find_by(tailnumber: "N222BB")
+file = URI.open("https://australianaviation.com.au/wp-content/uploads/2019/10/40-2468-G-IBEA-Piper-Archer-LX-Wycombe-26-02-2019_1170.jpg")
+d.photos.attach(io: file, filename: "cher.jpg", content_type: "image/jpg")
+d.save
+
+e = Airplane.find_by(tailnumber: "N987SC")
+file = URI.open("https://www.piper.com/wp-content/uploads/2019/01/B07I6838_Small_Web-e1559673395429-1650x926.jpg")
+e.photos.attach(io: file, filename: "seminole.jpg", content_type: "image/jpg")
+e.save
