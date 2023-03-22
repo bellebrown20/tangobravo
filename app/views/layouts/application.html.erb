@@ -14,13 +14,13 @@
 
   <body>
     <div id="page-container">
-      <div id="content-wrap">
+      <div id="content-wrap" style="margin-top:92px">
         <%= yield %>
         <div>
-          <%# <%= render "shared/navbar" %>
+          <%= render "shared/navbar"%>
         </div>
-      </div>
-      <%# <%= render "shared/footer" %>
-    </div>
+      <%# </div>
+      <%= render "shared/footer" %>
+    <%# </div> %>
   </body>
 </html>
