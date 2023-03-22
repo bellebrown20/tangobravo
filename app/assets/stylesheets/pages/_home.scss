@@ -140,8 +140,8 @@ a.btn {
 }
 
 .flex-form input[type="submit"] {
-  background: #203D9D;
-  border: 1px solid #203D9D;
+  background: #173288;
+  border: 1px solid #173288;
   color: #fff;
   padding: 0 30px;
   cursor: pointer;
@@ -151,10 +151,9 @@ a.btn {
 }
 
 .flex-form input[type="submit"]:hover {
-  background: #1a3280;
-  border: 1px solid #1a3280;
+  background: #1e1e1e;
+  border: 1px solid #1e1e1e;
   color: #fff;
-
 }
 
 .flex-form {
@@ -280,10 +279,10 @@ html {
 .background::after {
   content: '';
   background: #60a9ff;
-  background: -moz-linear-gradient(top, #203D9D 0%, #2f70bf 100%);
-  background: -webkit-linear-gradient(top, #203D9D 0%,#2f70bf 100%);
-  background: linear-gradient(to bottom, #203D9D 0%,#2f70bf 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#203D9D', endColorstr='#2f70bf',GradientType=0 );
+  background: -moz-linear-gradient(top, #173288 0%, #2f70bf 100%);
+  background: -webkit-linear-gradient(top, #173288 0%,#2f70bf 100%);
+  background: linear-gradient(to bottom, #173288 0%,#2f70bf 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#173288', endColorstr='#2f70bf',GradientType=0 );
   height: 350px;
   left: 0;
   position: absolute;
@@ -306,7 +305,7 @@ html {
 }
 
 .panel {
-  background-color: #fff;
+  background-color: #ffff;
   border-radius: 10px;
   padding: 15px 25px;
   position: relative;
@@ -332,7 +331,7 @@ html {
 }
 
 .pricing-plan {
-  border-bottom: 1px solid #e1f1ff;
+  border-bottom: 1px solid #ffff;
   padding: 25px;
 }
 
@@ -343,7 +342,7 @@ html {
 @media (min-width: 900px) {
   .pricing-plan {
     border-bottom: none;
-    border-right: 1px solid #e1f1ff;
+    border-right: 1px solid #ffff;
     flex-basis: 100%;
     padding: 25px 50px;
   }
@@ -365,7 +364,7 @@ html {
 }
 
 .pricing-features {
-  color: #016FF9;
+  color: #173288;
   font-weight: 600;
   letter-spacing: 1px;
   margin: 50px 0 25px;
@@ -392,7 +391,7 @@ html {
 .pricing-button {
   border: 1px solid #9dd1ff;
   border-radius: 10px;
-  color: #348EFE;
+  color: #173288;
   display: inline-block;
   margin: 25px 0;
   padding: 15px 35px;
@@ -402,15 +401,15 @@ html {
 
 .pricing-button:hover,
 .pricing-button:focus {
-  background-color: #e1f1ff;
+  background-color: #ffff;
 }
 
 .pricing-button.is-featured {
-  background-color: #48aaff;
+  background-color: #173288;
   color: #fff;
 }
 
 .pricing-button.is-featured:hover,
 .pricing-button.is-featured:active {
-  background-color: #269aff;
+  background-color: #173288;
 }
