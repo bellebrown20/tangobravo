@@ -24,37 +24,31 @@
       <input placeholder="Search airports...">
     </form>
     </li>
-
           <li class="nav-item  SMN_effect-48  mt-3">
             <%= link_to "Airplanes", airplanes_path, class: "nav-link text-light ms-4", id: "planes-link" %>
           </li>
-          <li class="nav-item  SMN_effect-48 ms-4  mt-3">
-            <%= link_to "Contact", "mailto:hi@tangobravo.com", class: "nav-link text-light" %>
+
+          <li class="nav-item  SMN_effect-48  mt-3">
+            <%= link_to "Hangar", my_airplanes_airplanes_path, class: "nav-link text-light ms-4", id: "planes-link" %>
           </li>
           <li class="nav-item  SMN_effect-48 ms-4 me-4  mt-3">
-            <%= link_to "Login", new_user_session_path, class: "nav-link text-light" %>
+            <%= link_to "Contact", "mailto:hi@tangobravo.com", class: "nav-link text-light" %>
           </li>
 
 
           <li class="nav-item dropdown ms-2 mt-3 me-5">
             <%= image_tag "https://avatars.githubusercontent.com/u/102123472?v=4", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
 
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Profile", "#", data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
 
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
               <%= link_to "Messages", "#", data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
 
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "My airplanes", my_airplanes_airplanes_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
 
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Log ou  t", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
+              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
 
+                    </div>
           </li>
 
         <% else %>
