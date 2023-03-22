@@ -5,7 +5,7 @@ User.destroy_all
 5.times do
   name = Faker::Name.first_name
   email = "#{name}@gmail.com"
-  user = User.new(password:"123456", email:email, nickname:name)
+  user = User.new(password: "123456", email: email, nickname: name)
   user.save!
   users << user
 end

@@ -39,7 +39,9 @@
     <div class="col-12 col-sm-6">
       <h3>Reviews</h3>
       <% if @airplane.reviews.empty? %>
-        <small><em class="text-muted">Be the first one to review this airplane</em></small>
+        <% if current_user != @airplane.user  %>
+          <small><em class="text-muted">Be the first one to review this airplane</em></small>
+        <% end %>
       <% end %>
       <% @airplane.reviews.each do |review| %>
         <div>
@@ -52,16 +54,18 @@
         <hr>
       <% end %>
     </div>
-    <div class="col-12 col-sm-6">
-      <div class="bg-white rounded p-3">
-        <h5>Add your review</h5>
-        <%= simple_form_for [@airplane, @review] do |f| %>
-          <%= f.input :content, placeholder: "Add your review here..." %>
-          <%= f.input :score, as: :select, collection: (1..5), required: true, prompt: "What's your rating", input_html: { data: { controller: "star-rating" } } %>
-          <%= f.submit class:"btn btn-flat" %>
-        <% end %>
+    <% if current_user != @airplane.user  %>
+      <div class="col-12 col-sm-6">
+        <div class="bg-white rounded p-3">
+          <h5>Add your review</h5>
+          <%= simple_form_for [@airplane, @review] do |f| %>
+            <%= f.input :content, placeholder: "Add your review here..." %>
+            <%= f.input :score, as: :select, collection: (1..5), required: true, prompt: "What's your rating", input_html: { data: { controller: "star-rating" } } %>
+            <%= f.submit class:"btn btn-flat" %>
+          <% end %>
+        </div>
       </div>
-    </div>
+    <%end%>
   </div>
 
 <%# <% if @airplane.user != current_user %>
