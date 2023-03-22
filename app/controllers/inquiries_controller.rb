@@ -1,17 +1,22 @@
 class InquiriesController < ApplicationController
 
   def index
-    @inquiries = []
-    Inquiry.all.each do |inquiry|
-      @inquiries << inquiry if inquiry.user == current_user || inquiry.airplane.user == current_user
-    end
+    @inquiries = Inquiry.where(user: current_user).joins(:airplane).or(Inquiry.joins(:airplane).where(airplane: { user: current_user }))
+    # @inquiries = []
+    # Inquiry.all.each do |inquiry|
+    #   @inquiries << inquiry if inquiry.user == current_user || inquiry.airplane.user == current_user
+    # end
   end
 
   def show
-    @inquiries = []
-    Inquiry.all.each do |inquiry|
-      @inquiries << inquiry if inquiry.user == current_user || inquiry.airplane.user == current_user
-    end
+    # chatboxes = Chatbox.joins(:messages).group('chatboxes.id').order('MAX(messages.created_at) DESC')
+    @inquiries = Inquiry.where(user: current_user).joins(:airplane).or(Inquiry.joins(:airplane).where(airplane: { user: current_user })).joins(:last_message).order('messages.created_at ASC')
+    # .order('messages.created_at DESC')
+    # @inquiries = @inquiries.order(message.created_at: :desc)
+    # .order('MAX(messages.created_at) DESC')
+    # Inquiry.all.each do |inquiry|
+    #   @inquiries << inquiry if inquiry.user == current_user || inquiry.airplane.user == current_user
+    # end
     @inquiry = Inquiry.find(params[:id])
     @message = Message.new
   end
