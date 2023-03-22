@@ -7,9 +7,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to airplane_path(@airplane)
     else
-      redirect_to airplane_path(@airplane)
-      # @bookmark = Bookmark.new
-      # render 'lists/show', status: :unprocessable_entity
+      render 'airplanes/show', status: :unprocessable_entity
     end
   end
 

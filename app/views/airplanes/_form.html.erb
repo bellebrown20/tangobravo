@@ -6,8 +6,9 @@
     <%= f.input :minimum_hours %>
     <%= f.input :required_licenses, collection: ["Private Pilot", "Commercial Pilot"], input_html: { multiple: true } %>
     <%= f.input :description %>
+    <%= f.input :home_airport %>
     <%= f.input :address,
-      input_html: {class: "d-none", data: {address_autocomplete_target: "address"}},
+      input_html: {class: "", data: {address_autocomplete_target: "address"}},
       wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
     <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.submit "Create plane", class: "btn btn-dark w-50 mt-3" %>
