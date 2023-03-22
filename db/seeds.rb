@@ -99,3 +99,8 @@ e = Airplane.find_by(tailnumber: "N987SC")
 file = URI.open("https://www.piper.com/wp-content/uploads/2019/01/B07I6838_Small_Web-e1559673395429-1650x926.jpg")
 e.photos.attach(io: file, filename: "seminole.jpg", content_type: "image/jpg")
 e.save
+
+f = Airplane.find_by(tailnumber: "N105HF")
+file = URI.open("http://heritageflightacademy.com/wp-content/uploads/2016/04/Private-Pilot-300x225.jpg")
+f.photos.attach(io: file, filename: "heritagetwo.jpg", content_type: "image/jpg")
+f.save
