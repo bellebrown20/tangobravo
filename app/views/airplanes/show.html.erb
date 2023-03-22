@@ -3,12 +3,13 @@
   <div class="d-flex justify-content-around  border-dark">
     <span class="align-self-center">
         <div class="text-center">
-          <%# <% if policy(@airplane).edit? %> %>
-             <%# <%= link_to "Edit this airplane", edit_airplane_path(@airplane), class: "btn btn-dark mb-4" %> %>
-          <%# <% end %> %>
+          <% if current_user == @airplane.user %>
+             <%= link_to "Edit this airplane", edit_airplane_path(@airplane), class: "btn btn-dark mb-4" %>
+          <% end %>
             <h3><%= @airplane.make %></h3>
              <p>Class: <%= @airplane.engines %></p>
-            <%# <%= button_to "Destroy this plane", @airplane, method: :delete, class: "btn btn-dark mt-4" if policy(@airplane).destroy? %> %>
+             <p>Tail number</p>
+            <%= button_to "Destroy this plane", @airplane, method: :delete, class: "btn btn-dark mt-4" if current_user == @airplane.user %>
         </div>
     </span>
     <div id="carouselExampleIndicators" style="height:50%"class="carousel slide w-75" data-bs-ride="carousel">
