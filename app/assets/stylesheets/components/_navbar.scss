@@ -1,16 +1,14 @@
 
-body {
-  font-family: "Roboto", sans-serif;
-  }
 
   .navbar {
-  background-color: transparent;
-  position: fixed;
+  background-color: #203D9D;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   z-index: 9999;
-  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 92px;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -18,7 +16,7 @@ body {
 }
 
 .navbar-brand img{
-  width: 10%;
+  width: 12%;
 }
 
 
@@ -79,55 +77,24 @@ cursor: pointer;
   width: 270px;
 }
 
-/*
-*
-* ==========================================
-* CUSTOM UTIL CLASSES
-* ==========================================
-*
-*/
-
-.form-control:focus {
-  box-shadow: none;
-}
-
-.form-control-underlined {
-  border-width: 0;
-  border-bottom-width: 1px;
-  border-radius: 0;
-  padding-left: 0;
-}
-
-/*
-*
-* ==========================================
-* FOR DEMO PURPOSE
-* ==========================================
-*
-*/
-
 .form-control::placeholder {
   font-size: 0.95rem;
-  color: #aaa;
+  color: white;
   font-style: italic;
 }
 #query{
   font-size: 0.95rem;
-  color: #fff;
+  color: white;
   font-style: italic;
 }
 
 
 .search_bar{
-  margin-right: 150px;
+  margin-right: 120px;
   height: 100%;
 }
-.search_bar{
-  border: 1px solid #a1a1a1;
-}
+
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap");
-
-
 
 .form_navbar {
   position: relative;

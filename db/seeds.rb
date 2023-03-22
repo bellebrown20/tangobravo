@@ -3,8 +3,9 @@ require "open-uri"
 users = []
 User.destroy_all
 5.times do
-  email = "#{Faker::Name.first_name}@gmail.com"
-  user = User.new(password:"123456", email:email)
+  name = Faker::Name.first_name
+  email = "#{name}@gmail.com"
+  user = User.new(password: "123456", email: email, nickname: name)
   user.save!
   users << user
 end
