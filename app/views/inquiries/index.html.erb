@@ -1,18 +1,30 @@
 <div class="container">
 
 
-
+  <div class="row" data-controller="inquiry-selector">
+    <div class="col-2" data-inquiry-selector-target="list">
       <% @inquiries.each do |inquiry| %>
-        <div data-inquiry-selector-target="box" data-action="click->inquiry-selector#updateInquiry">
-          <p>#<%= inquiry.airplane.make %></p>
-          <% if inquiry.user == current_user %>
-            <p> <%= inquiry.airplane.user  %></p>
-          <% else %>
-            <p> <%= inquiry.user  %></p>
-          <% end %>
-        </div>
+        <%= link_to inquiry_path(inquiry), class: "text-decoration-none inquiry-box" do %>
+          <div class="border-bottom mb-2 <%= inquiry.messages.last.user == current_user ? '' : 'border-danger' %> "data-inquiry-selector-target="box" data-action="click->inquiry-selector#updateInquiry">
+            <p>#<%= inquiry.airplane.make %></p>
+            <% if inquiry.user == current_user %>
+              <p> <%= inquiry.airplane.user.nickname  %></p>
+            <% else %>
+              <p> <%= inquiry.user.nickname  %></p>
+            <% end %>
+            <% if inquiry.messages.last.user != current_user %>
+            <p class="small danger">Your turn</p>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
+    </div>
 
+    <div class="col-10 f" data-inquiry-selector-target="chat">
+      <h2>Select your chat</h2>
+      <i class="fa-solid fa-plane-departure fa-flip-horizontal fa-2xl"></i>
+    </div>
+  </div>
 
 
 </div>
