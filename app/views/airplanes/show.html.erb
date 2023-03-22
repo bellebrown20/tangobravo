@@ -33,6 +33,36 @@
 
  <%= link_to "Inquire about this plane", new_airplane_inquiry_path(@airplane), class: "btn btn-dark" if @airplane.user != current_user %>
 
+<hr class="my-5">
+  <div class="row">
+    <div class="col-12 col-sm-6">
+      <h3>Reviews</h3>
+      <% if @airplane.reviews.empty? %>
+        <small><em class="text-muted">Be the first one to review this airplane</em></small>
+      <% end %>
+      <% @airplane.reviews.each do |review| %>
+        <div>
+          <% review.score.times do %>
+            <i class="fas fa-star star-yellow"></i>
+          <% end %>
+          <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
+          <p class="mb-0"><%= review.content %></p>
+        </div>
+        <hr>
+      <% end %>
+    </div>
+    <div class="col-12 col-sm-6">
+      <div class="bg-white rounded p-3">
+        <h5>Add your review</h5>
+        <%= simple_form_for [@airplane, @review] do |f| %>
+          <%= f.input :content, placeholder: "Add your review here..." %>
+          <%= f.input :score, as: :select, collection: (1..5), required: true, prompt: "What's your rating", input_html: { data: { controller: "star-rating" } } %>
+          <%= f.submit class:"btn btn-flat" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
 <%# <% if @airplane.user != current_user %>
   <%# <h1>Inquire about this plane</h1> %>
   <%# <%= simple_form_for [@airplane, @message] do |f| %>
