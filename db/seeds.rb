@@ -22,7 +22,6 @@ Airplane.create!([{
     description: "2020 Cessna 172 with integrated Garmin G1000 avionics. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
     price_per_hour: 200,
     address: "15000 N Airport Dr, Scottsdale, AZ 85260",
-    # image.attach(io: File.open('../../last.jpg'), filename: 'last.jpg', content_type: 'image/jpg')
 },
 {
   make: "C172S",
@@ -35,7 +34,6 @@ Airplane.create!([{
   description: "2001 Cessna 172 Skyhawk with traditional six pack. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
   price_per_hour: 175,
   address: "100 Arrival Ave, Ronkonkoma, NY 11779",
-  # image.attach(io: file , filename: 'cessnascaone.jpg', content_type: 'image/jpg')
 },
 {
   make: "PA-18",
@@ -104,3 +102,33 @@ f = Airplane.find_by(tailnumber: "N105HF")
 file = URI.open("http://heritageflightacademy.com/wp-content/uploads/2016/04/Private-Pilot-300x225.jpg")
 f.photos.attach(io: file, filename: "heritagetwo.jpg", content_type: "image/jpg")
 f.save
+
+g = Airplane.find_by(tailnumber: "N423SC")
+file = URI.open("https://pbs.twimg.com/media/Fn-iVaVX0AAVxux?format=jpg&name=4096x4096")
+g.photos.attach(io: file, filename: "scacessnathree.jpg", content_type: "image/jpg")
+g.save
+
+h = Airplane.find_by(tailnumber: "N620SC")
+file = URI.open("https://images.flyingmag.com/flyingma/wp-content/uploads/2021/08/25162144/FLY0820_APP__004.jpg")
+h.photos.attach(io: file, filename: "skybtwo.jpg", content_type: "image/jpg")
+h.save
+
+i = Airplane.find_by(tailnumber: "N987SC")
+file = URI.open("https://leopardaviation.com/wp-content/uploads/2021/02/ac-6.jpg")
+i.photos.attach(io: file, filename: "seminoletwo.jpg", content_type: "image/jpg")
+i.save
+
+j = Airplane.find_by(tailnumber: "N423SC")
+file = URI.open("https://flyer.co.uk/wp-content/uploads/2019/07/G1000-NXi-Cessna-206-scaled.jpg")
+j.photos.attach(io: file, filename: "scacessnafour.jpg", content_type: "image/jpg")
+j.save
+
+k = Airplane.find_by(tailnumber: "N105HF")
+file = URI.open("https://pbs.twimg.com/media/EzDqSRqWgAE2riA.jpg")
+k.photos.attach(io: file, filename: "heritagethree.jpg", content_type: "image/jpg")
+k.save
+
+l = Airplane.find_by(tailnumber: "N222BB")
+file = URI.open("https://www.dandjaviation.com/uploads/b/c27108abc586cb2ffe70f41643b5b1c9ab552e1c60e25f091451fc6e88a521c3/F38BBBD7-0394-4843-A22A-2385D396C5D0_1_105_c_1617131974.jpeg")
+l.photos.attach(io: file, filename: "chertwo.jpg", content_type: "image/jpg")
+l.save

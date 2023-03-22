@@ -14,17 +14,17 @@
   data-map-markers-value="<%= @markers.to_json %>"
   data-map-api-key-value="<%= ENV['MAP_BOX_KEY'] %>">
 </div>
-
+<%# col-3 me-lg-4 mb-lg-3 mb-4 d-flex justify-content-center %>
 <div class="container">
   <div class="row">
       <% @airplanes.each do |airplane| %>
-        <div class = "col-4">
-          <div class="d-flex">
+        <div class = "col-4 mt-4">
+          <div class="d-inline-flex p-2">
 
         <%= link_to airplane_path(airplane), class: "text-decoration-none" do %>
-            <div class="card border-0 me-lg-4 mb-lg-0 mb-4 d-flex justify-content-center">
-              <div class="backgroundEffect">
-              </div>
+            <div class="card border-2 ">
+              <%# <div class="backgroundEffect">
+              </div> %>
               <% if airplane.photos.attached? %>
                 <div class="pic"> <img class="" src='<%= cl_image_path airplane.photos[0].key, height: 350, width: 400, crop: :fill %>' alt="">
               <% end %>
