@@ -9,10 +9,12 @@ Rails.application.routes.draw do
     collection do
       get :my_airplanes
     end
-    resources :reviews, only: [:create]
+    # resources :reviews, only: [:create]
     resources :inquiries, only: [:create, :new]
+    resources :reviews, only: :create
   end
   resources :inquiries, only: [:index, :show]  do
     resources :messages, only: [:create]
   end
+  resources :reviews, only: :destroy
 end

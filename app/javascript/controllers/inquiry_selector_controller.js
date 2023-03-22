@@ -10,11 +10,14 @@ export default class extends Controller {
   }
 
   updateInquiry() {
-    const url = `${this.formTarget.action}?query=${this.inputTarget.value}`
-    fetch(url, {headers: {"Accept": "text/plain"}})
-      .then(response => response.text())
-      .then((data) => {
-        this.listTarget.outerHTML = data
-      })
+    // const url = `${this.formTarget.action}?query=${this.inputTarget.value}`
+    // fetch(url, {headers: {"Accept": "text/plain"}})
+    //   .then(response => response.text())
+    //   .then((data) => {
+    //     this.listTarget.outerHTML = data
+    //   })
+    console.log(this.chatTarget)
+    console.log(this.boxTarget)
+    console.log(this.listTarget)
   }
 }

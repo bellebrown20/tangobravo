@@ -25,11 +25,12 @@
             <div class="card border-0 me-lg-4 mb-lg-0 mb-4 d-flex justify-content-center">
               <div class="backgroundEffect">
               </div>
-              <%# <div class="pic"> <img class="" src='<%= cl_image_path car.photos[0].key, height: 350, width: 400, crop: :fill %>
-              <%# ' alt=""> %>
+              <% if airplane.photos.attached? %>
+                <div class="pic"> <img class="" src='<%= cl_image_path airplane.photos[0].key, height: 350, width: 400, crop: :fill%>'>
+              <% end %>
               </div>
               <div class="content">
-                <p class="h-1 mt-4"> <%= "#{airplane.make} #{airplane.engines}" %></p> <p class="text-muted mt-3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere, veritatis. Eveniet in vel illo, mollitia nemo architecto, voluptates ullam molestias.</p>
+                <p class="h-1 mt-4"> <%= "#{airplane.make} #{airplane.tailnumber}" %></p> <p class="text-muted mt-3"> <%= "#{airplane.description}" %> </p>
                 <div class="d-flex align-items-center justify-content-between mt-3 pb-3">
                   <div class="btn btn-primary">Read More<span class="fas fa-arrow-right"></span>
                   </div>

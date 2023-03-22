@@ -3,12 +3,13 @@
   <div class="d-flex justify-content-around  border-dark">
     <span class="align-self-center">
         <div class="text-center">
-          <% if policy(@airplane).edit? %>
+          <% if current_user == @airplane.user %>
              <%= link_to "Edit this airplane", edit_airplane_path(@airplane), class: "btn btn-dark mb-4" %>
           <% end %>
             <h3><%= @airplane.make %></h3>
              <p>Class: <%= @airplane.engines %></p>
-            <%= button_to "Destroy this plane", @airplane, method: :delete, class: "btn btn-dark mt-4" if policy(@airplane).destroy? %>
+             <p>Tailnumber</p>
+            <%= button_to "Destroy this plane", @airplane, method: :delete, class: "btn btn-dark mt-4" if current_user == @airplane.user %>
         </div>
     </span>
     <div id="carouselExampleIndicators" style="height:50%"class="carousel slide w-75" data-bs-ride="carousel">
@@ -31,7 +32,41 @@
     </div>
 </div>
 
- <%= link_to "Inquire about this plane", new_airplane_inquiry(@airplane), class: "btn btn-dark" if @airplane.user != current_user %>
+ <%= link_to "Inquire about this plane", new_airplane_inquiry_path(@airplane), class: "btn btn-dark" if @airplane.user != current_user %>
+
+<hr class="my-5">
+  <div class="row">
+    <div class="col-12 col-sm-6">
+      <h3>Reviews</h3>
+      <% if @airplane.reviews.empty? %>
+        <% if current_user != @airplane.user  %>
+          <small><em class="text-muted">Be the first one to review this airplane</em></small>
+        <% end %>
+      <% end %>
+      <% @airplane.reviews.each do |review| %>
+        <div>
+          <% review.score.times do %>
+            <i class="fas fa-star star-yellow"></i>
+          <% end %>
+          <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
+          <p class="mb-0"><%= review.content %></p>
+        </div>
+        <hr>
+      <% end %>
+    </div>
+    <% if current_user != @airplane.user  %>
+      <div class="col-12 col-sm-6">
+        <div class="bg-white rounded p-3">
+          <h5>Add your review</h5>
+          <%= simple_form_for [@airplane, @review] do |f| %>
+            <%= f.input :content, placeholder: "Add your review here..." %>
+            <%= f.input :score, as: :select, collection: (1..5), required: true, prompt: "What's your rating", input_html: { data: { controller: "star-rating" } } %>
+            <%= f.submit class:"btn btn-flat" %>
+          <% end %>
+        </div>
+      </div>
+    <%end%>
+  </div>
 
 <%# <% if @airplane.user != current_user %>
   <%# <h1>Inquire about this plane</h1> %>
