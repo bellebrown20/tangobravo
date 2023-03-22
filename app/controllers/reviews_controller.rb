@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
-    @airplane = Airplane.find(params[:list_id])
+    @airplane = Airplane.find(params[:airplane_id])
     @review.airplane = @airplane
     if @review.save
       redirect_to airplane_path(@airplane)
