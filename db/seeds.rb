@@ -7,7 +7,7 @@ User.destroy_all
   email = "#{name}@gmail.com"
   last_name = Faker::Name.last_name
   role = "Owner"
-  user = User.new(password: "123456", email: email, nickname: name, role: role, last_name: last_name)
+  user = User.new(password: "123456", email: email, name: name, role: role, last_name: last_name)
   user.save!
   users << user
 end
