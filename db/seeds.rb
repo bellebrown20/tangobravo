@@ -5,7 +5,9 @@ User.destroy_all
 5.times do
   name = Faker::Name.first_name
   email = "#{name}@gmail.com"
-  user = User.new(password: "123456", email: email, nickname: name)
+  last_name = Faker::Name.last_name
+  role = "Owner"
+  user = User.new(password: "123456", email: email, nickname: name, role: role, last_name: last_name)
   user.save!
   users << user
 end
@@ -70,6 +72,90 @@ Airplane.create!([{
   description: "2016 Piper Cherokee with tradional six pack. Lycoming IO-360-B1E 180HP fuel injected engine. 48 US gallons usable fuel capacity.",
   price_per_hour: 185,
   address: "525 W 20th Ave, Oshkosh, WI 54902"
+},
+{
+  make: "C172S",
+  engines: "Single-Engine",
+  tailnumber: "N716JP",
+  home_airport: "KPDX",
+  minimum_hours: 50,
+  required_licenses: "Private Pilot",
+  user_id: users.sample.id,
+  description: "1957 Cessna 172 Skyhawk with traditional six pack. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
+  price_per_hour: 135,
+  address: "7000 NE Airport Way Portland, OR 97218"
+},
+{
+  make: "C172S",
+  engines: "Single-Engine",
+  tailnumber: "N407JM",
+  home_airport: "KSEA",
+  minimum_hours: 50,
+  required_licenses: "Private Pilot",
+  user_id: users.sample.id,
+  description: "2020 Cessna 172 with integrated Garmin G1000 avionics. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
+  price_per_hour: 175,
+  address: "17801 International Blvd Seattle, WA 98158"
+},
+{
+  make: "C172S",
+  engines: "Single-Engine",
+  tailnumber: "N777RL",
+  home_airport: "KMCI",
+  minimum_hours: 70,
+  required_licenses: "Private Pilot",
+  user_id: users.sample.id,
+  description: "2020 Cessna 172 with integrated Garmin G1000 avionics. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
+  price_per_hour: 160,
+  address: "1 International Square, Kansas City, MO 64153"
+},
+{
+  make: "C172S",
+  engines: "Single-Engine",
+  tailnumber: "N124GS",
+  home_airport: "KGON",
+  minimum_hours: 70,
+  required_licenses: "Private Pilot",
+  user_id: users.sample.id,
+  description: "2011 Cessna 172 with steam gauge six pack. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
+  price_per_hour: 140,
+  address: "155 Tower Ave, Groton, CT 06340"
+},
+{
+  make: "PA-44",
+  engines: "Mutli-Engine",
+  tailnumber: "N111KM",
+  home_airport: "KMIA",
+  minimum_hours: 120,
+  required_licenses: "Commerical Pilot",
+  user_id: users.sample.id,
+  description: "2019 Piper Seminole with integrated G1000 NXi avionics suite. Two Lycoming IO-360-B1G6 fuel injected engines. 108 US gallons usable fuel capacity.",
+  price_per_hour: 300,
+  address: "2100 NW 42nd Ave, Miami, FL 33142"
+},
+{
+  make: "G36",
+  engines: "Single-Engine",
+  tailnumber: "N212KH",
+  home_airport: "KMEM",
+  minimum_hours: 90,
+  required_licenses: "Commerical Pilot",
+  user_id: users.sample.id,
+  description: "2005 Beechcraft Bonanza G36 with updated Garmin G1000 NXi avionics. Continental Aerospace Technologies IO-550-B engine rated at 300HP. Three blade, constant speed Hartzell prop.",
+  price_per_hour: 390,
+  address: "2491 Winchester Rd, Memphis, TN 38116"
+},
+{
+  make: "C182S",
+  engines: "Single-Engine",
+  tailnumber: "N987JC",
+  home_airport: "KSLC",
+  minimum_hours: 150,
+  required_licenses: "Commerical Pilot",
+  user_id: users.sample.id,
+  description: "2000 Cessna Skylane 182S with traditional steam gauge six pack. Lycoming TIO-540-AK1A engine rated at 235HP. Three blade, constant speed McCauley prop.",
+  price_per_hour: 390,
+  address: "776 N Terminal Dr, Salt Lake City, UT 84122"
 }
 ])
 puts "Done"
