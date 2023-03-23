@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 
 export default class extends Controller {
   static values = {
@@ -7,7 +8,7 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log("CONNECTED")
+    console.log("CONNECTED 2")
 
     mapboxgl.accessToken = this.apiKeyValue
 
