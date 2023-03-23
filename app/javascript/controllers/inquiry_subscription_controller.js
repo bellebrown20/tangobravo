@@ -13,7 +13,6 @@ export default class extends Controller {
     )
     console.log(`Subscribed to the inquiry with the id ${this.inquiryIdValue}.`)
 
-  useSubmitOnEnter(this)
   }
 
   #insertMessageAndScrollDown(data) {

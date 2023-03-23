@@ -1,5 +1,5 @@
-<h2>Sign up</h2>
 <div class="container">
+<h2 class = "text-center">Sign up</h2>
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
     <%= f.error_notification %>
 
@@ -15,17 +15,23 @@
       <%= f.input :password_confirmation,
                   required: true,
                   input_html: { autocomplete: "new-password" } %>
-      <%= f.input :nickname, :label => "First Name", input_html: { placeholder: "As shown on FAA license" } %>
+      <%= f.input :name, :label => "First Name", input_html: { placeholder: "As shown on FAA license" } %>
+
       <%= f.input :last_name, :label => "Last Name", input_html: { placeholder: "As shown on FAA license" } %>
-      <%= f.input :license, collection: ["Private Pilot", "Commercial Pilot"], input_html: { multiple: true } %>
-      <%= f.input :fly_hours, :label => "Total Time in Airplanes"%>
+
+      <%= f.input :license, collection: ["Private Pilot", "Commercial Pilot"],
+                  input_html: { multiple: true } %>
+
+      <%= f.input :fly_hours, as: :numeric %>
+
       <%= f.input :role, collection: ["Owner", "Pilot"]%>
+
       <%= f.input :photo, as: :file, required: true, :label => "Profile Photo" %>
 
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Sign up" %>
+      <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>
