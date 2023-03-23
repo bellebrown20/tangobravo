@@ -19,19 +19,19 @@
              <%= button_to "Destroy this plane", @airplane, method: :delete, class: "btn btn-dark mt-4" if current_user == @airplane.user %>
         </div>
     </span>
-    <div id="carouselExampleIndicators" style="height:50%"class="carousel slide w-75" data-bs-ride="carousel">
-      <div class="carousel-inner">
-      <% @airplane.photos.each_with_index do |photo, index| %>
-        <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
-                <%= cl_image_tag photo.key, class: "d-block w-100", crop: :fill %>
-              </div>
-        <% end %>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <div id="carouselExampleIndicators" style="height: 500px" class="carousel slide w-75" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <% @airplane.photos.each_with_index do |photo, index| %>
+            <div class="carousel-item <%= index == 0 ? 'active' : '' %>" style="height: 500px;">
+              <%= cl_image_tag photo.key, class: "d-block w-100", crop: :fill, height: 500, width: 500 %>
+            </div>
+          <% end %>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
@@ -40,18 +40,21 @@
 </div>
 
 <%# Inquiry.where(user: current_user).joins(:airplane).or(Inquiry.joins(:airplane).where(airplane: { user: current_user })).joins(:last_message).order('messages.created_at ASC') %>
- <%= link_to "Inquire about this plane", new_airplane_inquiry_path(@airplane), class: "btn btn-dark" if current_user.inquiries.where(airplane: @airplane).count == 0 && @airplane.user != current_user %>
- <% @inquiry = Inquiry.where(user: current_user).joins(:airplane).where(airplane: @airplane).last %>
- <%= link_to "Go to inquiry about plane", inquiry_path(@inquiry), class: "btn btn-dark" if current_user.inquiries.where(airplane: @airplane).count >= 1 %>
-
+  <% if current_user %>
+  <%= link_to "Inquire about this plane", new_airplane_inquiry_path(@airplane), class: "btn btn-dark" if current_user.inquiries.where(airplane: @airplane).count == 0 && @airplane.user != current_user %>
+  <% @inquiry = Inquiry.where(user: current_user).joins(:airplane).where(airplane: @airplane).last %>
+  <%= link_to "Go to inquiry about plane", inquiry_path(@inquiry), class: "btn btn-dark" if current_user.inquiries.where(airplane: @airplane).count >= 1 %>
+  <% end %>
 <hr class="my-5">
   <div class="row">
     <div class="col-12 col-sm-6">
       <h3>Reviews</h3>
       <% if @airplane.reviews.empty? %>
         <small><em class="text-muted">No reviews yet for this plane</em></small>
-        <% if current_user != @airplane.user && @inquiry.status == true  %>
-          <small><em class="text-muted">Be the first one to review this airplane</em></small>
+        <% if current_user && @inquiry %>
+          <% if current_user != @airplane.user && @inquiry.status == true  %>
+            <small><em class="text-muted">Be the first one to review this airplane</em></small>
+          <% end %>
         <% end %>
       <% end %>
       <% @airplane.reviews.each do |review| %>
@@ -65,26 +68,25 @@
         <hr>
       <% end %>
     </div>
-    <% if current_user != @airplane.user && @inquiry.status == true  %>
-      <div class="col-12 col-sm-6">
-        <div class="bg-white rounded p-3">
-          <h5>Add your review</h5>
-          <%= simple_form_for [@airplane, @review] do |f| %>
-            <%= f.input :content, placeholder: "Add your review here..." %>
-            <%= f.input :score, as: :select, collection: (1..5), required: true, prompt: "What's your rating", input_html: { data: { controller: "star-rating" } } %>
-            <%= f.submit class:"btn btn-flat" %>
-          <% end %>
+    <% if current_user && @inquiry %>
+      <% if current_user != @airplane.user && @inquiry.status == true  %>
+        <div class="col-12 col-sm-6">
+          <div class="bg-white rounded p-3">
+            <h5>Add your review</h5>
+            <%= simple_form_for [@airplane, @review] do |f| %>
+              <%= f.input :content, placeholder: "Add your review here..." %>
+              <%= f.input :score, as: :select, collection: (1..5), required: true, prompt: "What's your rating", input_html: { data: { controller: "star-rating" } } %>
+              <%= f.submit class:"btn btn-flat" %>
+            <% end %>
+          </div>
         </div>
-      </div>
+      <%end%>
     <%end%>
   </div>
 
-<%# <% if @airplane.user != current_user %>
-  <%# <h1>Inquire about this plane</h1> %>
-  <%# <%= simple_form_for [@airplane, @message] do |f| %>
-    <%# <%= f.input :content %>
-    <%# <%= f.submit "Submit Inquiry", class: "btn btn-primary" %>
-  <%# <% end %>
-<%# <% end %>
+<% if @airplane.user != current_user %>
+<%= link_to "View airplane owner's profile", user_path(@airplane.user), class: "btn btn-dark"%>
+<% end %>
+
 
 </div>

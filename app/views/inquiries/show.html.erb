@@ -1,12 +1,12 @@
 
 <div class="container">
 
-  <div class="row" data-controller="inquiry-selector">
+  <div class="row">
 
-    <div class="col-2 chatbox-cards" data-inquiry-selector-target="list" style="height: 100vh; overflow-y: scroll;">
+    <div class="col-2 chatbox-cards"style="height: 100vh; overflow-y: scroll;">
       <% @inquiries.each do |inquiry| %>
         <%= link_to inquiry_path(inquiry), class: "text-decoration-none inquiry-box" do %>
-          <div class="border-bottom mb-2 <%= inquiry.messages.last.user == current_user ? '' : 'border-danger' %> <%= inquiry == @inquiry ? 'border-success' : '' %> "data-inquiry-selector-target="box" data-action="click->inquiry-selector#updateInquiry">
+          <div class="border-bottom mb-2 <%= inquiry.messages.last.user == current_user ? '' : 'border-danger' %> <%= inquiry == @inquiry ? 'border-success' : '' %> ">
             <p>#<%= inquiry.airplane.make %></p>
             <% if inquiry.user == current_user %>
               <p> <%= inquiry.airplane.user.nickname  %></p>
@@ -27,7 +27,7 @@
     </div>
 
 
-    <div class="row col-10 chat-box-container" data-inquiry-selector-target="chat">
+    <div class="row col-10 chat-box-container">
 
       <div class="col-6">
         <div class="container inquiry"
