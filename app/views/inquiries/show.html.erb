@@ -4,19 +4,21 @@
   <div class="row">
 
     <div class="col-2 chatbox-cards"style="height: 100vh; overflow-y: scroll;">
-      <% @inquiries.each do |inquiry| %>
-        <%= link_to inquiry_path(inquiry), class: "text-decoration-none inquiry-box" do %>
-          <div class="border-bottom mb-2 <%= inquiry.messages.last.user == current_user ? '' : 'border-danger' %> <%= inquiry == @inquiry ? 'border-success' : '' %> ">
-            <p>#<%= inquiry.airplane.make %></p>
-            <% if inquiry.user == current_user %>
-              <p> <%= inquiry.airplane.user.nickname  %></p>
-            <% else %>
-              <p> <%= inquiry.user.nickname  %></p>
-            <% end %>
-            <% if inquiry.messages.last.user != current_user %>
-            <p class="small danger">Your turn</p>
-            <% end %>
-          </div>
+      <% if @inquiries %>
+        <% @inquiries.each do |inquiry| %>
+          <%= link_to inquiry_path(inquiry), class: "text-decoration-none inquiry-box" do %>
+            <div class="border-bottom mb-2 <%= inquiry.messages.last.user == current_user ? '' : 'border-danger' %> <%= inquiry == @inquiry ? 'border-success' : '' %> ">
+              <p>#<%= inquiry.airplane.make %></p>
+              <% if inquiry.user == current_user %>
+                <p> <%= inquiry.airplane.user.nickname  %></p>
+              <% else %>
+                <p> <%= inquiry.user.nickname  %></p>
+              <% end %>
+              <% if inquiry.messages.last.user != current_user %>
+              <p class="small danger">Awaiting your response</p>
+              <% end %>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
       <script>

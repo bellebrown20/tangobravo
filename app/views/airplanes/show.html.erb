@@ -39,11 +39,16 @@
     </div>
 </div>
 
-<%# Inquiry.where(user: current_user).joins(:airplane).or(Inquiry.joins(:airplane).where(airplane: { user: current_user })).joins(:last_message).order('messages.created_at ASC') %>
+
   <% if current_user %>
-  <%= link_to "Inquire about this plane", new_airplane_inquiry_path(@airplane), class: "btn btn-dark" if current_user.inquiries.where(airplane: @airplane).count == 0 && @airplane.user != current_user %>
-  <% @inquiry = Inquiry.where(user: current_user).joins(:airplane).where(airplane: @airplane).last %>
-  <%= link_to "Go to inquiry about plane", inquiry_path(@inquiry), class: "btn btn-dark" if current_user.inquiries.where(airplane: @airplane).count >= 1 %>
+    <% if current_user.inquiries.where(airplane: @airplane).count == 0 && @airplane.user != current_user %>
+      <%= simple_form_for [@airplane, @inquiry] do |f| %>
+      <%= f.hidden_field :user, :value => current_user %>
+      <%= f.button :submit %>
+    <% end %>
+  <% end %>
+  <% @existing_inquiry = Inquiry.where(user: current_user).joins(:airplane).where(airplane: @airplane).last %>
+  <%= link_to "Go to inquiry about plane", inquiry_path(@existing_inquiry), class: "btn btn-dark" if current_user.inquiries.where(airplane: @airplane).count >= 1 %>
   <% end %>
 <hr class="my-5">
   <div class="row">
@@ -51,8 +56,8 @@
       <h3>Reviews</h3>
       <% if @airplane.reviews.empty? %>
         <small><em class="text-muted">No reviews yet for this plane</em></small>
-        <% if current_user && @inquiry %>
-          <% if current_user != @airplane.user && @inquiry.status == true  %>
+        <% if current_user && @existing_inquiry %>
+          <% if current_user != @airplane.user && @existing_inquiry.status == true  %>
             <small><em class="text-muted">Be the first one to review this airplane</em></small>
           <% end %>
         <% end %>
@@ -68,8 +73,8 @@
         <hr>
       <% end %>
     </div>
-    <% if current_user && @inquiry %>
-      <% if current_user != @airplane.user && @inquiry.status == true  %>
+    <% if current_user && @existing_inquiry %>
+      <% if current_user != @airplane.user && @existing_inquiry.status == true  %>
         <div class="col-12 col-sm-6">
           <div class="bg-white rounded p-3">
             <h5>Add your review</h5>
@@ -87,6 +92,7 @@
 <% if @airplane.user != current_user %>
 <%= link_to "View airplane owner's profile", user_path(@airplane.user), class: "btn btn-dark"%>
 <% end %>
+
 
 
 </div>
