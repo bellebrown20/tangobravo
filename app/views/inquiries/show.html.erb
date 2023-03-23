@@ -28,7 +28,6 @@
       </script>
     </div>
 
-
     <div class="row col-10 chat-box-container">
 
       <div class="col-6">
@@ -38,18 +37,16 @@
         >
           <h2>#<%= @inquiry.airplane.make %></h2>
 
-          <div class="messages-box" data-inquiry-subscription-target="messages" style="height: 100vh; overflow-y: scroll;">
+          <div class="messages-box" id="messages-box" data-inquiry-subscription-target="messages" style="height: 100vh; overflow-y: scroll;">
             <% @inquiry.messages.each do |message| %>
               <%= render "messages/message", message: message %>
             <% end %>
-            <script>
-              // Scroll to the bottom of the chatbox-cards div
-              const messagesBox = document.querySelector('.messages-box');
-              messagesBox.scrollTop = messagesBox.scrollHeight;
-            </script>
+
           </div>
+
+
           <%= simple_form_for [@inquiry, @message],
-            html: { data: { action: "turbo:submit-end->inquiry-subscription#resetForm" }, class: "d-flex" } do |f|
+            html: { data: { action: "turbo:submit-end->inquiry-subscription#resetForm" }, class: "d-flex" }, id: "message-form" do |f|
           %>
             <%= f.input :content,
               label: false,
@@ -59,6 +56,7 @@
             <%= f.submit "Send", class: "btn btn-primary mb-3" %>
 
           <% end %>
+
         </div>
       </div>
 
@@ -79,4 +77,8 @@
       </div>
     </div>
   </div>
+  <script>
+  var messagesBox = document.getElementById("messages-box");
+  messagesBox.scrollTop = messagesBox.scrollHeight;
+</script>
 </div>

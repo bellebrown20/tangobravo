@@ -9,10 +9,12 @@ class InquiriesController < ApplicationController
   end
 
   def show
-    @inquiries = Inquiry.where(user: current_user).joins(:airplane).or(Inquiry.joins(:airplane).where(airplane: { user: current_user })).joins(:last_message).order('messages.created_at ASC')
+    # @inquiries = Inquiry.where(user: current_user).joins(:airplane).or(Inquiry.joins(:airplane).where(airplane: { user: current_user })).joins(:last_message).order('messages.created_at ASC')
+    @inquiries = Inquiry.where(user: current_user).joins(:airplane).or(Inquiry.joins(:airplane).where(airplane: { user: current_user })).joins(:last_message).order('messages.created_at ASC').uniq
+
     @inquiry = Inquiry.find(params[:id])
     @inquiry.user = current_user
-    @message = Message.new
+    @message = Message.new(user: current_user)
   end
 
   # def new
