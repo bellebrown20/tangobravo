@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import { createConsumer } from "@rails/actioncable"
+import { useSubmitOnEnter } from "stimulus-use"
 
 export default class extends Controller {
   static values = { inquiryId: Number }
@@ -11,6 +12,8 @@ export default class extends Controller {
       { received: data => this.#insertMessageAndScrollDown(data) }
     )
     console.log(`Subscribed to the inquiry with the id ${this.inquiryIdValue}.`)
+
+  useSubmitOnEnter(this)
   }
 
   #insertMessageAndScrollDown(data) {
