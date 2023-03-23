@@ -5,7 +5,9 @@ User.destroy_all
 5.times do
   name = Faker::Name.first_name
   email = "#{name}@gmail.com"
-  user = User.new(password: "123456", email: email, nickname: name)
+  last_name = Faker::Name.last_name
+  role = "Owner"
+  user = User.new(password: "123456", email: email, name: name, role: role, last_name: last_name)
   user.save!
   users << user
 end
@@ -22,7 +24,6 @@ Airplane.create!([{
     description: "2020 Cessna 172 with integrated Garmin G1000 avionics. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
     price_per_hour: 200,
     address: "15000 N Airport Dr, Scottsdale, AZ 85260",
-    # image.attach(io: File.open('../../last.jpg'), filename: 'last.jpg', content_type: 'image/jpg')
 },
 {
   make: "C172S",
@@ -35,10 +36,9 @@ Airplane.create!([{
   description: "2001 Cessna 172 Skyhawk with traditional six pack. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
   price_per_hour: 175,
   address: "100 Arrival Ave, Ronkonkoma, NY 11779",
-  # image.attach(io: file , filename: 'cessnascaone.jpg', content_type: 'image/jpg')
 },
 {
-  make: "PA-18",
+  make: "PA-44",
   engines: "Multi-Engine",
   tailnumber: "N987SC",
   home_airport: "KCHD",
@@ -72,6 +72,90 @@ Airplane.create!([{
   description: "2016 Piper Cherokee with tradional six pack. Lycoming IO-360-B1E 180HP fuel injected engine. 48 US gallons usable fuel capacity.",
   price_per_hour: 185,
   address: "525 W 20th Ave, Oshkosh, WI 54902"
+},
+{
+  make: "C172S",
+  engines: "Single-Engine",
+  tailnumber: "N716JP",
+  home_airport: "KPDX",
+  minimum_hours: 50,
+  required_licenses: "Private Pilot",
+  user_id: users.sample.id,
+  description: "1957 Cessna 172 Skyhawk with traditional six pack. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
+  price_per_hour: 135,
+  address: "7000 NE Airport Way Portland, OR 97218"
+},
+{
+  make: "C172S",
+  engines: "Single-Engine",
+  tailnumber: "N407JM",
+  home_airport: "KSEA",
+  minimum_hours: 50,
+  required_licenses: "Private Pilot",
+  user_id: users.sample.id,
+  description: "2020 Cessna 172 with integrated Garmin G1000 avionics. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
+  price_per_hour: 175,
+  address: "17801 International Blvd Seattle, WA 98158"
+},
+{
+  make: "C172S",
+  engines: "Single-Engine",
+  tailnumber: "N777RL",
+  home_airport: "KMCI",
+  minimum_hours: 70,
+  required_licenses: "Private Pilot",
+  user_id: users.sample.id,
+  description: "2020 Cessna 172 with integrated Garmin G1000 avionics. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
+  price_per_hour: 160,
+  address: "1 International Square, Kansas City, MO 64153"
+},
+{
+  make: "C172S",
+  engines: "Single-Engine",
+  tailnumber: "N124GS",
+  home_airport: "KGON",
+  minimum_hours: 70,
+  required_licenses: "Private Pilot",
+  user_id: users.sample.id,
+  description: "2011 Cessna 172 with steam gauge six pack. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
+  price_per_hour: 140,
+  address: "155 Tower Ave, Groton, CT 06340"
+},
+{
+  make: "PA-44",
+  engines: "Mutli-Engine",
+  tailnumber: "N111KM",
+  home_airport: "KMIA",
+  minimum_hours: 120,
+  required_licenses: "Commerical Pilot",
+  user_id: users.sample.id,
+  description: "2019 Piper Seminole with integrated G1000 NXi avionics suite. Two Lycoming IO-360-B1G6 fuel injected engines. 108 US gallons usable fuel capacity.",
+  price_per_hour: 300,
+  address: "2100 NW 42nd Ave, Miami, FL 33142"
+},
+{
+  make: "G36",
+  engines: "Single-Engine",
+  tailnumber: "N212KH",
+  home_airport: "KMEM",
+  minimum_hours: 90,
+  required_licenses: "Commerical Pilot",
+  user_id: users.sample.id,
+  description: "2005 Beechcraft Bonanza G36 with updated Garmin G1000 NXi avionics. Continental Aerospace Technologies IO-550-B engine rated at 300HP. Three blade, constant speed Hartzell prop.",
+  price_per_hour: 390,
+  address: "2491 Winchester Rd, Memphis, TN 38116"
+},
+{
+  make: "C182S",
+  engines: "Single-Engine",
+  tailnumber: "N987JC",
+  home_airport: "KSLC",
+  minimum_hours: 150,
+  required_licenses: "Commerical Pilot",
+  user_id: users.sample.id,
+  description: "2000 Cessna Skylane 182S with traditional steam gauge six pack. Lycoming TIO-540-AK1A engine rated at 235HP. Three blade, constant speed McCauley prop.",
+  price_per_hour: 390,
+  address: "776 N Terminal Dr, Salt Lake City, UT 84122"
 }
 ])
 puts "Done"
@@ -104,3 +188,88 @@ f = Airplane.find_by(tailnumber: "N105HF")
 file = URI.open("http://heritageflightacademy.com/wp-content/uploads/2016/04/Private-Pilot-300x225.jpg")
 f.photos.attach(io: file, filename: "heritagetwo.jpg", content_type: "image/jpg")
 f.save
+
+g = Airplane.find_by(tailnumber: "N423SC")
+file = URI.open("https://pbs.twimg.com/media/Fn-iVaVX0AAVxux?format=jpg&name=4096x4096")
+g.photos.attach(io: file, filename: "scacessnathree.jpg", content_type: "image/jpg")
+g.save
+
+h = Airplane.find_by(tailnumber: "N620SC")
+file = URI.open("https://images.flyingmag.com/flyingma/wp-content/uploads/2021/08/25162144/FLY0820_APP__004.jpg")
+h.photos.attach(io: file, filename: "skybtwo.jpg", content_type: "image/jpg")
+h.save
+
+i = Airplane.find_by(tailnumber: "N987SC")
+file = URI.open("https://leopardaviation.com/wp-content/uploads/2021/02/ac-6.jpg")
+i.photos.attach(io: file, filename: "seminoletwo.jpg", content_type: "image/jpg")
+i.save
+
+j = Airplane.find_by(tailnumber: "N423SC")
+file = URI.open("https://flyer.co.uk/wp-content/uploads/2019/07/G1000-NXi-Cessna-206-scaled.jpg")
+j.photos.attach(io: file, filename: "scacessnafour.jpg", content_type: "image/jpg")
+j.save
+
+k = Airplane.find_by(tailnumber: "N105HF")
+file = URI.open("https://pbs.twimg.com/media/EzDqSRqWgAE2riA.jpg")
+k.photos.attach(io: file, filename: "heritagethree.jpg", content_type: "image/jpg")
+k.save
+
+l = Airplane.find_by(tailnumber: "N222BB")
+file = URI.open("https://www.dandjaviation.com/uploads/b/c27108abc586cb2ffe70f41643b5b1c9ab552e1c60e25f091451fc6e88a521c3/F38BBBD7-0394-4843-A22A-2385D396C5D0_1_105_c_1617131974.jpeg")
+l.photos.attach(io: file, filename: "chertwo.jpg", content_type: "image/jpg")
+l.save
+
+n = Airplane.find_by(tailnumber: "N111KM")
+file = URI.open("https://www.piper.com/wp-content/uploads/2021/04/20_Seminole_A2A_Auburn_Coastline_03-scaled.jpg")
+n.photos.attach(io: file, filename: "seminoletwomain.jpg", content_type: "image/jpg")
+n.save
+
+m = Airplane.find_by(make: "PA-44")
+file = URI.open("https://www.piper.com/wp-content/uploads/2019/01/21_Seminole_Avionics_03.jpg")
+m.photos.attach(io: file, filename: "seminoleavs.jpg", content_type: "image/jpg")
+m.save
+
+o = Airplane.find_by(make: "G36")
+file = URI.open("https://africair.com/wp-content/uploads/2018/02/bonanza-ext-gallery-C1C3279_01.jpg")
+o.photos.attach(io: file, filename: "bonone.jpg", content_type: "image/jpg")
+o.save
+
+z = Airplane.find_by(make: "G36")
+file = URI.open("https://www.aviationnepal.com/wp-content/uploads/2021/08/Beechcraft-Bonanza-G36-cockpit.jpg")
+z.photos.attach(io: file, filename: "bontwo.jpg", content_type: "image/jpg")
+z.save
+
+q = Airplane.find_by(make: "G36")
+file = URI.open("https://s30121.pcdn.co/wp-content/uploads/2021/04/384911-Beechcraft-Bonanza-75th-Anniversary-Interior-1a0317-original-1618240843-1024x635.jpg.optimal.jpg")
+q.photos.attach(io: file, filename: "bonthree.jpg", content_type: "image/jpg")
+q.save
+
+aa = Airplane.find_by(tailnumber: "N716JP")
+file = URI.open("https://www.aopa.org/-/media/Images/AOPA-Main/Aircraft-Guide/Cessna-172-Skyhawk/03-341_141.jpg?mw=1200&mh=675&as=1&hash=9AE75FC757A7FE470DD12ED2B0021878")
+aa.photos.attach(io: file, filename: "julietpop.jpg", content_type: "image/jpg")
+aa.save
+
+ab = Airplane.find_by(tailnumber: "N407JM")
+file = URI.open("https://s30121.pcdn.co/wp-content/uploads/2023/02/classifiedscalendarn51387_1a.jpg.optimal.jpg")
+ab.photos.attach(io: file, filename: "julietmike.jpg", content_type: "image/jpg")
+ab.save
+
+ac = Airplane.find_by(tailnumber: "N777RL")
+file = URI.open("https://stwinglist01.blob.core.windows.net/media/GFIjV5w4/e551c255-170b-4177-ac87-af307b8dc348.jpg")
+ac.photos.attach(io: file, filename: "romeolima.jpg", content_type: "image/jpg")
+ac.save
+
+ad = Airplane.find_by(tailnumber: "N124GS")
+file = URI.open("https://www.h-aviation.com/uploads/5/4/8/3/54833615/cessna-skyhawk_orig.jpg")
+ad.photos.attach(io: file, filename: "golfsierra.jpg", content_type: "image/jpg")
+ad.save
+
+ae = Airplane.find_by(tailnumber: "N987JC")
+file = URI.open("https://upload.wikimedia.org/wikipedia/commons/9/9e/Cessna182t_skylane_n2231f_cotswoldairshow_2010_arp.jpg")
+ae.photos.attach(io: file, filename: "julietcharlie.jpg", content_type: "image/jpg")
+ae.save
+
+af = Airplane.find_by(tailnumber: "N987JC")
+file = URI.open("https://www.planesalesusa.com/Uploads/Listing/Normal/ID00010-6604-2-672-2007-Cessna-182-Skylane-T.jpg")
+af.photos.attach(io: file, filename: "julietcharlietwo.jpg", content_type: "image/jpg")
+af.save

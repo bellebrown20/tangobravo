@@ -1,22 +1,24 @@
 
 <div class="container">
 
-  <div class="row" data-controller="inquiry-selector">
+  <div class="row">
 
-    <div class="col-2 chatbox-cards" data-inquiry-selector-target="list" style="height: 100vh; overflow-y: scroll;">
-      <% @inquiries.each do |inquiry| %>
-        <%= link_to inquiry_path(inquiry), class: "text-decoration-none inquiry-box" do %>
-          <div class="border-bottom mb-2 <%= inquiry.messages.last.user == current_user ? '' : 'border-danger' %> <%= inquiry == @inquiry ? 'border-success' : '' %> "data-inquiry-selector-target="box" data-action="click->inquiry-selector#updateInquiry">
-            <p>#<%= inquiry.airplane.make %></p>
-            <% if inquiry.user == current_user %>
-              <p> <%= inquiry.airplane.user.nickname  %></p>
-            <% else %>
-              <p> <%= inquiry.user.nickname  %></p>
-            <% end %>
-            <% if inquiry.messages.last.user != current_user %>
-            <p class="small danger">Your turn</p>
-            <% end %>
-          </div>
+    <div class="col-2 chatbox-cards"style="height: 100vh; overflow-y: scroll;">
+      <% if @inquiries %>
+        <% @inquiries.each do |inquiry| %>
+          <%= link_to inquiry_path(inquiry), class: "text-decoration-none inquiry-box" do %>
+            <div class="border-bottom mb-2 <%= inquiry.messages.last.user == current_user ? '' : 'border-danger' %> <%= inquiry == @inquiry ? 'border-success' : '' %> ">
+              <p>#<%= inquiry.airplane.make %></p>
+              <% if inquiry.user == current_user %>
+                <p> <%= inquiry.airplane.user.nickname  %></p>
+              <% else %>
+                <p> <%= inquiry.user.nickname  %></p>
+              <% end %>
+              <% if inquiry.messages.last.user != current_user %>
+              <p class="small danger">Awaiting your response</p>
+              <% end %>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
       <script>
@@ -26,8 +28,7 @@
       </script>
     </div>
 
-
-    <div class="row col-10 chat-box-container" data-inquiry-selector-target="chat">
+    <div class="row col-10 chat-box-container">
 
       <div class="col-6">
         <div class="container inquiry"
@@ -36,18 +37,16 @@
         >
           <h2>#<%= @inquiry.airplane.make %></h2>
 
-          <div class="messages-box" data-inquiry-subscription-target="messages" style="height: 100vh; overflow-y: scroll;">
+          <div class="messages-box" id="messages-box" data-inquiry-subscription-target="messages" style="height: 100vh; overflow-y: scroll;">
             <% @inquiry.messages.each do |message| %>
               <%= render "messages/message", message: message %>
             <% end %>
-            <script>
-              // Scroll to the bottom of the chatbox-cards div
-              const messagesBox = document.querySelector('.messages-box');
-              messagesBox.scrollTop = messagesBox.scrollHeight;
-            </script>
+
           </div>
+
+
           <%= simple_form_for [@inquiry, @message],
-            html: { data: { action: "turbo:submit-end->inquiry-subscription#resetForm" }, class: "d-flex" } do |f|
+            html: { data: { action: "turbo:submit-end->inquiry-subscription#resetForm" }, class: "d-flex" }, id: "message-form" do |f|
           %>
             <%= f.input :content,
               label: false,
@@ -57,6 +56,7 @@
             <%= f.submit "Send", class: "btn btn-primary mb-3" %>
 
           <% end %>
+
         </div>
       </div>
 
@@ -77,4 +77,8 @@
       </div>
     </div>
   </div>
+  <script>
+  var messagesBox = document.getElementById("messages-box");
+  messagesBox.scrollTop = messagesBox.scrollHeight;
+</script>
 </div>

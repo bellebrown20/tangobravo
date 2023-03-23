@@ -1,5 +1,4 @@
 
-
   .navbar {
     background: linear-gradient(to top, #173288, #1b4e91);
   position: absolute;
@@ -79,7 +78,7 @@ cursor: pointer;
 
 .form-control::placeholder {
   font-size: 0.95rem;
-  color: white;
+  // color: white;
   font-style: italic;
 }
 #query{

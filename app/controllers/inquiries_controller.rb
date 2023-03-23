@@ -9,27 +9,35 @@ class InquiriesController < ApplicationController
   end
 
   def show
-    @inquiries = Inquiry.where(user: current_user).joins(:airplane).or(Inquiry.joins(:airplane).where(airplane: { user: current_user })).joins(:last_message).order('messages.created_at ASC')
+    # @inquiries = Inquiry.where(user: current_user).joins(:airplane).or(Inquiry.joins(:airplane).where(airplane: { user: current_user })).joins(:last_message).order('messages.created_at ASC')
+    @inquiries = Inquiry.where(user: current_user).joins(:airplane).or(Inquiry.joins(:airplane).where(airplane: { user: current_user })).joins(:last_message).order('messages.created_at ASC').uniq
+
     @inquiry = Inquiry.find(params[:id])
-    @message = Message.new
+    @inquiry.user = current_user
+    @message = Message.new(user: current_user)
   end
 
-  def new
-    @airplane = Airplane.find(params[:airplane_id])
-    @inquiry = Inquiry.new
-  end
+  # def new
+  #   @airplane = Airplane.find(params[:airplane_id])
+  #   @inquiry = Inquiry.new
+  #   # @message = Message.new(inquiry: @inquiry, user: current_user, content: "I'm interested in this plane")
+  # end
 
   def create
     @airplane = Airplane.find(params[:airplane_id])
     @inquiry = Inquiry.new
     @inquiry.airplane = @airplane
     @inquiry.user = current_user
+    # raise
+    @message = Message.new(inquiry: @inquiry, user: current_user, content: "I'm interested in this plane")
+    @message.save
     if @inquiry.save
-      redirect_to airplane_path(@airplane)
+      redirect_to inquiry_path(@inquiry)
     else
       render "airplanes/show", status: :unprocessable_entity
     end
   end
+
 
   def edit
     @inquiry = Inquiry.find(params[:id])
