@@ -3,11 +3,10 @@
     <span class="align-self-center">
         <div class="text-center">
           <h2 class="rounded"><%= @user.photo.key %></h2>
-          <h2><%= @user.nickname %></h2>
-          <h2><%= @user.email %></h2>
-          <h2><%= @user.license %></h2>
-          <h2><%= @user.fly_hours %></h2>
-          <h2><%= @user.role %></h2>
+          <p><%= "#{@user.name} #{@user.last_name}"  %></p>
+          <p><%= @user.email %></p>
+          <p> <%=@user.fly_hours %></p>
+          <p> <%=@user.license %></p>
         </div>
     </span>
   </div>
