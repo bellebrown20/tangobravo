@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :airplanes, dependent: :destroy
   has_many :inquiries, dependent: :destroy
   has_many :messages, dependent: :destroy
+  has_one_attached :photo
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
