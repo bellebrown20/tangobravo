@@ -1,10 +1,4 @@
-.banner1 {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  object-fit:cover;
-  object-position:50%
-}
+
 
 .layer {
   background-color: rgba(0, 0, 0, 0.1);
@@ -41,6 +35,7 @@ html {
 }
 
 .image {
+  top: 0;
   margin: 0;
   background: url('https://images.pexels.com/photos/730778/pexels-photo-730778.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -49,6 +44,8 @@ html {
   color: #0a0a0b;
   overflow: hidden;
 }
+
+
 
 ul, nav{
   list-style: none;
@@ -123,9 +120,9 @@ a.btn {
 .cover  {
   height: 100vh;
   width: 100%;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.05)), to(rgba(0,0,0,0)));
-  background: -webkit-linear-gradient(top, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 100%);
-  background: linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.1)), to(rgba(0,0,0,0)));
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
   padding: 20px 50px;
   display: -webkit-box;
   display: flex;
@@ -150,7 +147,7 @@ a.btn {
 }
 
 .flex-form input[type="submit"]:hover {
-  background: linear-gradient(to top, #173288, #0d2647);
+  background: linear-gradient(to top, #173288, #143867);
   border: 1px solid #173288;
   color: #fff;
 }
@@ -252,12 +249,12 @@ input[type="search"] {
   }
 }
 .input-v{
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
 .search-v{
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
 
 }
 html {
@@ -306,7 +303,7 @@ html {
 .panel {
   background-color: #ffff;
   border-radius: 10px;
-  padding: 15px 25px;
+  padding: 30px 25px;
   position: relative;
   width: 100%;
   z-index: 10;
@@ -418,4 +415,93 @@ width: 85px;
 height: 85px;
 margin-top: 15px;
 margin-bottom: 20px;
+}
+
+.card{
+  width: 325px;
+  height: 470px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease-in-out;
+}
+.card:hover{
+  border-radius: 4px;
+  box-shadow: 0px 4px 6px rgba(14, 31, 85, 0.4);
+}
+
+.card img{
+  width:100%;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 16px;
+  transition: transform 0.25s ease-in-out;
+}
+
+.card img:hover {
+  transform: scale(1.1);
+}
+
+.card img:not(:hover) {
+  transform: scale(1);
+}
+
+.card h2{
+  font-size:24px;
+  font-weight:500;
+  margin-bottom:8px;
+}
+
+.card p{
+  margin-left: 40px;
+  margin-right: 40px;
+  font-size:16px;
+  color: #555;
+  margin-bottom:16px;
+}
+
+.card ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap:8px;
+  margin-bottom:16px
+}
+
+.card li{
+  background-color:#ffffff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: lato;
+}
+
+.card button{
+  background: linear-gradient(to top, #173288, #1b4e91);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border-radius: 4px;
+  width: 50%;
+  /* Added classes for centering */
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+
+}
+
+.card button:hover{
+  background: linear-gradient(to top, #173288, #143867);
+}
+
+.featured-p{
+  color: #173288;
+}
+h2{
+  font-size: 2.4rem;
+  font-weight: 700;
 }
