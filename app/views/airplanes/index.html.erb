@@ -27,7 +27,7 @@
               <% if airplane.photos.attached? %>
                 <div class="pic"> <img class="" src='<%= cl_image_path airplane.photos[0].key, height: 350, width: 400, crop: :fill %>' alt="">
               <% end %>
-              </div>d
+              </div>
               <div class="content" id="test">
                 <p class="h-1 mt-4"> <%= "#{airplane.make} #{airplane.tailnumber}" %></p> <p class="text-muted mt-3"> <%= "#{airplane.description}" %> </p>
                 <div class="d-flex align-items-center justify-content-between mt-3 pb-3">
