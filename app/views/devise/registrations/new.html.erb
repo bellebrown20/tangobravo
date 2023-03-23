@@ -15,7 +15,8 @@
       <%= f.input :password_confirmation,
                   required: true,
                   input_html: { autocomplete: "new-password" } %>
-      <%= f.input :nickname, :label => "Name", input_html: { placeholder: "This name will be displayed when messaging" } %>
+      <%= f.input :nickname, :label => "First Name", input_html: { placeholder: "As shown on FAA license" } %>
+      <%= f.input :last_name, :label => "Last Name", input_html: { placeholder: "As shown on FAA license" } %>
       <%= f.input :license, collection: ["Private Pilot", "Commercial Pilot"], input_html: { multiple: true } %>
       <%= f.input :fly_hours, as: :numeric %>
       <%= f.input :role, collection: ["Owner", "Pilot"]%>
