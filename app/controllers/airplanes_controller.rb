@@ -22,6 +22,7 @@ class AirplanesController < ApplicationController
   def show
     # @review = Review.new(list: @list)
     @review = Review.new(airplane: @airplane)
+    @inquiry = Inquiry.new(airplane: @airplane)
   end
 
   def new

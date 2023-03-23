@@ -2,15 +2,13 @@
   <div class="d-flex justify-content-around border border-primary p-2 w-100">
     <span class="align-self-center">
         <div class="text-center">
-            <h2><%= @user.nickname %></h2>
-            <h2><%= @user.email %></h2>
-            <h2><%= @user.license %></h2>
-            <h2><%= @user.fly_hours %></h2>
-            <h2><%= @user.role %></h2>
+          <h2 class="rounded"><%= @user.photo.key %></h2>
+          <h2><%= @user.nickname %></h2>
+          <h2><%= @user.email %></h2>
+          <h2><%= @user.license %></h2>
+          <h2><%= @user.fly_hours %></h2>
+          <h2><%= @user.role %></h2>
         </div>
     </span>
-
-
-
-    <p><%= link_to "Back to reservations", reservations_path%></p>
+  </div>
 </div>
