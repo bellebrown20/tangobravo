@@ -70,7 +70,7 @@ h1 {
   font-size: 3rem;
   font-weight: 700;
   color: #fff;
-  margin: -200px 0 1.5rem;
+  margin: -80px 0 1.5rem;
 }
 
 i {
@@ -109,6 +109,7 @@ header nav li:last-child{
 a.btn {
   color: #fff;
   padding: 10px;
+  border: 1px solid rgba(255,255,255,0.5);
   -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
   transition: all 0.2s;
@@ -139,7 +140,7 @@ a.btn {
 }
 
 .flex-form input[type="submit"] {
-  background: linear-gradient(to top, #173288, #1b4e91);
+  background: #173288;
   border: 1px solid #173288;
   color: #fff;
   padding: 0 30px;
@@ -150,8 +151,8 @@ a.btn {
 }
 
 .flex-form input[type="submit"]:hover {
-  background: linear-gradient(to top, #173288, #0d2647);
-  border: 1px solid #173288;
+  background: #1e1e1e;
+  border: 1px solid #1e1e1e;
   color: #fff;
 }
 
@@ -278,10 +279,10 @@ html {
 .background::after {
   content: '';
   background: #60a9ff;
-  background: -moz-linear-gradient(top, #173288 0%, #245ba3 100%);
-  background: -webkit-linear-gradient(top, #173288 0%,#245ba3 100%);
-  background: linear-gradient(to bottom, #173288 0%,#245ba3 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#173288', endColorstr='#245ba3',GradientType=0 );
+  background: -moz-linear-gradient(top, #173288 0%, #2f70bf 100%);
+  background: -webkit-linear-gradient(top, #173288 0%,#2f70bf 100%);
+  background: linear-gradient(to bottom, #173288 0%,#2f70bf 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#173288', endColorstr='#2f70bf',GradientType=0 );
   height: 350px;
   left: 0;
   position: absolute;
@@ -411,11 +412,4 @@ html {
 .pricing-button.is-featured:hover,
 .pricing-button.is-featured:active {
   background-color: #173288;
-}
-
-.featured svg{
-width: 85px;
-height: 85px;
-margin-top: 15px;
-margin-bottom: 20px;
 }
