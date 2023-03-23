@@ -1,14 +1,14 @@
 <h1 class="ms-5 mb-3 mt-4 text-center">Available Airplanes in US</h1>
-<%# <%= form_with url: airplanes_path, method: :get, class: "d-flex w-25 ms-5 mb-2 " do %> %>
+<%# <%= form_with url: airplanes_path, method: :get, class: "d-flex w-25 ms-5 mb-2 " do %>
   <%# <%= text_field_tag :query,
     params[:query],
     class: "form-control searching-airplanes-btn-focus",
     placeholder: "Find a airplane..."
   %>
   <%# <%= submit_tag "Search", class: "btn btn-primary text-light" %>
-<%# <% end %> %> %> %>
+<%# <% end %>
 
-<div class="mt-2 mb-2" style="width: 100%; height: 450px;"
+<div class="" style="width: 100%; height: 400px;"
   data-controller="map"
   data-map-markers-value="<%= @markers.to_json %>"
   data-map-api-key-value="<%= ENV['MAP_BOX_KEY'] %>">
