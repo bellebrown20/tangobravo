@@ -1,5 +1,6 @@
 <%# navbar-starts %>
 <div class="main navbar navbar-expand-sm navbar-light navbar-lewagon">
+
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -27,10 +28,14 @@
           <li class="nav-item  SMN_effect-48  mt-3">
             <%= link_to "Airplanes", airplanes_path, class: "nav-link text-light ms-4", id: "planes-link" %>
           </li>
-
+          <% if current_user.role == "Owner" %>
+            <li class="nav-item  SMN_effect-48  mt-3">
+              <%= link_to "Hangar", my_airplanes_airplanes_path, class: "nav-link text-light ms-4", id: "planes-link" %>
+            </li>
+          <% end %>
           <li class="nav-item  SMN_effect-48  mt-3">
-            <%= link_to "Hangar", my_airplanes_airplanes_path, class: "nav-link text-light ms-4", id: "planes-link" %>
-          </li>
+              <%= link_to "Messages", inquiries_path, class: "nav-link text-light ms-4", id: "planes-link" %>
+            </li>
           <li class="nav-item  SMN_effect-48 ms-4 me-4  mt-3">
             <%= link_to "Contact", "mailto:hi@tangobravo.com", class: "nav-link text-light" %>
           </li>
@@ -40,7 +45,7 @@
             <%= image_tag "https://avatars.githubusercontent.com/u/102123472?v=4", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
 
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Profile", "#", data: {turbo_method: :delete}, class: "dropdown-item" %>
+              <%= link_to "Profile", user_path(current_user), data: {turbo_method: :delete}, class: "dropdown-item" %>
 
 
               <%= link_to "Messages", "#", data: {turbo_method: :delete}, class: "dropdown-item" %>

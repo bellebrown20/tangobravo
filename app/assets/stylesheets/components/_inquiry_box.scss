@@ -2,3 +2,19 @@
   color: inherit;
   text-decoration: inherit;
 }
+
+.main-container {
+  display: flex;
+}
+
+#chat-box-container {
+  height: 100vh;
+  position: sticky;
+  bottom: 0;
+}
+
+
+.chatbox-cards {
+  height: 100vh;
+  overflow-y: scroll;
+}
