@@ -11,14 +11,7 @@
       </div>
     </div>
     <div class="col-lg-6 offset-lg-6 text-center">
-      <%= form_with url: airplanes_path, method: :get, class: "d-flex w-25 ms-5 mb-2 search-top" do %>
-        <%= text_field_tag :query,
-          params[:query],
-          class: "form-control searching-airplanes-btn-focus",
-          placeholder: "Find an airplane..."
-        %>
-        <%= submit_tag "Search" %>
-      <% end %>
+
 
       <div class="row">
         <% @airplanes.each do |airplane| %>
