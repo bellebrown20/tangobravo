@@ -28,11 +28,11 @@
           <li class="nav-item  SMN_effect-48  mt-3">
             <%= link_to "Airplanes", airplanes_path, class: "nav-link text-light ms-4", id: "planes-link" %>
           </li>
-          <%# <% if current_user.role == "Owner" %>
+          <% if current_user.role == "Owner" %>
             <li class="nav-item  SMN_effect-48  mt-3">
               <%= link_to "Hangar", my_airplanes_airplanes_path, class: "nav-link text-light ms-4", id: "planes-link" %>
             </li>
-          <%# <% end %>
+          <% end %>
           <li class="nav-item  SMN_effect-48  mt-3">
               <%= link_to "Messages", inquiries_path, class: "nav-link text-light ms-4", id: "planes-link" %>
             </li>
