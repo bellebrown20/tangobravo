@@ -52,6 +52,13 @@ gem "sassc-rails"
 
 gem "geocoder"
 
+gem 'jquery-rails'
+
+gem 'jquery-ui-rails'
+
+
+gem 'owlcarousel-rails'
+
 gem "devise"
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
