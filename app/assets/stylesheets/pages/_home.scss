@@ -41,7 +41,6 @@ html {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
-  color: #0a0a0b;
   overflow: hidden;
 }
 
@@ -63,12 +62,6 @@ a:hover {
   opacity: 1;
 }
 
-#home_h1 {
-  font-size: 3rem;
-  font-weight: 700;
-  color: #fff;
-  margin: 0px 0 1.5rem;
-}
 
 i {
   font-size: 1.3rem;
@@ -106,7 +99,6 @@ header nav li:last-child{
 a.btn {
   color: #fff;
   padding: 10px;
-  border: 1px solid rgba(255,255,255,0.5);
   -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
   transition: all 0.2s;
@@ -136,25 +128,28 @@ a.btn {
   align-items: center;
 }
 
+
+
+.cover h1{
+  font-size: 3rem;
+  font-weight: 700;
+  color: #fff;
+  margin-top: -220px;
+
+}
+
 .flex-form input[type="submit"] {
-  background: #173288;
+  background: linear-gradient(to top, #173288, #1b4e91);
+
   border: 1px solid #173288;
   color: #fff;
   padding: 0 30px;
   cursor: pointer;
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  transition: all 0.2s;
 }
 
 .flex-form input[type="submit"]:hover {
-<<<<<<< HEAD
   background: linear-gradient(to top, #173288, #143867);
   border: 1px solid #173288;
-=======
-  background: #1e1e1e;
-  border: 1px solid #1e1e1e;
->>>>>>> c2c2952e245916bf2c2e7dff667762414829aa6c
   color: #fff;
 }
 
@@ -415,7 +410,6 @@ html {
 .pricing-button.is-featured:active {
   background-color: #173288;
 }
-<<<<<<< HEAD
 
 .featured svg{
 width: 85px;
@@ -425,7 +419,7 @@ margin-bottom: 20px;
 }
 
 .card{
-  width: 325px;
+  width: 350px;
   height: 470px;
   background-color: white;
   border-radius: 4px;
@@ -493,7 +487,7 @@ margin-bottom: 20px;
   cursor: pointer;
   transition: background-color 0.2s;
   border-radius: 4px;
-  width: 50%;
+  width: 75%;
   /* Added classes for centering */
   display: flex;
   justify-content: center;
@@ -512,5 +506,7 @@ h2{
   font-size: 2.4rem;
   font-weight: 700;
 }
-=======
->>>>>>> c2c2952e245916bf2c2e7dff667762414829aa6c
+.card li{
+  font-size: 97%;
+  color: #173188;
+}
