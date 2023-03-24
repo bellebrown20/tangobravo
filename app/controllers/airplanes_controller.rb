@@ -21,6 +21,7 @@ class AirplanesController < ApplicationController
 
   def show
     # @review = Review.new(list: @list)
+    #@inquiries = Inquiry.where(user: current_user).joins(:airplane).or(Inquiry.joins(:airplane).where(airplane: { user: current_user })).joins(:last_message).order('messages.created_at ASC').uniq
     @review = Review.new(airplane: @airplane)
     @inquiry = Inquiry.new(airplane: @airplane)
   end
@@ -46,15 +47,17 @@ class AirplanesController < ApplicationController
   def update
     @airplane = Airplane.find(params[:id])
 
-    # Remove any photos that were deselected
+    # Attach any new photos that were uploaded
     if params[:airplane][:photos].present?
-      @airplane.photos.where.not(id: params[:airplane][:photos]).purge
+      @airplane.photos.attach(params[:airplane][:photos])
+    end
+
+    # Remove any photos that were deselected
+    if params[:airplane][:photos_fields].present?
+      @airplane.photos.where(id: params[:airplane][:photos_fields].keys.map{|x| x if params[:airplane][:photos_fields][x] == "0"}).purge
     else
       @airplane.photos.purge
     end
-
-    # Attach any new photos that were uploaded
-    @airplane.photos.attach(params[:airplane][:photos]) if params[:airplane][:photos].present?
 
     if @airplane.update(airplane_params)
       redirect_to airplane_path(@airplane)
@@ -76,6 +79,6 @@ class AirplanesController < ApplicationController
   end
 
   def airplane_params
-    params.require(:airplane).permit(:make, :engines, :tailnumber, :minimum_hours, :required_licenses, :home_airport, :address, :description, :price_per_hour, photos: [], photo_ids: [])
+    params.require(:airplane).permit(:make, :engines, :tailnumber, :minimum_hours, :required_licenses, :home_airport, :address, :description, :price_per_hour)
   end
 end
