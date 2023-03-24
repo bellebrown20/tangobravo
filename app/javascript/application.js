@@ -2,7 +2,6 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "bootstrap"
-import $ from 'jquery'
 //= require jquery
 //= require owl.theme.default
 //= require jquery_ujs
