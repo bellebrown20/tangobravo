@@ -361,11 +361,13 @@ html {
 }
 
 .pricing-features {
-  color: #173288;
+  color: rgba(0,0,0,0.7);
   font-weight: 600;
   letter-spacing: 1px;
+  font-family: lato;
+  text-transform: none;
   margin: 50px 0 25px;
-}
+  }
 
 .pricing-features-item {
   border-top: 1px solid #e1f1ff;
