@@ -44,8 +44,23 @@ class AirplanesController < ApplicationController
   end
 
   def update
-    @airplane.update(airplane_params) # Will raise ActiveModel::ForbiddenAttributesError
-    redirect_to airplane_path(@airplane)
+    @airplane = Airplane.find(params[:id])
+
+    # Remove any photos that were deselected
+    if params[:airplane][:photos].present?
+      @airplane.photos.where.not(id: params[:airplane][:photos]).purge
+    else
+      @airplane.photos.purge
+    end
+
+    # Attach any new photos that were uploaded
+    @airplane.photos.attach(params[:airplane][:photos]) if params[:airplane][:photos].present?
+
+    if @airplane.update(airplane_params)
+      redirect_to airplane_path(@airplane)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -61,6 +76,6 @@ class AirplanesController < ApplicationController
   end
 
   def airplane_params
-    params.require(:airplane).permit(:make, :engines, :tailnumber, :minimum_hours, :required_licenses, :home_airport, :address, :description, :price_per_hour, photos: [])
+    params.require(:airplane).permit(:make, :engines, :tailnumber, :minimum_hours, :required_licenses, :home_airport, :address, :description, :price_per_hour, photos: [], photo_ids: [])
   end
 end
