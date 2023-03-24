@@ -3,8 +3,13 @@
     <span class="align-self-center">
         <div class="text-center">
           <%# <h2 class="rounded"><%= @user.photo.key </h2>   %>
-          <p>Full name: <%= "#{@user.name} #{@user.last_name}"  %></p>
-          <p>Contact email:<%= @user.email %></p>
+          <p>Full name: <%= "#{@user.nickname} #{@user.last_name}"  %></p>
+          <p>Contact email: <%= @user.email %></p>
+           <% if @user.role == "Owner" %>
+            <% id = @user.user_id %>
+            <p><%="Pilot license: #{Airplane.find_by(tailnumber: "N716JP")}" %></p>
+            <p><%="Total time in airplanes: #{@user.fly_hours}" %></p>
+         <%end%>
           <% if @user.role == "Pilot" %>
             <p><%="Pilot license: #{@user.license}" %></p>
             <p><%="Total time in airplanes: #{@user.fly_hours}" %></p>
