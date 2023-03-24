@@ -1,36 +1,89 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
-    <% end %>
+<%# navbar-starts %>
+<div class="main navbar navbar-expand-sm navbar-light navbar-lewagon">
 
+  <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
+    <div class="navbar-brand ms-5 w-100">
+      <%= link_to image_tag('logo-transparent.png', alt: 'The logotipe'), root_path, class: 'navbar-brand' %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+          </div>
+            <ul class="navbar-nav me-4">
+              <% if user_signed_in? %>
+<li class="nav-item  mt-4">
+            <form class="form_navbar" data-controller="search-bar" data-search-bar-target="form">
+              <span class="searchBtn" data-search-bar-target="searchBtn" data-action="click->search-bar#clicked" >
+                <em class="icon-search" data-search-bar-target="icon">
+          <svg id=Layer_1 style="enable-background:new 0 0 40 40"version=1.1 viewBox="0 0 40 40"x=0px xml:space=preserve xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink y=0px><g class=st0><g transform=matrix(1,0,0,1,-35.375,-39.25)><g transform=matrix(1,0,0,1,53.094,56.437)><path class=search1 d="M7.2,9.6c3.8-3,5.9-7.9,5.1-13.2C11.4-9.5,6.7-14.4,0.8-15.3C-8.9-17-17.2-8.7-15.6,1c1,6,6,10.8,12,11.6C-0.8,12.9,4.7,11.7,7.2,9.6"></path></g></g><g transform=matrix(1,0,0,1,-35.375,-39.25)><g transform=matrix(1,0,0,1,65.866,69.757)><path class=searchhandl d=M8,8.1c0,0-6.1-6-13.3-13></path></g></g><g transform=matrix(1,0,0,1,-35.375,-39.25)><g transform=matrix(1,0,0,1,65.866,69.757)><path class=searchline1 d=M8,8.1c0,0-16.9-16.6-36.5-35.9></path></g></g><g transform=matrix(1,0,0,1,-35.375,-39.25)><g transform=matrix(1,0,0,1,65.866,69.757)><path class=searchline2 d=M-28.2,8.4c0,0,16.6-16.9,35.9-36.5></path></g></g></g></svg>
+        </em>
+      </span>
+      <input placeholder="Search airports...">
+    </form>
+    </li>
+          <li class="nav-item  SMN_effect-48  mt-3">
+            <%= link_to "Airplanes", airplanes_path, class: "nav-link text-light ms-4", id: "planes-link" %>
           </li>
-          <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
+          <% if current_user.role == "Owner" %>
+            <li class="nav-item  SMN_effect-48  mt-3">
+              <%= link_to "Hangar", my_airplanes_airplanes_path, class: "nav-link text-light ms-4", id: "planes-link" %>
+            </li>
+          <% end %>
+          <li class="nav-item  SMN_effect-48  mt-3">
+              <%= link_to "Messages", inquiries_path, class: "nav-link text-light ms-4", id: "planes-link" %>
+            </li>
+          <li class="nav-item  SMN_effect-48 ms-4 me-4  mt-3">
+            <%= link_to "Contact", "mailto:hi@tangobravo.com", class: "nav-link text-light" %>
           </li>
-          <li class="nav-item dropdown">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
+
+
+          <li class="nav-item dropdown ms-2 me-5">
+            <%= image_tag "https://images.pexels.com/photos/676164/pexels-photo-676164.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+
+
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "My Profile", edit_user_registration_path(current_user), data: {turbo_method: :delete}, class: "dropdown-item" %>
+
+
+              <%= link_to "Messages", "#", data: {turbo_method: :delete}, class: "dropdown-item" %>
+
+
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
+
+                    </div>
           </li>
+
         <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+
+              <li class="nav-item  mt-4">
+            <form class="form_navbar" data-controller="search-bar" data-search-bar-target="form">
+              <span class="searchBtn" data-search-bar-target="searchBtn" data-action="click->search-bar#clicked" >
+                <em class="icon-search" data-search-bar-target="icon">
+          <svg id=Layer_1 style="enable-background:new 0 0 40 40"version=1.1 viewBox="0 0 40 40"x=0px xml:space=preserve xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink y=0px><g class=st0><g transform=matrix(1,0,0,1,-35.375,-39.25)><g transform=matrix(1,0,0,1,53.094,56.437)><path class=search1 d="M7.2,9.6c3.8-3,5.9-7.9,5.1-13.2C11.4-9.5,6.7-14.4,0.8-15.3C-8.9-17-17.2-8.7-15.6,1c1,6,6,10.8,12,11.6C-0.8,12.9,4.7,11.7,7.2,9.6"></path></g></g><g transform=matrix(1,0,0,1,-35.375,-39.25)><g transform=matrix(1,0,0,1,65.866,69.757)><path class=searchhandl d=M8,8.1c0,0-6.1-6-13.3-13></path></g></g><g transform=matrix(1,0,0,1,-35.375,-39.25)><g transform=matrix(1,0,0,1,65.866,69.757)><path class=searchline1 d=M8,8.1c0,0-16.9-16.6-36.5-35.9></path></g></g><g transform=matrix(1,0,0,1,-35.375,-39.25)><g transform=matrix(1,0,0,1,65.866,69.757)><path class=searchline2 d=M-28.2,8.4c0,0,16.6-16.9,35.9-36.5></path></g></g></g></svg>
+        </em>
+      </span>
+      <input placeholder="Search airports...">
+    </form>
+    </li>
+
+          <li class="nav-item  SMN_effect-48  mt-3">
+            <%= link_to "Airplanes", airplanes_path, class: "nav-link text-light ms-4", id: "planes-link" %>
           </li>
+          <li class="nav-item  SMN_effect-48 ms-4  mt-3">
+            <%= link_to "Contact", "mailto:hi@tangobravo.com", class: "nav-link text-light" %>
+          </li>
+          <li class="nav-item  SMN_effect-48 ms-4 me-5  mt-3">
+            <%= link_to "Login", new_user_session_path, class: "nav-link text-light" %>
+          </li>
+
+
         <% end %>
       </ul>
     </div>
   </div>
 </div>
+<%# navbar-ends %>

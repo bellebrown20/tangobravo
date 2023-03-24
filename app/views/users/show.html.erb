@@ -1,0 +1,23 @@
+<div class="container d-flex justify-content-center align-items-center">
+         <div class="card_user py-4">
+
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="round-image">
+                <img src="https://i.imgur.com/Mn9kglf.jpg" class="rounded-circle" width="97">
+              </div>
+            </div>
+
+            <div class="text-center">
+
+              <h4 class="mt-3"><%= "#{@user.name} #{@user.last_name}" %></h4>
+              <span><%= @user.role %></span>
+
+              <div class="px-5">
+                <p class="content_user">Contact me: <%= "#{@user.email}" %>.</p>
+
+                <%= link_to "Contact", "mailto:#{@user.email}", class: "btn btn-primary follow" %>
+              </div>
+            </div>
+
+         </div>
+          </div>
