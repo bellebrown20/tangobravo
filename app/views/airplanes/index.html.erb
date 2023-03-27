@@ -1,6 +1,4 @@
-<h1 class="ms-5 mb-3 mt-4 text-center">Available Airplanes in US</h1>
-
-<%# <%= form_with url: airplanes_path, method: :get, class: "d-flex w-25 ms-5 mb-2 " do %>
+<<%# <%= form_with url: airplanes_path, method: :get, class: "d-flex w-25 ms-5 mb-2 " do %>
   <%# <%= text_field_tag :query,
     params[:query],
     class: "form-control searching-airplanes-btn-focus",
@@ -21,16 +19,9 @@
         data-map-markers-value="<%= @markers.to_json %>"
         data-map-api-key-value="<%= ENV['MAP_BOX_KEY'] %>">
       </div>
-    </div>
+    </div>>
     <div class="col-lg-6 offset-lg-6 text-center">
-      <%= form_with url: airplanes_path, method: :get, class: "d-flex w-25 ms-5 mb-2 search-top" do %>
-        <%= text_field_tag :query,
-          params[:query],
-          class: "form-control searching-airplanes-btn-focus",
-          placeholder: "Find an airplane..."
-        %>
-        <%= submit_tag "Search" %>
-      <% end %>
+
 
       <div class="row">
         <% if params[:query].present? %>
@@ -47,7 +38,7 @@
               <h2 class="mt-1"><%= "#{airplane.make} #{airplane.tailnumber}" %></h2>
               <p class="mt-1"><%= truncate("#{airplane.description}", length: 50) %></p>
               <ul class="d-flex justify-content-center mt-2">
-                <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= airplane.home_airport %></li>
+                <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= airplane.home_airport.upcase %></li>
                 <li><i class="fa-solid fa-dollar-sign" ></i> <%= airplane.price_per_hour %> /hour</li>
               </ul>
               <%= link_to "More Details", airplane_path(airplane), class: "mt-1 button-airplanes" %>

@@ -62,7 +62,18 @@
 <hr class="my-5">
   <div class="row">
     <div class="col-12 col-sm-6">
-      <h3>Reviews</h3>
+      <% @total = 0 %>
+
+      <% if @airplane.reviews.size >= 1 %>
+        <% @airplane.reviews.each do |review| %>
+          <% @total += review.score %>
+        <% end %>
+        <% @average = @total / @airplane.reviews.size %>
+        <h3>Reviews <% @average.round().times do %>
+              <i class="fas fa-star star-yellow"></i>
+            <% end %> <%= @average.to_f %> average </h3>
+      <% end %>
+
       <% if @airplane.reviews.empty? %>
         <small><em class="text-muted">No reviews yet for this plane</em></small>
         <% if current_user && @existing_inquiry %>

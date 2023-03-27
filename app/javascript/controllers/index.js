@@ -7,6 +7,9 @@ import { application } from "./application"
 import AddressAutocompleteController from "./address_autocomplete_controller"
 application.register("address-autocomplete", AddressAutocompleteController)
 
+import CityAutocompleteController from "./city_autocomplete_controller"
+application.register("city-autocomplete", CityAutocompleteController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
@@ -15,6 +18,9 @@ application.register("inquiry-subscription", InquirySubscriptionController)
 
 import MapController from "./map_controller"
 application.register("map", MapController)
+
+import MarkMessagesAsReadController from "./mark_messages_as_read_controller"
+application.register("mark-messages-as-read", MarkMessagesAsReadController)
 
 import SearchBarController from "./search_bar_controller"
 application.register("search-bar", SearchBarController)
