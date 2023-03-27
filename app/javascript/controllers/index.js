@@ -19,5 +19,8 @@ application.register("inquiry-subscription", InquirySubscriptionController)
 import MapController from "./map_controller"
 application.register("map", MapController)
 
+import MarkMessagesAsReadController from "./mark_messages_as_read_controller"
+application.register("mark-messages-as-read", MarkMessagesAsReadController)
+
 import SearchBarController from "./search_bar_controller"
 application.register("search-bar", SearchBarController)
