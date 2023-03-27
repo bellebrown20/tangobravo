@@ -21,7 +21,7 @@
 }
 
 ::-moz-placeholder {
-  color: #56585b;
+  color: #e4e4e4;
 }
 
 :-moz-placeholder {
@@ -52,7 +52,7 @@ ul, nav{
 }
 
 a {
-  color: #fff;
+  // color: #fff; if you want to use this change the name of the A or add an id
   text-decoration: none;
   cursor: pointer;
   opacity: 0.9;
@@ -135,6 +135,7 @@ a.btn {
   font-weight: 700;
   color: #fff;
   margin-top: -220px;
+  padding: 20px;
 
 }
 
@@ -190,9 +191,6 @@ input[type="search"] {
     font-size: 0.9rem;
   }
 
-  .flex-form {
-    width: 100%;
-  }
 
   input[type="search"] {
     flex-basis: 100%;
@@ -215,11 +213,6 @@ input[type="search"] {
 
   h1 {
     font-size: 2rem;
-
-  }
-
-  .cover {
-    padding: 20px;
 
   }
 
@@ -511,4 +504,17 @@ h2{
 .card li{
   font-size: 97%;
   color: #173188;
+}
+.home-search{
+width: 500px;
+
+}
+.query-home{
+  color: rgb(28, 28, 28);
+  border-top-left-radius: 4px;
+border-bottom-left-radius: 4px;
+}
+.form-control:focus {
+  box-shadow: none;
+  background-color: #fff;
 }
