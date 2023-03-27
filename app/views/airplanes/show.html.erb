@@ -7,6 +7,7 @@
           <% end %>
             <h3><%= @airplane.tailnumber %></h3>
              <h4><%= "#{@airplane.engines} #{@airplane.make} based at #{@airplane.home_airport}"%></h4>
+             <h5><%= @airplane.ownership %></h5>
              <h5> <u>Qualifications to Rent</u></h5>
              <ul>
              <li><p><b>Total Hours:</b> <%= @airplane.minimum_hours %> </p></li>
