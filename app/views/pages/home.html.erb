@@ -1,20 +1,17 @@
 
 <div class="image">
 <div class="cover">
-    <h1>Discover airplanes near</h1>
+    <h1 class="mb-0">Discover airplanes near</h1>
 
-    <%= form_with url: airplanes_path, method: :get, class: "d-flex w-25 ms-5 mb-2 " do %>
+    <%= form_with url: airplanes_path, method: :get, class: "d-flex home-search mb-2 flex-form" do %>
       <%= text_field_tag :query,
         params[:query],
-        class: "form-control searching-airplanes-btn-focus",
-        placeholder: "Search by plane type"
+        class: "form-control query-home",
+        placeholder: "Enter your location"
       %>
-      <%= submit_tag "Search", class: "btn btn-dark text-light" %>
+      <%= submit_tag "Search", class: "search-v" %>
     <% end %>
-    <form  class="flex-form">
-      <input class="ps-3 input-v" type="search" placeholder="Enter your location">
-      <input class="search-v" type="submit" value="Search">
-    </form>
+
   </div>
 </div>
 </div>
