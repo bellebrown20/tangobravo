@@ -40,7 +40,7 @@
 
 
           <li class="nav-item dropdown ms-2 me-5">
-            <%= image_tag "https://images.pexels.com/photos/676164/pexels-photo-676164.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <%= cl_image_tag current_user.photo.key, class: "round avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
 
 
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

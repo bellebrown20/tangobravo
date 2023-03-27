@@ -1,4 +1,13 @@
 <h1 class="ms-5 mb-3 mt-4 text-center">Available Airplanes in US</h1>
+
+<%= form_with url: airplanes_path, method: :get, class: "d-flex w-25 ms-5 mb-2 " do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control searching-airplanes-btn-focus",
+    placeholder: "Find a plane..."
+  %>
+  <%= submit_tag "Search", class: "btn btn-dark text-light" %>
+<% end %>
 <%# <%= form_with url: airplanes_path, method: :get, class: "d-flex w-25 ms-5 mb-2 " do %>
   <%# <%= text_field_tag :query,
     params[:query],
@@ -12,6 +21,10 @@
 <div class="container d-flex">
   <div class="container">
     <div class="row">
+      <% if params[:query].present? %>
+        <% @airplanes = Airplane.search_by_make_and_engines(params[:query]) %>
+      <% end %>
+
         <% @airplanes.each do |airplane| %>
           <div class = "col-4 mt-4">
             <div class="d-inline-flex p-2">

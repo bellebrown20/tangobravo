@@ -33,6 +33,7 @@ class AirplanesController < ApplicationController
   def create
     @airplane = Airplane.new(airplane_params)
     @airplane.user = current_user
+    @airplane.photos.attach(params[:airplane][:photos])
     if @airplane.save # Will raise ActiveModel::ForbiddenAttributesError
       redirect_to airplane_path(@airplane)
     else
