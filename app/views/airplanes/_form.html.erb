@@ -19,8 +19,8 @@
         <%= posts.check_box (photo.id).to_s, { value: photo.id } %>
         <%= posts.label :photos, "Save this photo" %>
       </div>
+      <% end %>
     <% end %>
-        <% end %>
 
 
     <%= f.input :photos, as: :file, input_html: { multiple: true } %>

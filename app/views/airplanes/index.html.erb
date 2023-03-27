@@ -33,27 +33,24 @@
       <% end %>
 
       <div class="row">
-        <% if params[:query].present? %>
-          <% @airplanes = Airplane.search_by_make_and_engines(params[:query]) %>
-        <% end %>
         <% @airplanes.each do |airplane| %>
-          <div class="col-md-6 mt-4">
-            <div class="card mx-auto text-center d-flex flex-column">
-              <% if airplane.photos.attached? %>
-                <img src="<%= cl_image_path airplane.photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
-              <% else %>
-                <img src="https://images.unsplash.com/photo-1604285861770-54cb117a3f5a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Product Image">
-              <% end %>
-              <h2 class="mt-1"><%= "#{airplane.make} #{airplane.tailnumber}" %></h2>
-              <p class="mt-1"><%= truncate("#{airplane.description}", length: 50) %></p>
-              <ul class="d-flex justify-content-center mt-2">
-                <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= airplane.home_airport %></li>
-                <li><i class="fa-solid fa-dollar-sign" ></i> <%= airplane.price_per_hour %> /hour</li>
-              </ul>
-              <%= link_to "More Details", airplane_path(airplane), class: "mt-1 button-airplanes" %>
+            <div class="col-md-6 mt-4">
+              <div class="card mx-auto text-center d-flex flex-column">
+                <% if airplane.photos.attached? %>
+                  <img src="<%= cl_image_path airplane.photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
+                <% else %>
+                  <img src="https://images.unsplash.com/photo-1604285861770-54cb117a3f5a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Product Image">
+                <% end %>
+                <h2 class="mt-1"><%= "#{airplane.make} #{airplane.tailnumber}" %></h2>
+                <p class="mt-1"><%= truncate("#{airplane.description}", length: 50) %></p>
+                <ul class="d-flex justify-content-center mt-2">
+                  <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= airplane.home_airport %></li>
+                  <li><i class="fa-solid fa-dollar-sign" ></i> <%= airplane.price_per_hour %> /hour</li>
+                </ul>
+                <%= link_to "More Details", airplane_path(airplane), class: "mt-1 button-airplanes" %>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
       </div>
     </div>
   </div>

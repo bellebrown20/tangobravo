@@ -11,6 +11,7 @@ export default class extends Controller {
       { channel: "InquiryChannel", id: this.inquiryIdValue },
       { received: data => this.#insertMessageAndScrollDown(data) }
     )
+    
     console.log(`Subscribed to the inquiry with the id ${this.inquiryIdValue}.`)
 
   }

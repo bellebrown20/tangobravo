@@ -3,7 +3,13 @@ class AirplanesController < ApplicationController
   before_action :set_airplane, only: %i[show edit update destroy]
 
   def index
-    @airplanes = Airplane.all
+
+
+    if params[:query].present?
+      @airplanes = Airplane.search_by_make_and_engines(params[:query])
+    else
+      @airplanes = Airplane.all
+    end
 
     @markers = @airplanes.geocoded.map do |airplane|
       {
