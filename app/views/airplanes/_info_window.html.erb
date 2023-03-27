@@ -1,2 +1,4 @@
-<h2><%= airplane.make %></h2>
-<h3><%= airplane.home_airport %></h3>
+<%= link_to airplane_path(airplane), class: "text-decoration-none" do %>
+  <h2><%= airplane.make %></h2>
+  <h3><%= airplane.home_airport %></h3>
+<% end %>

@@ -1,16 +1,31 @@
 <div class="ms-5 mt-4 w-25">
-  <%= simple_form_for(@airplane) do |f| %>
+  <%= simple_form_for(@airplane, html: { multipart: true }) do |f| %>
     <%= f.input :make %>
     <%= f.input :engines %>
     <%= f.input :tailnumber %>
     <%= f.input :minimum_hours %>
     <%= f.input :required_licenses, collection: ["Private Pilot", "Commercial Pilot"], input_html: { multiple: true } %>
     <%= f.input :description %>
-    <%= f.input :home_airport, placeholder: "Enter the name of the airport.."%>
+    <%= f.input :home_airport, placeholder: "Enter the name of the airport.." %>
     <%= f.input :address,
       input_html: {class: "d-none", data: {address_autocomplete_target: "address"}},
       wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAP_BOX_KEY"]}}%>
+
+    <% # Existing photos %>
+      <%= f.simple_fields_for :photos_fields do |posts| %>
+    <% @airplane.photos.each_with_index do |photo, index| %>
+      <div class="mb-3">
+        <%= cl_image_tag photo.key, class: "d-block w-100", crop: :fill %>
+        <%= posts.check_box (photo.id).to_s, { value: photo.id } %>
+        <%= posts.label :photos, "Save this photo" %>
+      </div>
+    <% end %>
+        <% end %>
+
+
     <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-    <%= f.submit "Create plane", class: "btn btn-primary w-50 mt-3" %>
+    <%= f.submit "Create/Update plane", class: "btn btn-primary w-50 mt-3" %>
   <% end %>
+
+
 </div>

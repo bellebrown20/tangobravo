@@ -15,12 +15,11 @@ class Airplane < ApplicationRecord
   validates :tailnumber, presence: true
   validates :home_airport, presence: true
 
-  # include PgSearch::Model
-  # pg_search_scope :search_by_brand_and_model,
-  #   against: [ :brand, :model ],
-  #   using: {
-  #     tsearch: { prefix: true } # <-- now `superman batm` will return something!
-  #   }
-
+  include PgSearch::Model
+  pg_search_scope :search_by_make_and_engines,
+    against: [ :make, :engines ],
+    using: {
+      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+    }
 
 end

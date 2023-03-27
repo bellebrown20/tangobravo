@@ -21,6 +21,7 @@ class AirplanesController < ApplicationController
 
   def show
     # @review = Review.new(list: @list)
+    #@inquiries = Inquiry.where(user: current_user).joins(:airplane).or(Inquiry.joins(:airplane).where(airplane: { user: current_user })).joins(:last_message).order('messages.created_at ASC').uniq
     @review = Review.new(airplane: @airplane)
     @inquiry = Inquiry.new(airplane: @airplane)
   end
@@ -32,6 +33,7 @@ class AirplanesController < ApplicationController
   def create
     @airplane = Airplane.new(airplane_params)
     @airplane.user = current_user
+    @airplane.photos.attach(params[:airplane][:photos])
     if @airplane.save # Will raise ActiveModel::ForbiddenAttributesError
       redirect_to airplane_path(@airplane)
     else
@@ -44,8 +46,25 @@ class AirplanesController < ApplicationController
   end
 
   def update
-    @airplane.update(airplane_params) # Will raise ActiveModel::ForbiddenAttributesError
-    redirect_to airplane_path(@airplane)
+    @airplane = Airplane.find(params[:id])
+
+    # Attach any new photos that were uploaded
+    if params[:airplane][:photos].present?
+      @airplane.photos.attach(params[:airplane][:photos])
+    end
+
+    # Remove any photos that were deselected
+    if params[:airplane][:photos_fields].present?
+      @airplane.photos.where(id: params[:airplane][:photos_fields].keys.map{|x| x if params[:airplane][:photos_fields][x] == "0"}).purge
+    else
+      @airplane.photos.purge
+    end
+
+    if @airplane.update(airplane_params)
+      redirect_to airplane_path(@airplane)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -61,6 +80,6 @@ class AirplanesController < ApplicationController
   end
 
   def airplane_params
-    params.require(:airplane).permit(:make, :engines, :tailnumber, :minimum_hours, :required_licenses, :home_airport, :address, :description, :price_per_hour, photos: [])
+    params.require(:airplane).permit(:make, :engines, :tailnumber, :minimum_hours, :required_licenses, :home_airport, :address, :description, :price_per_hour)
   end
 end
