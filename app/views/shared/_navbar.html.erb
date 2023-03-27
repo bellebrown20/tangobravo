@@ -1,5 +1,12 @@
 <%# navbar-starts %>
 <div class="main navbar navbar-expand-sm navbar-light navbar-lewagon">
+<% @inquiries = Inquiry.where(user: current_user).joins(:airplane).or(Inquiry.joins(:airplane).where(airplane: { user: current_user })).joins(:last_message).order('messages.created_at ASC').uniq %>
+<% @unread = 0 %>
+<% @inquiries.each do |inquiry| %>
+  <% if inquiry.messages.last.user != current_user %>
+    <% @unread += 1 %>
+  <% end %>
+<% end %>
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -32,7 +39,7 @@
             </li>
           <% end %>
           <li class="nav-item  SMN_effect-48  mt-3">
-              <%= link_to "Messages", inquiries_path, class: "nav-link text-light ms-4", id: "planes-link" %>
+              <%= link_to "Messages #{@unread}", inquiries_path, class: "nav-link text-light ms-4", id: "planes-link" %>
             </li>
           <li class="nav-item  SMN_effect-48 ms-4 me-4  mt-3">
             <%= link_to "Contact", "mailto:hi@tangobravo.com", class: "nav-link text-light" %>
