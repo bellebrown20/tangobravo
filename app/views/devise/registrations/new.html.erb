@@ -19,21 +19,21 @@
 
       <%= f.input :last_name, :label => "Last Name", input_html: { placeholder: "As shown on FAA license" } %>
 
-      <%= f.input :license, collection: ["Private Pilot", "Commercial Pilot"],
-                  input_html: { multiple: true } %>
+      <%= f.input :license, collection: ["Private Pilot", "Commercial Pilot"]%>
 
       <%= f.input :fly_hours, as: :numeric %>
 
       <%= f.input :role, collection: ["Owner", "Pilot"]%>
 
-      <%= f.input :photo, as: :file, required: true, :label => "Profile Photo" %>
+      <%= f.input :photo, as: :file, required: true, :label => "Profile Photo",
+        required: true %>
 
     </div>
 
     <div class="form-actions">
       <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
+      <%= render "devise/shared/links" %>
     </div>
   <% end %>
-</div>
 
-<%= render "devise/shared/links" %>
+</div>

@@ -1,5 +1,3 @@
-
-
 <%# <%= form_with url: airplanes_path, method: :get, class: "d-flex w-25 ms-5 mb-2 " do %>
   <%# <%= text_field_tag :query,
     params[:query],
@@ -40,7 +38,7 @@
               <h2 class="mt-1"><%= "#{airplane.make} #{airplane.tailnumber}" %></h2>
               <p class="mt-1"><%= truncate("#{airplane.description}", length: 50) %></p>
               <ul class="d-flex justify-content-center mt-2">
-                <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= airplane.home_airport %></li>
+                <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= airplane.home_airport.upcase %></li>
                 <li><i class="fa-solid fa-dollar-sign" ></i> <%= airplane.price_per_hour %> /hour</li>
               </ul>
               <%= link_to "More Details", airplane_path(airplane), class: "mt-1 button-airplanes" %>
