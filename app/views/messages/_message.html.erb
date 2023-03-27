@@ -1,6 +1,6 @@
-<div id="message-<%= message.id %>" class="<%= message.user == current_user ? 'text-center font-weight-light' : 'text-left' %>">
+<div id="message-<%= message.id %>" class="<%= message.user == current_user ? 'text-end font-weight-light' : 'text-start' %>">
   <small class="text-muted">
-    <strong style="font-size: 8.5px;"><%= message.user.nickname %></strong>
+    <strong style="font-size: 8.5px;"><%= message.user.name %></strong>
     <i style="font-size: 8.5px;"><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
   </small>
   <p><%= message.content %></p>
