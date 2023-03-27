@@ -1,21 +1,12 @@
 <div class="ms-5 mt-4 w-25">
   <%= simple_form_for(@airplane, html: { multipart: true }) do |f| %>
-<<<<<<< HEAD
-    <%= f.input :make %>
-    <%= f.input :engines %>
-    <%= f.input :tailnumber %>
-    <%= f.input :ownership, placeholder: "Enter whether you are a flight school or a private owner" %>
-    <%= f.input :minimum_hours %>
-    <%= f.input :required_licenses, collection: ["Private Pilot", "Commercial Pilot"], input_html: { multiple: true } %>
-    <%= f.input :description %>
-    <%= f.input :home_airport, placeholder: "Enter the name of the airport.." %>
-=======
     <%= f.input :make,
         required:true %>
     <%= f.input :engines,
         required:true %>
     <%= f.input :tailnumber,
         required:true %>
+    <%= f.input :ownership, placeholder: "Enter whether you are a flight school or a private owner" %>
     <%= f.input :minimum_hours,
         required:true %>
     <%= f.input :required_licenses, collection: ["Private Pilot", "Commercial Pilot"], required:true %>
@@ -26,7 +17,6 @@
         required:true %>
     <%= f.input :home_airport, placeholder: "Enter the name of the airport..",
         required: true %>
->>>>>>> bbd899aa994040d83b61edc5a1c6c575e7d87b43
     <%= f.input :address,
       required: true ,
       input_html: {class: "d-none", data: {address_autocomplete_target: "address"}},
