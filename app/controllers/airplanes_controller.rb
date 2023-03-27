@@ -3,7 +3,6 @@ class AirplanesController < ApplicationController
   before_action :set_airplane, only: %i[show edit update destroy]
 
   def index
-    # raise
     @airplanes = Airplane.all
 
     @markers = @airplanes.geocoded.map do |airplane|
