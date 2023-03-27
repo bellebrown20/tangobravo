@@ -1,4 +1,3 @@
-
 <div class="image">
 <div class="cover">
     <h1 class="mb-0">Discover airplanes near</h1>
@@ -9,11 +8,26 @@
         class: "form-control query-home",
         placeholder: "Enter your location"
       %>
-      <%= submit_tag "Search", class: "search-v" %>
+      <%= submit_tag "Search", class: "btn btn-primary text-light" %>
     <% end %>
 
+    <form  class="flex-form">
+      <input class="ps-3 input-v" type="search" placeholder="Enter your location">
+      <input class="search-v" type="submit" value="Search" data=>
+    </form>
+
+      <%= form_with url: airplanes_path, method: :get, class: "d-flex w-25 ms-5 mb-2 " do %>
+      <%= text_field_tag :address,
+        params[:address],
+        class: "form-control searching-airplanes-btn-focus",
+        placeholder: "Search by location",
+        input_html: {data: {address_autocomplete_target: "address"}},
+        wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+      %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+    </div>
   </div>
-</div>
 </div>
 
 <div class="background">
