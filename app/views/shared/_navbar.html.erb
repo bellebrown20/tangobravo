@@ -1,11 +1,16 @@
 <%# navbar-starts %>
 <div class="main navbar navbar-expand-sm navbar-light navbar-lewagon">
 <% @inquiries = Inquiry.where(user: current_user).joins(:airplane).or(Inquiry.joins(:airplane).where(airplane: { user: current_user })).joins(:last_message).order('messages.created_at ASC').uniq %>
+<% @unread = 0 %>
+<% @inquiries.each do |inquiry| %>
+  <% if inquiry.messages.last.user != current_user %>
+    <% @unread += 1 %>
+  <% end %>
+<% end %>
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <div class="navbar-brand ms-5 w-100">
       <%= link_to image_tag('logo-transparent.png', alt: 'The logotipe'), root_path, class: 'navbar-brand' %>
@@ -33,12 +38,6 @@
               <%= link_to "Hangar", my_airplanes_airplanes_path, class: "nav-link text-light ms-4", id: "planes-link" %>
             </li>
           <% end %>
-          <% @unread = 0 %>
-           <% @inquiries.each do |inquiry| %>
-              <% if inquiry.messages.last.user != current_user %>
-                <% @unread += 1 %>
-              <% end %>
-           <% end %>
           <li class="nav-item  SMN_effect-48  mt-3">
               <%= link_to "Messages #{@unread}", inquiries_path, class: "nav-link text-light ms-4", id: "planes-link" %>
             </li>
@@ -48,11 +47,7 @@
 
 
           <li class="nav-item dropdown ms-2 me-5">
-            <div class="avatar-wrapper dropdown-toggle">
-              <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                  <%= link_to "My Profile", edit_user_registration_path(current_user), data: {turbo_method: :delete}, class: "dropdown-item" %>
+            <%= cl_image_tag current_user.photo.key, class: "round avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
 
 
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -61,9 +56,7 @@
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
                     </div>
           </li>
-
         <% else %>
-
               <li class="nav-item  mt-4">
             <form class="form_navbar" data-controller="search-bar" data-search-bar-target="form">
               <span class="searchBtn" data-search-bar-target="searchBtn" data-action="click->search-bar#clicked" >
@@ -74,7 +67,6 @@
       <input placeholder="Search airports...">
     </form>
     </li>
-
           <li class="nav-item  SMN_effect-48  mt-3">
             <%= link_to "Airplanes", airplanes_path, class: "nav-link text-light ms-4", id: "planes-link" %>
           </li>
@@ -84,8 +76,6 @@
           <li class="nav-item  SMN_effect-48 ms-4 me-5  mt-3">
             <%= link_to "Login", new_user_session_path, class: "nav-link text-light" %>
           </li>
-
-
         <% end %>
       </ul>
     </div>
