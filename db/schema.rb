@@ -10,8 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_27_143450) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_28_194324) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "fuzzystrmatch"
+  enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -58,6 +60,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_27_143450) do
     t.string "address"
     t.string "price_per_hour"
     t.string "ownership"
+    t.text "make_dmetaphone"
+    t.text "engines_dmetaphone"
+    t.text "tailnumber_dmetaphone"
+    t.text "home_airport_dmetaphone"
+    t.index ["engines_dmetaphone"], name: "airplanes_engines_dmetaphone_idx", opclass: :gin_trgm_ops, using: :gin
+    t.index ["home_airport_dmetaphone"], name: "airplanes_home_airport_dmetaphone_idx", opclass: :gin_trgm_ops, using: :gin
+    t.index ["make_dmetaphone"], name: "airplanes_make_dmetaphone_idx", opclass: :gin_trgm_ops, using: :gin
+    t.index ["tailnumber_dmetaphone"], name: "airplanes_tailnumber_dmetaphone_idx", opclass: :gin_trgm_ops, using: :gin
     t.index ["user_id"], name: "index_airplanes_on_user_id"
   end
 

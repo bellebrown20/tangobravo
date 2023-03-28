@@ -28,10 +28,19 @@ class Airplane < ApplicationRecord
   validates :home_airport, presence: true
 
   include PgSearch::Model
-  pg_search_scope :search_by_make_and_engines,
-    against: [ :make, :engines ],
-    using: {
-      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+pg_search_scope :search_by_make_and_engines,
+  against: [
+    'make',
+    'engines',
+    'tailnumber',
+    'home_airport'
+  ],
+  using: {
+    tsearch: { prefix: true },
+    trigram: {
+      threshold: 0.1,
+      only: :make
     }
+  }
 
 end

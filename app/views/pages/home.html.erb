@@ -63,7 +63,7 @@
 <h2 class="text-center featured-p mt-4 mb-4">Featured Airplanes</h2>
 <div class="d-flex justify-content-center mt-4">
 
-          <div class="col-3" data-controller="popover" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" title="Description" data-bs-content="<%= Airplane.find_by(tailnumber: "N423SC").description %>">
+          <div class="col-3">
             <div class="card mx-auto text-center">
               <img src="<%= cl_image_path Airplane.find_by(tailnumber: "N423SC").photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
               <h2 class="mt-1"><%= "#{Airplane.find_by(tailnumber: "N423SC").make} #{Airplane.find_by(tailnumber: "N423SC").tailnumber}" %> <i class="fa-solid fa-circle-info" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="<%= Airplane.find_by(tailnumber: "N423SC").reviews.count%> reviews <%= Airplane.find_by(tailnumber: "N423SC").review_average %> average"></i></h2>
@@ -75,7 +75,7 @@
               <%= link_to "More Details", airplane_path(Airplane.find_by(tailnumber: "N423SC")), class: "mt-1 button-airplanes" %>
             </div>
           </div>
-          <div class="col-3" data-controller="popover" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" title="Description" data-bs-content="<%= Airplane.find_by(tailnumber: "N987SC").description %>">
+          <div class="col-3">
             <div class="card mx-auto text-center">
               <img src="<%= cl_image_path Airplane.find_by(tailnumber: "N987SC").photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
               <h2 class="mt-1"><%= "#{Airplane.find_by(tailnumber: "N987SC").make} #{Airplane.find_by(tailnumber: "N987SC").tailnumber}" %> <i class="fa-solid fa-circle-info" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="<%= Airplane.find_by(tailnumber: "N987SC").reviews.count%> reviews <%= Airplane.find_by(tailnumber: "N987SC").review_average %> average"></i></h2>
@@ -87,7 +87,7 @@
               <%= link_to "More Details", airplane_path(Airplane.find_by(tailnumber: "N987SC")), class: "mt-1 button-airplanes" %>
             </div>
           </div>
-          <div class="col-3" data-controller="popover" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" title="Description" data-bs-content="<%= Airplane.find_by(tailnumber: "N124GS").description %>">
+          <div class="col-3">
             <div class="card mx-auto text-center">
               <img src="<%= cl_image_path Airplane.find_by(tailnumber: "N124GS").photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
               <h2 class="mt-1"><%= "#{Airplane.find_by(tailnumber: "N124GS").make} #{Airplane.find_by(tailnumber: "N124GS").tailnumber}" %> <i class="fa-solid fa-circle-info" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="<%= Airplane.find_by(tailnumber: "N124GS").reviews.count%> reviews <%= Airplane.find_by(tailnumber: "N124GS").review_average %> average"></i></h2>
