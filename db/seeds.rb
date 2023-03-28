@@ -1,17 +1,71 @@
 require 'faker'
 require "open-uri"
-users = []
+puts "creating five users"
 User.destroy_all
-5.times do
-  name = Faker::Name.first_name
-  email = "#{name}@gmail.com"
-  last_name = Faker::Name.last_name
-  role = "Owner"
-  user = User.new(password: "123456", email: email, name: name, role: role, last_name: last_name)
-  user.save!
-  users << user
-end
-puts 'Creating 5 airplanes...'
+User.create!([{
+  email: "juan@gmail.com",
+  name: "Juan",
+  last_name: "Catera",
+  password: "123456",
+  role:"Owner"
+},
+{
+  email: "sam@gmail.com",
+  name: "Sam",
+  last_name: "Musler",
+  password: "123456",
+  role:"Owner"
+},
+{
+  email: "joaco@gmail.com",
+  name: "Joaco",
+  last_name: "Piven",
+  password: "123456",
+  role:"Owner"
+},
+{
+  email: "belle@gmail.com",
+  name: "Belle",
+  last_name: "Brown",
+  password: "123456",
+  role:"Owner"
+},
+{
+  email: "jeff@gmail.com",
+  name: "Jeff",
+  last_name: "Schappert",
+  password: "123456",
+  role:"Owner"
+}])
+
+user1 = User.find_by(name: "Juan")
+file = URI.open("https://avatars.githubusercontent.com/u/102123472?v=4")
+user1.photo.attach(io: file, filename: "juan.jpg", content_type: "image/jpg")
+user1.save
+
+user2 = User.find_by(name: "Joaco")
+file = URI.open("https://avatars.githubusercontent.com/u/114168307?v=4")
+user2.photo.attach(io: file, filename: "joaco.jpg", content_type: "image/jpg")
+user2.save
+
+user3 = User.find_by(name: "Sam")
+file = URI.open("https://avatars.githubusercontent.com/u/122923157?v=4")
+user3.photo.attach(io: file, filename: "sam.jpg", content_type: "image/jpg")
+user3.save
+
+user4 = User.find_by(name: "Belle")
+file = URI.open("https://avatars.githubusercontent.com/u/46464601?v=4")
+user4.photo.attach(io: file, filename: "belle.jpg", content_type: "image/jpg")
+user4.save
+
+user5 = User.find_by(name: "Jeff")
+file = URI.open("https://mzeroa.com/assets/frontend/1625507728_1.png")
+user5.photo.attach(io: file, filename: "jeff.png", content_type: "image/jpg")
+user5.save
+
+puts "done"
+
+puts 'Creating a bunch of airplanes...'
 Airplane.destroy_all
 Airplane.create!([{
     make: "C172S",
@@ -20,10 +74,11 @@ Airplane.create!([{
     home_airport: "KSDL",
     minimum_hours: 100,
     required_licenses: "Private Pilot",
-    user_id: users.sample.id,
+    user_id: user3.id,
     description: "2020 Cessna 172 with integrated Garmin G1000 avionics. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
     price_per_hour: 200,
-    address: "15000 N Airport Dr, Scottsdale, AZ 85260",
+    ownership: "Flight School- Sierra Charlie Aviaiton",
+    address: "15000 N Airport Dr, Scottsdale, AZ 85260"
 },
 {
   make: "C172S",
@@ -32,10 +87,11 @@ Airplane.create!([{
   home_airport: "KISP",
   minimum_hours: 50,
   required_licenses: "Private Pilot",
-  user_id: users.sample.id,
+  user_id: user1.id,
   description: "2001 Cessna 172 Skyhawk with traditional six pack. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
   price_per_hour: 175,
-  address: "100 Arrival Ave, Ronkonkoma, NY 11779",
+  ownership: "Flight School - Heritage Flight School",
+  address: "100 Arrival Ave, Ronkonkoma, NY 11779"
 },
 {
   make: "PA-44",
@@ -44,9 +100,10 @@ Airplane.create!([{
   home_airport: "KCHD",
   minimum_hours: 200,
   required_licenses: "Commerical Pilot",
-  user_id: users.sample.id,
+  user_id: user2.id,
   description: "2020 Piper Seminole with integrated Garmin G1000 avionics.Two Lycoming IO-360-B1G6 fuel injected engines. 108 US gallons usable fuel capacity.",
   price_per_hour: 405,
+  ownership: "Flight School - Tailwind Flight School",
   address: "2380 S Stinson Way, Chandler, AZ 85286"
 },
 {
@@ -56,9 +113,10 @@ Airplane.create!([{
   home_airport: "KSDL",
   minimum_hours: 50,
   required_licenses: "Private Pilot",
-  user_id: users.sample.id,
+  user_id: user3.id,
   description: "2016 Cessna Skycatcher with integrated Garmin G300 avionics. Teledyne Continental Motors O-200-D 100HP carbuerated engine. 24 US gallons usable fuel capacity.",
   price_per_hour: 125,
+  ownership: "Flight School- Sierra Charlie Aviaiton",
   address: "15000 N Airport Dr, Scottsdale, AZ 85260"
 },
 {
@@ -68,9 +126,10 @@ Airplane.create!([{
   home_airport: "KOSH",
   minimum_hours: 100,
   required_licenses: "Private Pilot",
-  user_id: users.sample.id,
+  user_id: user1.id,
   description: "2016 Piper Cherokee with tradional six pack. Lycoming IO-360-B1E 180HP fuel injected engine. 48 US gallons usable fuel capacity.",
   price_per_hour: 185,
+  ownership: "Private Owner - see profile",
   address: "525 W 20th Ave, Oshkosh, WI 54902"
 },
 {
@@ -80,9 +139,10 @@ Airplane.create!([{
   home_airport: "KPDX",
   minimum_hours: 50,
   required_licenses: "Private Pilot",
-  user_id: users.sample.id,
+  user_id:  user4.id,
   description: "1957 Cessna 172 Skyhawk with traditional six pack. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
   price_per_hour: 135,
+  ownership: "Private Owner - see profile",
   address: "7000 NE Airport Way Portland, OR 97218"
 },
 {
@@ -92,9 +152,10 @@ Airplane.create!([{
   home_airport: "KSEA",
   minimum_hours: 50,
   required_licenses: "Private Pilot",
-  user_id: users.sample.id,
+  user_id: user5.id,
   description: "2020 Cessna 172 with integrated Garmin G1000 avionics. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
   price_per_hour: 175,
+  ownership: "Private Owner - see profile",
   address: "17801 International Blvd Seattle, WA 98158"
 },
 {
@@ -104,9 +165,10 @@ Airplane.create!([{
   home_airport: "KMCI",
   minimum_hours: 70,
   required_licenses: "Private Pilot",
-  user_id: users.sample.id,
+  user_id: user3.id,
   description: "2020 Cessna 172 with integrated Garmin G1000 avionics. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
   price_per_hour: 160,
+  ownership: "Private Owner - see profile",
   address: "1 International Square, Kansas City, MO 64153"
 },
 {
@@ -116,9 +178,10 @@ Airplane.create!([{
   home_airport: "KGON",
   minimum_hours: 70,
   required_licenses: "Private Pilot",
-  user_id: users.sample.id,
+  user_id: user4.id,
   description: "2011 Cessna 172 with steam gauge six pack. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
   price_per_hour: 140,
+  ownership: "Flight School - Angle of Attack Academy",
   address: "155 Tower Ave, Groton, CT 06340"
 },
 {
@@ -128,9 +191,10 @@ Airplane.create!([{
   home_airport: "KMIA",
   minimum_hours: 120,
   required_licenses: "Commerical Pilot",
-  user_id: users.sample.id,
+  user_id: user1.id,
   description: "2019 Piper Seminole with integrated G1000 NXi avionics suite. Two Lycoming IO-360-B1G6 fuel injected engines. 108 US gallons usable fuel capacity.",
   price_per_hour: 300,
+  ownership: "Private Owner - see profile",
   address: "2100 NW 42nd Ave, Miami, FL 33142"
 },
 {
@@ -140,9 +204,10 @@ Airplane.create!([{
   home_airport: "KMEM",
   minimum_hours: 90,
   required_licenses: "Commerical Pilot",
-  user_id: users.sample.id,
+  user_id: user4.id,
   description: "2005 Beechcraft Bonanza G36 with updated Garmin G1000 NXi avionics. Continental Aerospace Technologies IO-550-B engine rated at 300HP. Three blade, constant speed Hartzell prop.",
   price_per_hour: 390,
+  ownership: "Private Owner - see profile",
   address: "2491 Winchester Rd, Memphis, TN 38116"
 },
 {
@@ -152,13 +217,14 @@ Airplane.create!([{
   home_airport: "KSLC",
   minimum_hours: 150,
   required_licenses: "Commerical Pilot",
-  user_id: users.sample.id,
+  user_id: user2.id,
   description: "2000 Cessna Skylane 182S with traditional steam gauge six pack. Lycoming TIO-540-AK1A engine rated at 235HP. Three blade, constant speed McCauley prop.",
   price_per_hour: 390,
+  ownership: "Flight School - ATP",
   address: "776 N Terminal Dr, Salt Lake City, UT 84122"
 }
 ])
-puts "Done"
+
 a = Airplane.find_by(tailnumber: "N423SC")
 file = URI.open("https://sierracharlieaviation.com/wp-content/uploads/2022/09/SierraCharlie_Cessna-172-Skyhawk_Gallery_Resilient-Airframe-1.jpg")
 a.photos.attach(io: file, filename: "last.jpg", content_type: "image/jpg")
@@ -273,3 +339,6 @@ af = Airplane.find_by(tailnumber: "N987JC")
 file = URI.open("https://www.planesalesusa.com/Uploads/Listing/Normal/ID00010-6604-2-672-2007-Cessna-182-Skylane-T.jpg")
 af.photos.attach(io: file, filename: "julietcharlietwo.jpg", content_type: "image/jpg")
 af.save
+
+
+puts "All done"

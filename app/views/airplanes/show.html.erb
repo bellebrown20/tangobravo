@@ -7,6 +7,7 @@
           <% end %>
             <h3><%= @airplane.tailnumber %></h3>
              <h4><%= "#{@airplane.engines} #{@airplane.make} based at #{@airplane.home_airport}"%></h4>
+             <h5><%= @airplane.ownership %></h5>
              <h5> <u>Qualifications to Rent</u></h5>
              <ul>
              <li><p><b>Total Hours:</b> <%= @airplane.minimum_hours %> </p></li>
@@ -51,7 +52,7 @@
       <% end %>
 
       <div class="d-flex flex-row">
-      <%= link_to "Back to all available planes", airplanes_path, class: "btn btn-primary mt-4 mb-4 w-50" %>
+      <%= link_to "Back to all available planes", airplanes_path, class: "btn btn-primary text-light mt-4 mb-4 w-50" %>
       <% if @airplane.user != current_user %>
       <%= link_to "View airplane owner's profile", user_path(@airplane.user), class: "btn btn-primary mt-4 mb-4 w-50"%>
       <% end %>
@@ -61,7 +62,14 @@
 <hr class="my-5">
   <div class="row">
     <div class="col-12 col-sm-6">
-      <h3>Reviews</h3>
+      <% @total = 0 %>
+
+      <% if @airplane.reviews.size >= 1 %>
+        <h3>Reviews <% @airplane.review_average.round().times do %>
+              <i class="fas fa-star star-yellow"></i>
+            <% end %> <%= @airplane.review_average %> average </h3>
+      <% end %>
+
       <% if @airplane.reviews.empty? %>
         <small><em class="text-muted">No reviews yet for this plane</em></small>
         <% if current_user && @existing_inquiry %>

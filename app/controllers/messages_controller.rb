@@ -16,9 +16,16 @@ class MessagesController < ApplicationController
     end
   end
 
+  def update
+      @message = Message.find(params[:id])
+      @message.update(message_params)
+      head :no_content
+  end
+
   private
 
   def message_params
-    params.require(:message).permit(:content)
+    params.require(:message).permit(:content, :read)
   end
+
 end

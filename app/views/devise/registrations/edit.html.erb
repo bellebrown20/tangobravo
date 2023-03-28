@@ -16,6 +16,7 @@
                   required: false,
                   input_html: { autocomplete: "new-password" } %>
       <%= f.input :password_confirmation,
+                  hint: "this should match your new password",
                   required: false,
                   input_html: { autocomplete: "new-password" } %>
       <%= f.input :current_password,
@@ -26,19 +27,24 @@
 
       <%= f.input :last_name, :label => "Last Name", input_html: { placeholder: "As shown on FAA license" } %>
 
-      <%= f.input :license, collection: ["Private Pilot", "Commercial Pilot"],
-                  input_html: { multiple: true } %>
+      <%= f.input :license, collection: ["Private Pilot", "Commercial Pilot"]%>
 
       <%= f.input :fly_hours, as: :numeric %>
 
       <%= f.input :role, collection: ["Owner", "Pilot"]%>
-
-      <%= f.input :photo, as: :file, required: true, :label => "Profile Photo" %>
+        <%= f.simple_fields_for :photos_fields do |posts| %>
+      <div class="mb-3">
+        <%= cl_image_tag @user.photo.key, class: "d-block w-100", crop: :fill %>
+        <%= posts.check_box (@user.photo.id).to_s, { value: @user.photo.id } %>
+        <%= posts.label :photos, "Keep this Profile Photo" %>
+      </div>
+    <% end %>
+      <%= f.input :photo, as: :file, required: true, :label => "Or Upload A New One" %>
 
     </div>
       <div class="form-actions">
         <%= f.button :submit, "Update", class:"btn btn-primary" %>
-        <%= link_to "Back", :back, class: "btn btn-primary" %>
+        <%= button_to "Back", root_path, class: "btn btn-primary" %>
       </div>
       <% end %>
 
