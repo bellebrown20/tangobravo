@@ -44,7 +44,7 @@
         <% if current_user.inquiries.where(airplane: @airplane).count == 0 && @airplane.user != current_user %>
           <%= simple_form_for [@airplane, @inquiry] do |f| %>
           <%= f.hidden_field :user, :value => current_user %>
-          <%= f.button :submit, class: "btn btn-primary mt-4 mb-4 w-50" %>
+          <%= f.button :submit, value: "Inquire about this plane", class: "btn btn-primary mt-4 mb-4 w-50" %>
         <% end %>
       <% end %>
       <% @existing_inquiry = Inquiry.where(user: current_user).joins(:airplane).where(airplane: @airplane).last %>
