@@ -1,7 +1,7 @@
 <div class="container w-100 ">
   <div class="d-flex justify-content-around  border-dark">
     <span class="align-self-center">
-        <div class="text-left" id= "this">
+        <div class="text-left" >
           <% if current_user == @airplane.user %>
              <%= link_to "Edit this airplane", edit_airplane_path(@airplane), class: "btn btn-primary mb-4" %>
           <% end %>
