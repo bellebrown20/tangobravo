@@ -518,3 +518,124 @@ border-bottom-left-radius: 4px;
   box-shadow: none;
   background-color: #fff;
 }
+
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,500,300italic,500italic,700italic,900,300);
+
+@import url(//fonts.googleapis.com/icon?family=Material+Icons);
+
+
+ul {
+  display: flex;
+}
+
+li {
+  list-style: none;
+}
+.tracker__item {
+  display: inline-block;
+  width: 140px;
+
+}
+.tracker__wrapper {
+  color: #fff;
+  font-weight: 500;
+  height: 140px;
+  margin-bottom: 20px;
+}
+.tracker__check {
+  position: absolute;
+  color: rgb(220, 220, 220);
+  left: 50%;
+  margin-left: -12px;
+  bottom: -12px;
+  background-color: #173188;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: middle;
+}
+.tracker__icon {
+  padding-bottom: 24px;
+  border-bottom: 2px solid rgb(220, 220, 220);
+  position: relative;
+  text-align: center;
+}
+.tracker__icon svg {
+  fill: rgb(220, 220, 220);
+  width: 60px;
+  height: 60px;
+}
+.tracker__icon svg * {
+  stroke: rgb(207, 207, 207);
+}
+.tracker__status {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.tracker__date {
+  text-align: center;
+  padding: 6px 16px;
+  background-color: rgb(220, 220, 220);
+  color: #fff;
+  border-radius: 13px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.how{
+margin-top: 70px;
+padding-top: 40px;
+padding-bottom: 40px;
+
+background: linear-gradient(to top, #173288, #1b4e91);}
+
+.h2-how{
+  color: rgb(220, 220, 220);
+  margin-bottom: 45px;
+}
+
+.how ul {
+  display: flex; /* display as a flex container */
+  justify-content: center; /* center horizontally */
+  list-style-type: none;
+  padding: 0;
+}
+#image-home-plane{
+  width: 500px;
+  height: 70%;
+  object-fit: cover;
+  border-radius: 7px;
+  margin-right: 50px;
+}
+
+.home-below h3{
+  font-weight: 600;
+  margin-top: 70px;
+}
+
+.home-below p{
+  font-weight: 300;
+  width: 450px;
+}
+
+.home img{
+  top: -20px;
+}
+
+.home-below button {
+  background: linear-gradient(to top, #173288, #1b4e91);
+  border: 1px solid #173288;
+  color: #fff;
+  padding: 10px 30px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.home-below button:hover {
+  background: linear-gradient(to top, #173288, #143867);
+  border: 1px solid #173288;
+  color: #fff;
+}
