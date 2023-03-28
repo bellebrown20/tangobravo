@@ -1,13 +1,13 @@
 <div class="ms-5 mt-4">
-<h1>My Hangar</h1>
+  <h1>My Hangar</h1>
 
+  <ul>
+    <% @airplanes.each do |airplane| %>
+      <li style="font-size: 20px;"><%= link_to "#{airplane.engines} #{airplane.make} based at #{airplane.home_airport}", airplane_path(airplane), class:"text-dark" %></li>
+    <% end %>
+  </ul>
 
-<ul>
-  <% @airplanes.each do |airplane| %>
-    <li style="font-size: 20px;"><%= link_to "#{airplane.engines} #{airplane.make} based at #{airplane.home_airport}", airplane_path(airplane), style: "text-decoration: none;", class:"text-dark" %></li>
-  <% end %>
-</ul>
-
-
-<%= link_to "Create new airplane", new_airplane_path, class: "btn btn-primary px-4"%>
+  <div class="mt-4">
+    <%= link_to "Create new airplane", new_airplane_path, class: "button-airplanes w-50", style: "margin-top: 200px;" %>
+  </div>
 </div>
