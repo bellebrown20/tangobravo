@@ -9,6 +9,18 @@ class Airplane < ApplicationRecord
   has_many :users, through: :inquiries
   has_many :reviews
 
+  def review_average
+    total = 0
+    if reviews.count.positive?
+      reviews.each do |review|
+        total += review.score
+      end
+      (total / reviews.size).to_f
+    else
+      return 'N/A'
+    end
+  end
+
   has_many_attached :photos
   validates :make, presence: true
   validates :engines, presence: true
