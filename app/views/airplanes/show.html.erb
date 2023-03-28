@@ -52,7 +52,7 @@
       <% end %>
 
       <div class="d-flex flex-row">
-      <%= link_to "Back to all available planes", airplanes_path, class: "btn btn-primary mt-4 mb-4 w-50" %>
+      <%= link_to "Back to all available planes", airplanes_path, class: "btn btn-primary text-light mt-4 mb-4 w-50" %>
       <% if @airplane.user != current_user %>
       <%= link_to "View airplane owner's profile", user_path(@airplane.user), class: "btn btn-primary mt-4 mb-4 w-50"%>
       <% end %>

@@ -1,16 +1,5 @@
 require 'faker'
 require "open-uri"
-# users = []
-# User.destroy_all
-# 5.times do
-#   name = Faker::Name.first_name
-#   email = "#{name}@gmail.com"
-#   last_name = Faker::Name.last_name
-#   role = "Owner"
-#   user = User.new(password: "123456", email: email, name: name, role: role, last_name: last_name)
-#   user.save!
-#   users << user
-# end
 puts "creating five users"
 User.destroy_all
 User.create!([{
