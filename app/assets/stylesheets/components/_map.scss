@@ -5,4 +5,16 @@
 .mapboxgl-popup-content {
   text-align: center;
   font-family: "Open Sans", sans-serif;
+  background-color: rgb(225, 225, 225);
+  h2 {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', 'Sans-serif';
+    font-size: small;
+    color:black;
+  }
+
+  h3{
+    font-family: 'Source Sans Pro', 'Helvetica Neue', 'Sans-serif';
+    font-size: small;
+    color:black;
+  }
 }

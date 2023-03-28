@@ -1,4 +1,7 @@
 <%= link_to airplane_path(airplane), class: "text-decoration-none" do %>
-  <h2><%= airplane.make %></h2>
-  <h3><%= airplane.home_airport %></h3>
+  <h2><%= airplane.description %></h2>
+  <div>
+    <i class="fa-solid fa-location-dot" style= "font-size:15px; display: inline-block; margin-right:6px;"></i>
+    <h3 style="display:inline-block;">Based in: <%= airplane.home_airport %> airport</h3>
+  </div>
 <% end %>
