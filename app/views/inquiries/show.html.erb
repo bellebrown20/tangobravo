@@ -60,34 +60,36 @@
               placeholder: "Type here",
               wrapper_html: {class: "flex-grow-1"}
             %>
-            <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+            <%= f.submit "Send", class: "button-airplanes mb-3", style: "padding: 0;" %>
 
           <% end %>
 
         </div>
       </div>
       <div class="airplane-card col-md-6 mt-4 flex-grow-1">
-      <% @airplane = @inquiry.airplane  %>
-            <div >
-              <% if @airplane.photos.attached? %>
-                <img src="<%= cl_image_path @airplane.photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
-              <% else %>
-                <img src="https://images.unsplash.com/photo-1604285861770-54cb117a3f5a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Product Image">
-              <% end %>
-              <h2 class="mt-1"><%= "#{@airplane.make} #{@airplane.tailnumber}" %></h2>
-              <p class="mt-1"><%= truncate("#{@airplane.description}", length: 50) %></p>
-              <ul class="d-flex justify-content-center mt-2">
-                <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= @airplane.home_airport %></li>
-                <li><i class="fa-solid fa-dollar-sign" ></i> <%= @airplane.price_per_hour %> /hour</li>
-              </ul>
+        <div class="card text-center d-flex flex-column">
+                <% if @inquiry.airplane.photos.attached? %>
+                    <img src="<%= cl_image_path @inquiry.airplane.photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
+                <% else %>
+                    <img src="https://images.unsplash.com/photo-1604285861770-54cb117a3f5a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Product Image">
+                <% end %>
+
+                <h2 class="mt-1"><%= "#{@inquiry.airplane.make} #{@inquiry.airplane.tailnumber}" %> </h2>
+
+                <p class="mt-1"><%= truncate("#{@inquiry.airplane.description}", length: 50) %></p>
+                  <ul class="d-flex justify-content-center mt-2">
+                    <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= @inquiry.airplane.home_airport.upcase %></li>
+                    <li><i class="fa-solid fa-dollar-sign" ></i> <%= @inquiry.airplane.price_per_hour %> /hour</li>
+                  </ul>
+                  <%= link_to "More Details", airplane_path(@inquiry.airplane), class: "mt-1 button-airplanes" %>
+              </div>
               <% if @inquiry.airplane.user == current_user && @inquiry.status == false %>
-                <p> Has <%= @inquiry.user.name %> flown with you? </p>
+                <p class= "mt-3"> Has <%= @inquiry.user.name %> flown with you? </p>
                 <%= simple_form_for [@inquiry] do |f| %>
                     <%= f.input :status, collection: [false, true] %>
-                    <%= f.button :submit, class:"btn btn-dark w-10"%>
+                    <%= f.button :submit, class:"button-airplanes"%>
                 <% end %>
               <% end %>
-              <%= link_to "More Details", airplane_path(@airplane), class: "mt-1 button-airplanes" %>
             </div>
       </div>
 
