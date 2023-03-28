@@ -1,4 +1,4 @@
-<<%# <%= form_with url: airplanes_path, method: :get, class: "d-flex w-25 ms-5 mb-2 " do %>
+<%# <%= form_with url: airplanes_path, method: :get, class: "d-flex w-25 ms-5 mb-2 " do %>
   <%# <%= text_field_tag :query,
     params[:query],
     class: "form-control searching-airplanes-btn-focus",
@@ -13,13 +13,13 @@
     <div class="col-12">
       <h2 class="ms-5 mb-3 mt-4 text-center">Available Airplanes in the United States</h2>
     </div>
-    <div class="col-lg-6" style="position: fixed; top: 0; bottom: 0;margin-bottom:50px;margin-top:250px">
+    <div class="col-lg-6" style="position: fixed; top: 0; bottom: 0;margin-bottom:50px;margin-top:250px;">
       <div id="map" style="height: 100%;"
         data-controller="map"
         data-map-markers-value="<%= @markers.to_json %>"
         data-map-api-key-value="<%= ENV['MAP_BOX_KEY'] %>">
       </div>
-    </div>>
+    </div>
     <div class="col-lg-6 offset-lg-6 text-center">
 
 
@@ -28,7 +28,7 @@
           <% @airplanes = Airplane.search_by_make_and_engines(params[:query]) %>
         <% end %>
         <% @airplanes.each do |airplane| %>
-          <div class="col-md-6 mt-4" data-controller="popover" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" title="Description" data-bs-content="<%= airplane.description %>">
+          <div class="col-md-6 mt-4">
             <div class="card mx-auto text-center d-flex flex-column">
               <% if airplane.photos.attached? %>
                 <img src="<%= cl_image_path airplane.photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
@@ -36,7 +36,7 @@
                 <img src="https://images.unsplash.com/photo-1604285861770-54cb117a3f5a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Product Image">
               <% end %>
 
-              <h2 class="mt-1"><%= "#{airplane.make} #{airplane.tailnumber}" %> <i class="fa-solid fa-circle-info" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="<%= airplane.reviews.count%> reviews <%= airplane.review_average %> average"></i></h2>
+              <h2 class="mt-1"><%= "#{airplane.make} #{airplane.tailnumber}" %></h2>
 
               <p class="mt-1"><%= truncate("#{airplane.description}", length: 50) %></p>
               <ul class="d-flex justify-content-center mt-2">
