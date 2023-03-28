@@ -1,54 +1,60 @@
-  <%= form_with url: airplanes_path, method: :get, class: "d-flex home-search mb-2 flex-form" do %>
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control query-home",
-        placeholder: "Enter your plane make "
-      %>
-      <%= submit_tag "Search", class: "btn btn-primary text-light" %>
-    <% end %>
+
 
 <%# col-3 me-lg-4 mb-lg-3 mb-4 d-flex justify-content-center %>
 <div class="container-fluid airplanes-view">
   <div class="row">
     <div class="col-12">
-      <h2 class="ms-5 mb-3 mt-4 text-center">Available Airplanes in the United States</h2>
-    </div>
-    <div class="col-lg-6" style="position: fixed; top: 0; bottom: 0;margin-bottom:50px;margin-top:250px;">
-      <div id="map" style="height: 100%;"
-        data-controller="map"
-        data-map-markers-value="<%= @markers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAP_BOX_KEY'] %>">
-      </div>
-    </div>
-    <div class="col-lg-6 offset-lg-6 text-center">
-
-
-      <div class="row">
-        <% if params[:query].present? %>
-          <% @airplanes = Airplane.search_by_make_and_engines(params[:query]) %>
-        <% end %>
-        <% @airplanes.each do |airplane| %>
-          <div class="col-md-6 mt-4">
-            <div class="card mx-auto text-center d-flex flex-column">
-              <% if airplane.photos.attached? %>
-                <img src="<%= cl_image_path airplane.photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
-              <% else %>
-                <img src="https://images.unsplash.com/photo-1604285861770-54cb117a3f5a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Product Image">
-              <% end %>
-
-              <h2 class="mt-1"><%= "#{airplane.make} #{airplane.tailnumber}" %> </h2>
-              
-
-              <p class="mt-1"><%= truncate("#{airplane.description}", length: 50) %></p>
-              <ul class="d-flex justify-content-center mt-2">
-                <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= airplane.home_airport.upcase %></li>
-                <li><i class="fa-solid fa-dollar-sign" ></i> <%= airplane.price_per_hour %> /hour</li>
-              </ul>
-              <%= link_to "More Details", airplane_path(airplane), class: "mt-1 button-airplanes" %>
-            </div>
-          </div>
-        <% end %>
-      </div>
+      <h2 class="ms-5 mb-3 mt-4 text-center" id="h2-airplanes">Available Airplanes in the United States</h2>
     </div>
   </div>
+  <div class="form-airplanes d-flex justify-content-center">
+    <%= form_with url: airplanes_path, method: :get, class: "home-search ms-5 mb-3 mt-4 flex-form form-airplanes" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control query-home search-input",
+        placeholder: "Enter your plane make "
+      %>
+      <%= submit_tag "Search", class: "btn btn-primary text-light search-btn" %>
+    <% end %>
+  </div>
+
+
+
 </div>
+<div class="map-airplanes">
+  <div id="map" style="height: 100%;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAP_BOX_KEY'] %>">
+  </div>
+</div>
+
+
+<div class="row justify-content-center">
+    <% if params[:query].present? %>
+      <% @airplanes = Airplane.search_by_make_and_engines(params[:query]) %>
+    <% end %>
+    <% @airplanes.each do |airplane| %>
+      <div class="col-sm-6 col-md-3 mt-3 cards-airplane">
+        <div class="card mb-5">
+          <% if airplane.photos.attached? %>
+            <img src="<%= cl_image_path airplane.photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
+          <% else %>
+            <img src="https://images.unsplash.com/photo-1604285861770-54cb117a3f5a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Product Image">
+          <% end %>
+
+          <h2 class="mt-1 text-center"><%= "#{airplane.make} #{airplane.tailnumber}" %> </h2>
+
+          <p class="mt-1 text-center"><%= truncate("#{airplane.description}", length: 50) %></p>
+          <ul class="d-flex justify-content-center mt-2">
+            <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= airplane.home_airport.upcase %></li>
+            <li><i class="fa-solid fa-dollar-sign" ></i> <%= airplane.price_per_hour %> /hour</li>
+          </ul>
+          <%= link_to "More Details", airplane_path(airplane), class: "mt-1 button-airplanes" %>
+        </div>
+      </div>
+    <% end %>
+
+
+</div>
+  </div>
