@@ -1,6 +1,6 @@
 <div class="image">
 <div class="cover">
-    <h1 class="mb-0">Discover airplanes near</h1>
+    <h1 class="mb-0">Discover airplanes</h1>
 
     <%= form_with url: airplanes_path, method: :get, class: "d-flex home-search mb-2 flex-form" do %>
       <%= text_field_tag :query,
@@ -63,52 +63,40 @@
 <h2 class="text-center featured-p mt-4 mb-4">Featured Airplanes</h2>
 <div class="d-flex justify-content-center mt-4">
 
-<div class="card mx-auto text-center d-flex flex-column">
-    <img src="https://images.unsplash.com/photo-1604285861770-54cb117a3f5a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Product Image">
-    <h2 class="mt-1">Cessna Skycatcher </h2>
-    <p class="mt-1"><%= truncate("Teledyne Continental Motors O-200-D 100HP carbuerated engine", length: 50) %>
-</p>
-    <ul class="d-flex justify-content-center mt-2">
-     <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i>KBOS</li>
-      <li><i class="fa-solid fa-dollar-sign" ></i> $125 / hour</li>
-    </ul>
-    <button class="mt-1">More Details</button>
+          <div class="col-3" data-controller="popover" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" title="Description" data-bs-content="<%= Airplane.find_by(tailnumber: "N423SC").description %>">
+            <div class="card mx-auto text-center">
+              <img src="<%= cl_image_path Airplane.find_by(tailnumber: "N423SC").photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
+              <h2 class="mt-1"><%= "#{Airplane.find_by(tailnumber: "N423SC").make} #{Airplane.find_by(tailnumber: "N423SC").tailnumber}" %> <i class="fa-solid fa-circle-info" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="<%= Airplane.find_by(tailnumber: "N423SC").reviews.count%> reviews <%= Airplane.find_by(tailnumber: "N423SC").review_average %> average"></i></h2>
+              <p class="mt-1"><%= truncate("#{Airplane.find_by(tailnumber: "N423SC").description}", length: 50) %></p>
+              <ul class="d-flex justify-content-center mt-2">
+                <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= Airplane.find_by(tailnumber: "N423SC").home_airport.upcase %></li>
+                <li><i class="fa-solid fa-dollar-sign" ></i> <%= Airplane.find_by(tailnumber: "N423SC").price_per_hour %> /hour</li>
+              </ul>
+              <%= link_to "More Details", airplane_path(Airplane.find_by(tailnumber: "N423SC")), class: "mt-1 button-airplanes" %>
+            </div>
+          </div>
+          <div class="col-3" data-controller="popover" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" title="Description" data-bs-content="<%= Airplane.find_by(tailnumber: "N987SC").description %>">
+            <div class="card mx-auto text-center">
+              <img src="<%= cl_image_path Airplane.find_by(tailnumber: "N987SC").photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
+              <h2 class="mt-1"><%= "#{Airplane.find_by(tailnumber: "N987SC").make} #{Airplane.find_by(tailnumber: "N987SC").tailnumber}" %> <i class="fa-solid fa-circle-info" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="<%= Airplane.find_by(tailnumber: "N987SC").reviews.count%> reviews <%= Airplane.find_by(tailnumber: "N987SC").review_average %> average"></i></h2>
+              <p class="mt-1"><%= truncate("#{Airplane.find_by(tailnumber: "N987SC").description}", length: 50) %></p>
+              <ul class="d-flex justify-content-center mt-2">
+                <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= Airplane.find_by(tailnumber: "N987SC").home_airport.upcase %></li>
+                <li><i class="fa-solid fa-dollar-sign" ></i> <%= Airplane.find_by(tailnumber: "N987SC").price_per_hour %> /hour</li>
+              </ul>
+              <%= link_to "More Details", airplane_path(Airplane.find_by(tailnumber: "N987SC")), class: "mt-1 button-airplanes" %>
+            </div>
+          </div>
+          <div class="col-3" data-controller="popover" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" title="Description" data-bs-content="<%= Airplane.find_by(tailnumber: "N124GS").description %>">
+            <div class="card mx-auto text-center">
+              <img src="<%= cl_image_path Airplane.find_by(tailnumber: "N124GS").photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
+              <h2 class="mt-1"><%= "#{Airplane.find_by(tailnumber: "N124GS").make} #{Airplane.find_by(tailnumber: "N124GS").tailnumber}" %> <i class="fa-solid fa-circle-info" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="<%= Airplane.find_by(tailnumber: "N124GS").reviews.count%> reviews <%= Airplane.find_by(tailnumber: "N124GS").review_average %> average"></i></h2>
+              <p class="mt-1"><%= truncate("#{Airplane.find_by(tailnumber: "N124GS").description}", length: 50) %></p>
+              <ul class="d-flex justify-content-center mt-2">
+                <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= Airplane.find_by(tailnumber: "N124GS").home_airport.upcase %></li>
+                <li><i class="fa-solid fa-dollar-sign" ></i> <%= Airplane.find_by(tailnumber: "N124GS").price_per_hour %> /hour</li>
+              </ul>
+              <%= link_to "More Details", airplane_path(Airplane.find_by(tailnumber: "N124GS")), class: "mt-1 button-airplanes" %>
+            </div>
+          </div>
   </div>
-
-  <div class="card mx-auto text-center">
-    <img src="https://images.unsplash.com/photo-1604285861770-54cb117a3f5a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Product Image">
-    <h2 class="mt-1">Piper Seminole</h2>
-    <p class="mt-1"><%= truncate("Two Lycoming IO-360-B1G6 fuel injected engines", length: 50) %></p>
-    <ul class="d-flex justify-content-center mt-2">
-      <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i>KSMO</li>
-      <li><i class="fa-solid fa-dollar-sign" ></i> $499 /hour</li>
-    </ul>
-    <button class="mt-1">More Details</button>
-  </div>
-
-   <div class="card mx-auto text-center">
-    <img src="https://images.unsplash.com/photo-1604285861770-54cb117a3f5a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Product Image">
-    <h2 class="mt-1">Cessna 172</h2>
-    <p class="mt-1"><%= truncate("Skyhawk with traditional six pack. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.", length: 50) %>
-</p>
-    <ul class="d-flex justify-content-center mt-2">
-     <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i> KGON</li>
-      <li><i class="fa-solid fa-dollar-sign" ></i> $190 /hour</li>
-    </ul>
-    <button class="mt-1">More Details</button>
-  </div>
-
-  <div class="card mx-auto text-center">
-    <img src="https://images.unsplash.com/photo-1604285861770-54cb117a3f5a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Product Image">
-    <h2 class="mt-1">Cessna 172</h2>
-    <p class="mt-1"><%= truncate("Skyhawk with traditional six pack. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.", length: 50) %>
-</p>
-    <ul class="d-flex justify-content-center mt-2">
-     <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i>KISP</li>
-      <li><i class="fa-solid fa-dollar-sign" ></i> $140 /hour</li>
-    </ul>
-    <button class="mt-1">More Details</button>
-  </div>
-
-
-</div>
