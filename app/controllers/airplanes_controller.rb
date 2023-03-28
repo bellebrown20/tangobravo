@@ -4,11 +4,10 @@ class AirplanesController < ApplicationController
 
   def index
 
-
     if params[:query].present?
-      @airplanes = Airplane.search_by_make_and_engines(params[:query])
+      @airplanes = policy_scope(Airplane.search_by_make_and_engines(params[:query]))
     else
-      @airplanes = Airplane.all
+      @airplanes = policy_scope(Airplane.all)
     end
 
     @markers = @airplanes.geocoded.map do |airplane|
@@ -22,10 +21,11 @@ class AirplanesController < ApplicationController
   end
 
   def my_airplanes
-    @airplanes = current_user.airplanes
+    @airplanes = policy_scope(current_user.airplanes)
   end
 
   def show
+    authorize @airplane
     # @review = Review.new(list: @list)
     #@inquiries = Inquiry.where(user: current_user).joins(:airplane).or(Inquiry.joins(:airplane).where(airplane: { user: current_user })).joins(:last_message).order('messages.created_at ASC').uniq
     @review = Review.new(airplane: @airplane)
@@ -34,12 +34,14 @@ class AirplanesController < ApplicationController
 
   def new
     @airplane = Airplane.new
+    authorize @airplane
   end
 
   def create
     @airplane = Airplane.new(airplane_params)
     @airplane.user = current_user
     @airplane.photos.attach(params[:airplane][:photos])
+    authorize @airplane
     if @airplane.save # Will raise ActiveModel::ForbiddenAttributesError
       redirect_to airplane_path(@airplane)
     else
@@ -48,10 +50,12 @@ class AirplanesController < ApplicationController
   end
 
   def edit
+    authorize @airplane
 
   end
 
   def update
+    authorize @airplane
     @airplane = Airplane.find(params[:id])
 
     # Attach any new photos that were uploaded
@@ -74,6 +78,7 @@ class AirplanesController < ApplicationController
   end
 
   def destroy
+    authorize @airplane
     @airplane.destroy
     # No need for app/views/airplanes/destroy.html.erb
     redirect_to airplanes_path, status: :see_other

@@ -7,7 +7,7 @@ class Airplane < ApplicationRecord
   has_many :inquiries, dependent: :destroy
   has_many :messages, through: :inquiries
   has_many :users, through: :inquiries
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
 
   def review_average
     total = 0

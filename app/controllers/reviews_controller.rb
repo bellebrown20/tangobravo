@@ -1,11 +1,13 @@
 class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
+    authorize @review
     @airplane = Airplane.find(params[:airplane_id])
     @review.airplane = @airplane
     @review.user = current_user
     if @review.save
       redirect_to airplane_path(@airplane)
+      flash[:alert] = "Review submitted"
     else
       render 'airplanes/show', status: :unprocessable_entity
     end
@@ -13,8 +15,9 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find(params[:id])
+    authorize @review
     @review.destroy
-    redirect_to airplane_path(@review.ariplane)
+    redirect_to airplane_path(@review.airplane)
   end
 
   private
