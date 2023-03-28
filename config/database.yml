@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: tangobravo_production
-  username: tangobravo
+  username: zkxvqnidggjiot
   password: <%= ENV["TANGOBRAVO_DATABASE_PASSWORD"] %>
