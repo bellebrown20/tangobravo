@@ -1,11 +1,11 @@
-<%# <%= form_with url: airplanes_path, method: :get, class: "d-flex w-25 ms-5 mb-2 " do %>
-  <%# <%= text_field_tag :query,
-    params[:query],
-    class: "form-control searching-airplanes-btn-focus",
-    placeholder: "Find a airplane..."
-  %>
-  <%# <%= submit_tag "Search", class: "btn btn-primary text-light" %>
-<%# <% end %>
+  <%= form_with url: airplanes_path, method: :get, class: "d-flex home-search mb-2 flex-form" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control query-home",
+        placeholder: "Enter your plane make "
+      %>
+      <%= submit_tag "Search", class: "btn btn-primary text-light" %>
+    <% end %>
 
 <%# col-3 me-lg-4 mb-lg-3 mb-4 d-flex justify-content-center %>
 <div class="container-fluid airplanes-view">
@@ -36,7 +36,7 @@
                 <img src="https://images.unsplash.com/photo-1604285861770-54cb117a3f5a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Product Image">
               <% end %>
 
-              <h2 class="mt-1"><%= "#{airplane.make} #{airplane.tailnumber}" %></h2>
+              <h2 class="mt-1"><%= "#{airplane.make} #{airplane.tailnumber}" %> </h2>
 
               <p class="mt-1"><%= truncate("#{airplane.description}", length: 50) %></p>
               <ul class="d-flex justify-content-center mt-2">

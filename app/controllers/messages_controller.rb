@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.inquiry = @inquiry
     @message.user = current_user
+    authorize @message
     if @message.save
       InquiryChannel.broadcast_to(
         @inquiry,
@@ -16,16 +17,10 @@ class MessagesController < ApplicationController
     end
   end
 
-  def update
-      @message = Message.find(params[:id])
-      @message.update(message_params)
-      head :no_content
-  end
-
   private
 
   def message_params
-    params.require(:message).permit(:content, :read)
+    params.require(:message).permit(:content)
   end
 
 end
