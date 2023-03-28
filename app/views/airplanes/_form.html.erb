@@ -6,6 +6,7 @@
         required:true %>
     <%= f.input :tailnumber,
         required:true %>
+    <%= f.input :ownership, placeholder: "Enter whether you are a flight school or a private owner" %>
     <%= f.input :minimum_hours,
         required:true %>
     <%= f.input :required_licenses, collection: ["Private Pilot", "Commercial Pilot"], required:true %>
