@@ -60,8 +60,8 @@
       </div>
     </div>
   </div>
-  <hr class="my-5">
-    <div class="container">
+  <hr class="">
+    <div class="container mt-0">
       <div class="row">
         <div class="col-12 col-sm-6">
           <% @total = 0 %>
@@ -69,11 +69,12 @@
           <% if @airplane.reviews.size >= 1 %>
             <h3>Reviews&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<% @airplane.review_average.round().times do %>
                   <i class="fas fa-star star-yellow"></i>
-                <% end %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @airplane.review_average %> average </h3>
+            <% end %>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @airplane.review_average %> average </h3>
           <% end %>
 
           <% if @airplane.reviews.empty? %>
-            <small><em class="text-muted">No reviews yet for this plane</em></small>
+            <em class="text-muted">No reviews yet for this plane</em>
             <% if current_user && @existing_inquiry %>
               <% if current_user != @airplane.user && @existing_inquiry.status == true  %>
                 <small><em class="text-muted">Be the first one to review this airplane</em></small>
@@ -101,7 +102,7 @@
                 <%= simple_form_for [@airplane, @review] do |f| %>
                   <%= f.input :content, placeholder: "Add your review here..." %>
                   <%= f.input :score, as: :select, collection: (1..5), required: true, prompt: "What's your rating", input_html: { data: { controller: "star-rating" } } %>
-                  <%= f.submit class:"btn btn-flat" %>
+                  <%= f.submit class:"btn btn-airplanes" %>
                 <% end %>
               </div>
             </div>
