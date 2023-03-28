@@ -65,13 +65,9 @@
       <% @total = 0 %>
 
       <% if @airplane.reviews.size >= 1 %>
-        <% @airplane.reviews.each do |review| %>
-          <% @total += review.score %>
-        <% end %>
-        <% @average = @total / @airplane.reviews.size %>
-        <h3>Reviews <% @average.round().times do %>
+        <h3>Reviews <% @airplane.review_average.round().times do %>
               <i class="fas fa-star star-yellow"></i>
-            <% end %> <%= @average.to_f %> average </h3>
+            <% end %> <%= @airplane.review_average %> average </h3>
       <% end %>
 
       <% if @airplane.reviews.empty? %>
