@@ -1,13 +1,22 @@
 <div class="ms-5 mt-4 w-25">
   <%= simple_form_for(@airplane, html: { multipart: true }) do |f| %>
-    <%= f.input :make %>
-    <%= f.input :engines %>
-    <%= f.input :tailnumber %>
+    <%= f.input :make,
+        required:true %>
+    <%= f.input :engines,
+        required:true %>
+    <%= f.input :tailnumber,
+        required:true %>
     <%= f.input :ownership, placeholder: "Enter whether you are a flight school or a private owner" %>
-    <%= f.input :minimum_hours %>
-    <%= f.input :required_licenses, collection: ["Private Pilot", "Commercial Pilot"], input_html: { multiple: true } %>
-    <%= f.input :description %>
-    <%= f.input :home_airport, placeholder: "Enter the name of the airport.." %>
+    <%= f.input :minimum_hours,
+        required:true %>
+    <%= f.input :required_licenses, collection: ["Private Pilot", "Commercial Pilot"], required:true %>
+        <%# i cant add multiple true because the required license is a string and it not save %>
+    <%= f.input :description,
+        required:true %>
+    <%= f.input :price_per_hour,
+        required:true %>
+    <%= f.input :home_airport, placeholder: "Enter the name of the airport..",
+        required: true %>
     <%= f.input :address,
       required: true ,
       input_html: {class: "d-none", data: {address_autocomplete_target: "address"}},

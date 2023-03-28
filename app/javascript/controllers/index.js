@@ -22,5 +22,14 @@ application.register("map", MapController)
 import MarkMessagesAsReadController from "./mark_messages_as_read_controller"
 application.register("mark-messages-as-read", MarkMessagesAsReadController)
 
+import MessageBoxController from "./message_box_controller"
+application.register("message-box", MessageBoxController)
+
+import PopoverController from "./popover_controller"
+application.register("popover", PopoverController)
+
 import SearchBarController from "./search_bar_controller"
 application.register("search-bar", SearchBarController)
+
+import TooltipController from "./tooltip_controller"
+application.register("tooltip", TooltipController)
