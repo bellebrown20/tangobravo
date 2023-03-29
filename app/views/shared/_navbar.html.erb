@@ -1,5 +1,5 @@
-<%# navbar-starts %>
-<div class="main navbar navbar-expand-sm navbar-light navbar-lewagon">
+
+<div class="main navbar navbar-expand-sm  navbar-lewagon "id="navbar">
 <% @inquiries = Inquiry.where(user: current_user).joins(:airplane).or(Inquiry.joins(:airplane).where(airplane: { user: current_user })).joins(:last_message).order('messages.created_at ASC').uniq %>
 <% @unread = 0 %>
 <% @inquiries.each do |inquiry| %>
