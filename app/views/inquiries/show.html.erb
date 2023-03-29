@@ -33,13 +33,14 @@
 
       <div class="col-6">
         <div class="container inquiry" data-controller="inquiry-subscription" data-inquiry-subscription-inquiry-id-value="<%= @inquiry.id %>">
-        <h4 class= "p-2"><i class="fas fa-paper-plane"></i><%= @inquiry.airplane.make %>
-        <% if @inquiry.airplane.user == current_user %>
-          <%= link_to "#{@inquiry.user.name}'s profile ", user_path(@inquiry.user), class: "btn"%>
-        <% else %>
-          <%= link_to "#{@inquiry.airplane.user.name}'s porfile ", user_path(@inquiry.airplane.user), class: "btn"%>
-        <% end %></h4>
-
+        <div class="d-flex flex-column">
+        <h4 class= "p-2"><i class="fas fa-paper-plane"></i><%= @inquiry.airplane.make %></h4>
+          <p class="text-end"><% if @inquiry.airplane.user == current_user %>
+            <%= link_to "#{@inquiry.user.name}'s profile ", user_path(@inquiry.user), class: "small" %>
+          <% else %>
+            <%= link_to "#{@inquiry.airplane.user.name}'s profile ", user_path(@inquiry.airplane.user), class: "text-end"%>
+          <% end %></p>
+        </div>
           <div class="messages-box p-3" id="messages-box" data-inquiry-subscription-target="messages" style="height: 100vh; overflow-y: scroll;">
             <% @inquiry.messages.each do |message| %>
               <div class="message <%= message.user == current_user ? 'mine' : 'yours' %>">
@@ -51,16 +52,17 @@
 
 
           <%= simple_form_for [@inquiry, @message],
-            html: { data: { action: "turbo:submit-end->inquiry-subscription#resetForm" }, class: "d-flex" }, id: "message-form" do |f|
-          %>
+            html: { data: { action: "turbo:submit-end->inquiry-subscription#resetForm" }, class: "d-flex" },
+            id: "message-form" do |f| %>
             <%= f.input :content,
-              label: false,
-              placeholder: "Type here",
-              wrapper_html: {class: "flex-grow-1"}
-            %>
-            <%= f.submit "Send", class: "button-airplanes-inquiry mb-3", style: "padding: 0;" %>
-
+                        label: false,
+                        placeholder: "Type here",
+                        wrapper_html: {class: "flex-grow-1"},
+                        input_html: { autocomplete: "off", spellcheck: "false" } %>
+            <%= f.submit "Send", class: "button-airplanes-inquiry mb-3", style: "padding: 0" %>
           <% end %>
+
+
 
         </div>
       </div>
