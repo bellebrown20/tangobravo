@@ -25,9 +25,9 @@
 
       <%= f.input :role, collection: ["Owner", "Pilot"]%>
 
-      <%= f.input :photo, as: :file, required: true, :label => "Profile Photo",
-        required: true %>
-
+     <div class="mb-3">
+      <%= f.input :photo, as: :file, required: true, :label => "Or Upload A New One",
+      required: true %>
     </div>
 
     <div class="form-actions">

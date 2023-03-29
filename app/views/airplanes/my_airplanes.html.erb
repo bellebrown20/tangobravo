@@ -1,5 +1,5 @@
 <div class="my_airplane_container">
-  <h1 class= "text-center mt-3", style= "color:">My hangar</h1>
+  <h1 class= "text-center mt-3", style= "color:#173288">My hangar</h1>
     <div class="row justify-content-around mx-5">
       <% if params[:query].present? %>
           <% @airplanes = Airplane.search_by_make_and_engines(params[:query]) %>
@@ -24,6 +24,6 @@
               </div>
             </div>
         <% end %>
-        <%= button_to "Create a new plane", new_airplane_path, class: "button-airplanes mt-3"%>
     </div>
+    <%= link_to "Create a new plane", new_airplane_path, class: "button-airplanes mt-5", style: "width:30%;"%>
 </div>
