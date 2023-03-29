@@ -10,25 +10,6 @@
       %>
       <%= submit_tag "Search", class: "btn btn-primary text-light" %>
     <% end %>
-
-    <%# <form  class="flex-form">
-      <input class="ps-3 input-v" type="search" placeholder="Enter your location">
-      <input class="search-v" type="submit" value="Search" data=>
-    </form> %>
-
-
-
-      <%# <%= form_with url: airplanes_path, method: :get, class: "d-flex w-25 ms-5 mb-2 " do %>
-      <%# <%= text_field_tag :address,
-        params[:address],
-        class: "form-control searching-airplanes-btn-focus",
-        placeholder: "Search by location",
-        input_html: {data: {address_autocomplete_target: "address"}},
-        wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
-      %>
-      <%# <%= submit_tag "Search", class: "btn btn-primary" %>
-    <%# <% end %>
-    </div>
   </div>
 </div>
 
@@ -65,38 +46,44 @@
 
           <div class="col-3">
             <div class="card mx-auto text-center">
-              <img src="<%= cl_image_path Airplane.find_by(tailnumber: "N423SC").photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
-              <h2 class="mt-1"><%= "#{Airplane.find_by(tailnumber: "N423SC").make} #{Airplane.find_by(tailnumber: "N423SC").tailnumber}" %> <i class="fa-solid fa-circle-info" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="<%= Airplane.find_by(tailnumber: "N423SC").reviews.count%> reviews <%= Airplane.find_by(tailnumber: "N423SC").review_average %> average"></i></h2>
-              <p class="mt-1"><%= truncate("#{Airplane.find_by(tailnumber: "N423SC").description}", length: 50) %></p>
-              <ul class="d-flex justify-content-center mt-2">
-                <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= Airplane.find_by(tailnumber: "N423SC").home_airport.upcase %></li>
-                <li><i class="fa-solid fa-dollar-sign" ></i> <%= Airplane.find_by(tailnumber: "N423SC").price_per_hour %> /hour</li>
-              </ul>
-              <%= link_to "More Details", airplane_path(Airplane.find_by(tailnumber: "N423SC")), class: "mt-1 button-airplanes" %>
+              <%= link_to airplane_path(Airplane.find_by(tailnumber: "N423SC")), class: "text-decoration-none" do %>
+                <img src="<%= cl_image_path Airplane.find_by(tailnumber: "N423SC").photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
+                <h2 class="mt-1"><%= "#{Airplane.find_by(tailnumber: "N423SC").make} #{Airplane.find_by(tailnumber: "N423SC").tailnumber}" %> <i class="fa-solid fa-circle-info" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="<%= Airplane.find_by(tailnumber: "N423SC").reviews.count%> reviews <%= Airplane.find_by(tailnumber: "N423SC").review_average %> average"></i></h2>
+                <p class="mt-1"><%= truncate("#{Airplane.find_by(tailnumber: "N423SC").description}", length: 50) %></p>
+                <ul class="d-flex justify-content-center mt-2">
+                  <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= Airplane.find_by(tailnumber: "N423SC").home_airport.upcase %></li>
+                  <li><i class="fa-solid fa-dollar-sign" ></i> <%= Airplane.find_by(tailnumber: "N423SC").price_per_hour %> /hour</li>
+                </ul>
+                <%= link_to "More Details", airplane_path(Airplane.find_by(tailnumber: "N423SC")), class: "mt-1 button-airplanes" %>
+              <% end %>
             </div>
           </div>
           <div class="col-3">
             <div class="card mx-auto text-center">
-              <img src="<%= cl_image_path Airplane.find_by(tailnumber: "N987SC").photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
-              <h2 class="mt-1"><%= "#{Airplane.find_by(tailnumber: "N987SC").make} #{Airplane.find_by(tailnumber: "N987SC").tailnumber}" %> <i class="fa-solid fa-circle-info" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="<%= Airplane.find_by(tailnumber: "N987SC").reviews.count%> reviews <%= Airplane.find_by(tailnumber: "N987SC").review_average %> average"></i></h2>
-              <p class="mt-1"><%= truncate("#{Airplane.find_by(tailnumber: "N987SC").description}", length: 50) %></p>
-              <ul class="d-flex justify-content-center mt-2">
-                <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= Airplane.find_by(tailnumber: "N987SC").home_airport.upcase %></li>
-                <li><i class="fa-solid fa-dollar-sign" ></i> <%= Airplane.find_by(tailnumber: "N987SC").price_per_hour %> /hour</li>
-              </ul>
-              <%= link_to "More Details", airplane_path(Airplane.find_by(tailnumber: "N987SC")), class: "mt-1 button-airplanes" %>
+              <%= link_to airplane_path(Airplane.find_by(tailnumber: "N987SC")), class: "text-decoration-none" do %>
+                <img src="<%= cl_image_path Airplane.find_by(tailnumber: "N987SC").photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
+                <h2 class="mt-1"><%= "#{Airplane.find_by(tailnumber: "N987SC").make} #{Airplane.find_by(tailnumber: "N987SC").tailnumber}" %> <i class="fa-solid fa-circle-info" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="<%= Airplane.find_by(tailnumber: "N987SC").reviews.count%> reviews <%= Airplane.find_by(tailnumber: "N987SC").review_average %> average"></i></h2>
+                <p class="mt-1"><%= truncate("#{Airplane.find_by(tailnumber: "N987SC").description}", length: 50) %></p>
+                <ul class="d-flex justify-content-center mt-2">
+                  <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= Airplane.find_by(tailnumber: "N987SC").home_airport.upcase %></li>
+                  <li><i class="fa-solid fa-dollar-sign" ></i> <%= Airplane.find_by(tailnumber: "N987SC").price_per_hour %> /hour</li>
+                </ul>
+                <%= link_to "More Details", airplane_path(Airplane.find_by(tailnumber: "N987SC")), class: "mt-1 button-airplanes" %>
+              <% end %>
             </div>
           </div>
           <div class="col-3">
             <div class="card mx-auto text-center">
-              <img src="<%= cl_image_path Airplane.find_by(tailnumber: "N124GS").photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
-              <h2 class="mt-1"><%= "#{Airplane.find_by(tailnumber: "N124GS").make} #{Airplane.find_by(tailnumber: "N124GS").tailnumber}" %> <i class="fa-solid fa-circle-info" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="<%= Airplane.find_by(tailnumber: "N124GS").reviews.count%> reviews <%= Airplane.find_by(tailnumber: "N124GS").review_average %> average"></i></h2>
-              <p class="mt-1"><%= truncate("#{Airplane.find_by(tailnumber: "N124GS").description}", length: 50) %></p>
-              <ul class="d-flex justify-content-center mt-2">
-                <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= Airplane.find_by(tailnumber: "N124GS").home_airport.upcase %></li>
-                <li><i class="fa-solid fa-dollar-sign" ></i> <%= Airplane.find_by(tailnumber: "N124GS").price_per_hour %> /hour</li>
-              </ul>
-              <%= link_to "More Details", airplane_path(Airplane.find_by(tailnumber: "N124GS")), class: "mt-1 button-airplanes" %>
+              <%= link_to airplane_path(Airplane.find_by(tailnumber: "N124GS")), class: "text-decoration-none" do %>
+                <img src="<%= cl_image_path Airplane.find_by(tailnumber: "N124GS").photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
+                <h2 class="mt-1"><%= "#{Airplane.find_by(tailnumber: "N124GS").make} #{Airplane.find_by(tailnumber: "N124GS").tailnumber}" %> <i class="fa-solid fa-circle-info" data-controller="tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="<%= Airplane.find_by(tailnumber: "N124GS").reviews.count%> reviews <%= Airplane.find_by(tailnumber: "N124GS").review_average %> average"></i></h2>
+                <p class="mt-1"><%= truncate("#{Airplane.find_by(tailnumber: "N124GS").description}", length: 50) %></p>
+                <ul class="d-flex justify-content-center mt-2">
+                  <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= Airplane.find_by(tailnumber: "N124GS").home_airport.upcase %></li>
+                  <li><i class="fa-solid fa-dollar-sign" ></i> <%= Airplane.find_by(tailnumber: "N124GS").price_per_hour %> /hour</li>
+                </ul>
+                <%= link_to "More Details", airplane_path(Airplane.find_by(tailnumber: "N124GS")), class: "mt-1 button-airplanes" %>
+              <% end %>
             </div>
           </div>
   </div>
@@ -156,7 +143,7 @@
 </ul>
 </div>
 
-<div class="container my-4 d-flex home-below">
+<div class="container mb-5 d-flex home-below">
 
       <img id="image-home-plane" src="https://images.pexels.com/photos/912050/pexels-photo-912050.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="parked airplane" style="background-color: rgba(0,0,0,0.2); margin-right: 20px;">
 
@@ -164,6 +151,6 @@
 <div class="right text-center ms-4">
       <h3 class="mb-3">Find the airplane that best suits you</h3>
       <p class="mb-4">Browse trought houndreds of airplanes and find the one that best suits your needs.</p>
-      <%= link_to "Browse", airplanes_path, class: "button-airplanes"  %>
+      <%= link_to "Browse", airplanes_path, class: "button-airplanes w-50"  %>
   </div>
 </div>
