@@ -31,9 +31,9 @@ User.create!([{
   role:"Owner"
 },
 {
-  email: "jeff@gmail.com",
-  name: "Jeff",
-  last_name: "Schappert",
+  email: "kendall@gmail.com",
+  name: "Kendall",
+  last_name: "Hammet",
   password: "123456",
   role:"Owner"
 }])
@@ -58,9 +58,9 @@ file = URI.open("https://avatars.githubusercontent.com/u/46464601?v=4")
 user4.photo.attach(io: file, filename: "belle.jpg", content_type: "image/jpg")
 user4.save
 
-user5 = User.find_by(name: "Jeff")
-file = URI.open("https://mzeroa.com/assets/frontend/1625507728_1.png")
-user5.photo.attach(io: file, filename: "jeff.png", content_type: "image/jpg")
+user5 = User.find_by(name: "Kendall")
+file = URI.open("https://media.licdn.com/dms/image/C5603AQElyXjICVwuvQ/profile-displayphoto-shrink_400_400/0/1647402552651?e=1685577600&v=beta&t=6GLCrar0ip7NzNTpzQUHLKsVQZX4I-vpXTs1fshy-fE")
+user5.photo.attach(io: file, filename: "kendall.jpg", content_type: "image/jpg")
 user5.save
 
 puts "done"
@@ -104,7 +104,7 @@ Airplane.create!([{
   description: "2020 Piper Seminole with integrated Garmin G1000 avionics.Two Lycoming IO-360-B1G6 fuel injected engines. 108 US gallons usable fuel capacity.",
   price_per_hour: 405,
   ownership: "Flight School - Tailwind Flight School",
-  address: "2380 S Stinson Way, Chandler, AZ 85286"
+  address: "2270 S Airport Blvd, Chandler, AZ 85286"
 },
 {
   make: "C162",
@@ -143,7 +143,7 @@ Airplane.create!([{
   description: "1957 Cessna 172 Skyhawk with traditional six pack. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
   price_per_hour: 135,
   ownership: "Private Owner - see profile",
-  address: "7000 NE Airport Way Portland, OR 97218"
+  address: "8089 NE Airport Way, Portland, OR 97218"
 },
 {
   make: "C172S",
@@ -169,7 +169,7 @@ Airplane.create!([{
   description: "2020 Cessna 172 with integrated Garmin G1000 avionics. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
   price_per_hour: 160,
   ownership: "Private Owner - see profile",
-  address: "1 International Square, Kansas City, MO 64153"
+  address: "9200 NW 112th St, Kansas City, MO 64153"
 },
 {
   make: "C172S",
@@ -208,7 +208,7 @@ Airplane.create!([{
   description: "2005 Beechcraft Bonanza G36 with updated Garmin G1000 NXi avionics. Continental Aerospace Technologies IO-550-B engine rated at 300HP. Three blade, constant speed Hartzell prop.",
   price_per_hour: 390,
   ownership: "Private Owner - see profile",
-  address: "2491 Winchester Rd, Memphis, TN 38116"
+  address: "2491 Winchester Rd, Memphis, Tennessee 38118, United States"
 },
 {
   make: "C182S",
@@ -221,7 +221,46 @@ Airplane.create!([{
   description: "2000 Cessna Skylane 182S with traditional steam gauge six pack. Lycoming TIO-540-AK1A engine rated at 235HP. Three blade, constant speed McCauley prop.",
   price_per_hour: 390,
   ownership: "Flight School - ATP",
-  address: "776 N Terminal Dr, Salt Lake City, UT 84122"
+  address: "369 2370 W, Salt Lake City, Utah 84116, United States"
+},
+{
+  make: "SR22",
+  engines: "Single-Engine",
+  tailnumber: "N121DJ",
+  home_airport: "KVGT",
+  minimum_hours: 90,
+  required_licenses: "Private Pilot",
+  user_id: user3.id,
+  description: "2017 Cirrus SR22 with integrated Perspective-Plus avionics. Continental IO-550-N 310HP fuel injected engine. 81 US gallons usable fuel capacity.",
+  price_per_hour: 310,
+  ownership: "Private Owner - see profile",
+  address: "2730 Airport Dr, North Las Vegas, Nevada 89032, United States"
+},
+{
+  make: "C172S",
+  engines: "Single-Engine",
+  tailnumber: "N747SR",
+  home_airport: "KBOI",
+  minimum_hours: 70,
+  required_licenses: "Private Pilot",
+  user_id: user2.id,
+  description: "2001 Cessna 172 with steam gauge six pack. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
+  price_per_hour: 155,
+  ownership: "Flight School - Sierra Romeo Flight School",
+  address: "4300 Kennedy St, Boise, ID 83705"
+},
+{
+  make: "C172S",
+  engines: "Single-Engine",
+  tailnumber: "N716TT",
+  home_airport: "KELP",
+  minimum_hours: 50,
+  required_licenses: "Private Pilot",
+  user_id: user1.id,
+  description: "1999 Cessna 172 with steam gauge six pack. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
+  price_per_hour: 140,
+  ownership: "Private Owner - see profile",
+  address: "1751 Shuttle Columbia Dr, El Paso, Texas 79925, United States"
 }
 ])
 
@@ -340,5 +379,19 @@ file = URI.open("https://www.planesalesusa.com/Uploads/Listing/Normal/ID00010-66
 af.photos.attach(io: file, filename: "julietcharlietwo.jpg", content_type: "image/jpg")
 af.save
 
+ba = Airplane.find_by(tailnumber: "N121DJ")
+file = URI.open("https://s30377.pcdn.co/wp-content/uploads/2019/09/p1ao99vdrerqbqi21360ik31fku6.jpg")
+ba.photos.attach(io: file, filename: "deltaromeo.jpg", content_type: "image/jpg")
+ba.save
+
+bb = Airplane.find_by(tailnumber: "N747SR")
+file = URI.open("https://www.tandgflying.com/uploads/3/8/3/7/38378191/img-0711_orig.jpg")
+bb.photos.attach(io: file, filename: "sierraromeo.jpg", content_type: "image/jpg")
+bb.save
+
+bc = Airplane.find_by(tailnumber: "N716TT")
+file = URI.open("https://cdn.planeandpilotmag.com/2018/03/cessna-jt-a-1.jpg")
+bc.photos.attach(io: file, filename: "tangotango.jpg", content_type: "image/jpg")
+bc.save
 
 puts "All done"
