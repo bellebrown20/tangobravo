@@ -10,25 +10,6 @@
       %>
       <%= submit_tag "Search", class: "btn btn-primary text-light" %>
     <% end %>
-
-    <%# <form  class="flex-form">
-      <input class="ps-3 input-v" type="search" placeholder="Enter your location">
-      <input class="search-v" type="submit" value="Search" data=>
-    </form> %>
-
-
-
-      <%# <%= form_with url: airplanes_path, method: :get, class: "d-flex w-25 ms-5 mb-2 " do %>
-      <%# <%= text_field_tag :address,
-        params[:address],
-        class: "form-control searching-airplanes-btn-focus",
-        placeholder: "Search by location",
-        input_html: {data: {address_autocomplete_target: "address"}},
-        wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
-      %>
-      <%# <%= submit_tag "Search", class: "btn btn-primary" %>
-    <%# <% end %>
-    </div>
   </div>
 </div>
 
@@ -162,7 +143,7 @@
 </ul>
 </div>
 
-<div class="container my-4 d-flex home-below">
+<div class="container mb-5 d-flex home-below">
 
       <img id="image-home-plane" src="https://images.pexels.com/photos/912050/pexels-photo-912050.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="parked airplane" style="background-color: rgba(0,0,0,0.2); margin-right: 20px;">
 
@@ -170,6 +151,6 @@
 <div class="right text-center ms-4">
       <h3 class="mb-3">Find the airplane that best suits you</h3>
       <p class="mb-4">Browse trought houndreds of airplanes and find the one that best suits your needs.</p>
-      <%= link_to "Browse", airplanes_path, class: "button-airplanes"  %>
+      <%= link_to "Browse", airplanes_path, class: "button-airplanes w-50"  %>
   </div>
 </div>
