@@ -1,21 +1,35 @@
-<div class="container">
-  <h2>Log in</h2>
-
-  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
-    <div class="form-inputs">
-      <%= f.input :email,
-                  required: false,
-                  autofocus: true,
-                  input_html: { autocomplete: "email" } %>
-      <%= f.input :password,
-                  required: false,
-                  input_html: { autocomplete: "current-password" } %>
-      <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-    </div>
-      <div class="form-actions">
-        <%= f.button :submit, "Log in", class: "btn btn-primary" %>
+<img class="bg-image-login" src="https://images.pexels.com/photos/1363794/pexels-photo-1363794.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2
+" alt="background-image">
+<div class="overlay">
+<div class="container-fluid p-0">
+  <div class="row mt-4 align-items-center justify-content-center">
+    <div class="container-2" style="max-width:400px;">
+      <div class="col text-center mx-auto">
+        <%= image_tag("logo-transparent-blue", class: " logo-login w-100 mb-4") %>
       </div>
-  <% end %>
 
-    <%= render "devise/shared/links" %>
+<div class="div2 px-5 py-4 div-shadow">
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
+        <div class="form-inputs">
+          <%= f.input :email,
+                        required: false,
+                        autofocus: true,
+                        input_html: { autocomplete: "email" } %>
+          <%= f.input :password,
+                        required: false,
+                        input_html: { autocomplete: "current-password" } %>
+          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        </div>
+        <div class="form-actions text-center">
+          <%= f.button :submit, "Log in", class: "btn-login w-50" %>
+        </div>
+      <% end %>
+
+      <div class="d-grid mt-4 text-center">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+    </div>
+  </div>
+  </div>
 </div>
