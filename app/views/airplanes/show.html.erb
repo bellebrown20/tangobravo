@@ -7,15 +7,15 @@
              <h5><%= @airplane.ownership %></h5>
              <h5> <u>Qualifications to Rent</u></h5>
 
-              <li style="display: block;"><b>Total Hours:</b> <%= @airplane.minimum_hours %> </li>
-              <li style="display: block;"><b>PIC Hours in Same Type:</b> <%=(@airplane.minimum_hours)/3%></li>
-              <li style="display: block;"><b>Minimum License:</b> <%= @airplane.required_licenses %></li>
+              <li class= "mt-2", style="display: block;"><b>Total Hours:</b> <%= @airplane.minimum_hours %> </li>
+              <li class= "mt-2", style="display: block;"><b>PIC Hours in Same Type:</b> <%=(@airplane.minimum_hours)/3%></li>
+              <li class= "mt-2", style="display: block;"><b>Minimum License:</b> <%= @airplane.required_licenses %></li>
 
-             <h6>Wet Rate per Hour: $<%= @airplane.price_per_hour %></h6>
+             <h6 class= "mt-2">Wet Rate per Hour: $<%= @airplane.price_per_hour %></h6>
              <p class="text-muted mt-3"><%= @airplane.description%></p>
             <div class="d-flex justify-content-space-around">
-              <%= button_to "Destroy this plane", @airplane, method: :delete, class: "button-airplanes mt-4" if current_user == @airplane.user %>
-              <%= button_to "Edit this airplane", edit_airplane_path(@airplane), class: "button-airplanes mt-4" if current_user == @airplane.user %>
+              <%= link_to "Destroy this plane", @airplane, method: :delete, class: "button-airplanes m-4" if current_user == @airplane.user %>
+              <%= link_to "Edit this airplane", edit_airplane_path(@airplane), class: "button-airplanes m-4" if current_user == @airplane.user %>
             </div>
 
         </div>
@@ -55,7 +55,7 @@
       <div class="d-flex flex-row justify-content-between">
         <%= link_to "Back to all available planes", airplanes_path, class: "button-airplanes mt-4 mb-2 w-25" %>
         <% if @airplane.user != current_user %>
-        <%= link_to "View airplane owner's profile", user_path(@airplane.user), class: "button-airplanes mt-4 mb-2 w-25"%>
+          <%= link_to "View airplane owner's profile", user_path(@airplane.user), class: "button-airplanes mt-4 mb-2 w-25"%>
         <% end %>
       </div>
     </div>
@@ -63,18 +63,18 @@
   <hr class="">
     <div class="container mt-0">
       <div class="row">
-        <div class="col-12 col-sm-6">
+        <div class="col-12">
           <% @total = 0 %>
 
           <% if @airplane.reviews.size >= 1 %>
-            <h3>Reviews&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<% @airplane.review_average.round().times do %>
+            <h3 style="color:#173288">Reviews&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<% @airplane.review_average.round().times do %>
                   <i class="fas fa-star star-yellow"></i>
             <% end %>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
           <% end %>
 
           <% if @airplane.reviews.empty? %>
-            <em class="text-muted">No reviews yet for this plane</em>
+            <p><em class="text-muted">No reviews yet for this plane</em></p>
             <% if current_user && @existing_inquiry %>
               <% if current_user != @airplane.user && @existing_inquiry.status == true  %>
                 <small><em class="text-muted">Be the first one to review this airplane</em></small>
@@ -82,9 +82,9 @@
             <% end %>
           <% end %>
           <% @airplane.reviews.each do |review| %>
-            <div class="<%= review.user == current_user ? 'bg-white' : '' %>">
+            <div>
               <% review.score.times do %>
-                <i class="fas fa-star star-yellow"></i>
+                <i class="fas fa-star", style="color:#173288"></i>
               <% end %>
               <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
               <p class="mb-0"><%= review.content %>  <small><em class="text-muted"> by <%= review.user.name %></em></small></p>
@@ -96,7 +96,7 @@
         <% if current_user && @existing_inquiry %>
           <% @existing_review = Review.where(user: current_user).joins(:airplane).where(airplane: @airplane) %>
           <% if current_user != @airplane.user && @existing_inquiry.status == true && @existing_review.size == 0  %>
-            <div class="col-12 col-sm-6">
+            <div class="col-12">
               <div class="bg-white rounded p-3">
                 <h5>Add your review</h5>
                 <%= simple_form_for [@airplane, @review] do |f| %>

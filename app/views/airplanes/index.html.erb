@@ -8,6 +8,7 @@
     </div>
   </div>
   <div class="form-airplanes d-flex justify-content-center">
+
     <%= form_with url: airplanes_path, method: :get, class: "home-search ms-5 mb-3 mt-4 flex-form form-airplanes" do %>
       <%= text_field_tag :query,
         params[:query],
@@ -29,10 +30,21 @@
   </div>
 </div>
 
+ <h4 class=text-center>
+    <% if params[:query].blank? %>
+      <%= pluralize @airplanes.count, "airplane" %> available
+    <% else %>
+      <%= link_to airplanes_path do %>
+       <i class="fa-solid fa-xmark" style="color: #173288;"></i>
+      <% end %>
+      <%= pluralize @airplanes.count, "airplane" %> for <strong style="color: #173288"><%= params[:query] %></strong>
+    <% end %>
+  </h4>
 
 <div class="row justify-content-center">
     <% @airplanes.each do |airplane| %>
       <div class="col-sm-6 col-md-3 mt-3 cards-airplane">
+      <%= link_to airplane_path(airplane), class: "text-decoration-none" do %>
         <div class="card mb-5">
           <% if airplane.photos.attached? %>
             <img src="<%= cl_image_path airplane.photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
@@ -49,7 +61,9 @@
           </ul>
           <%= link_to "More Details", airplane_path(airplane), class: "mt-1 button-airplanes" %>
         </div>
+        <% end %>
       </div>
+
     <% end %>
 
 
