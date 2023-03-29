@@ -1,11 +1,8 @@
-<img class="bg-image-login" src="https://images.pexels.com/photos/1363794/pexels-photo-1363794.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2
-" alt="background-image">
-<div class="overlay">
-<div class="container-fluid p-0">
-  <div class="row mt-4 align-items-center justify-content-center">
+<div class="container-fluid py-4 bg-image-login">
+  <div class="row align-items-center justify-content-center">
     <div class="container-2" style="max-width:400px;">
       <div class="col text-center mx-auto">
-        <%= image_tag("logo-transparent-blue", class: " logo-login w-100 mb-4") %>
+       <h1 class="mt-5 mb-4 text-white">Welcome!</h1>
       </div>
 
 <div class="div2 px-5 py-4 div-shadow">
@@ -21,11 +18,11 @@
           <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
         </div>
         <div class="form-actions text-center">
-          <%= f.button :submit, "Log in", class: "btn-login w-50" %>
+          <%= f.button :submit, "Log in", class: "btn-login w-50 mb-3" %>
         </div>
       <% end %>
 
-      <div class="d-grid mt-4 text-center">
+      <div class="d-grid text-center">
         <%= render "devise/shared/links" %>
       </div>
     </div>
