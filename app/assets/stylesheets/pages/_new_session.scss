@@ -57,3 +57,12 @@ box-shadow: 0px 0px 12px -4px rgba(0,0,0,0.75);
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5); /* This is where you can set the background color and opacity */
 }
+
+.bg-image-sign{
+  position: relative;
+  object-fit: cover;
+  height: 115vh;
+  width: 100%;
+  background-image:  url("https://images.pexels.com/photos/91217/pexels-photo-91217.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+  background-size: cover;
+}
