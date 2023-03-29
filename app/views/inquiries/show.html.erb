@@ -30,19 +30,16 @@
 
     <div class="row col-10 chat-box-container h-100">
 
-      <div class="col-6 ">
-        <div class="container inquiry"
-          data-controller="inquiry-subscription"
-          data-inquiry-subscription-inquiry-id-value="<%= @inquiry.id %>"
-        >
-          <h2>#<%= @inquiry.airplane.make %>
-          <% if @inquiry.airplane.user == current_user %>
-            <%= link_to "#{@inquiry.user.name}'s profile ", user_path(@inquiry.user), class: "btn"%>
-          <% else %>
-            <%= link_to "#{@inquiry.airplane.user.name}'s porfile ", user_path(@inquiry.airplane.user), class: "btn"%>
-          <% end %></h2>
+      <div class="col-6">
+        <div class="container inquiry" data-controller="inquiry-subscription" data-inquiry-subscription-inquiry-id-value="<%= @inquiry.id %>">
+        <h4 class= "p-2"><i class="fas fa-paper-plane"></i><%= @inquiry.airplane.make %>
+        <% if @inquiry.airplane.user == current_user %>
+          <%= link_to "#{@inquiry.user.name}'s profile ", user_path(@inquiry.user), class: "btn"%>
+        <% else %>
+          <%= link_to "#{@inquiry.airplane.user.name}'s porfile ", user_path(@inquiry.airplane.user), class: "btn"%>
+        <% end %></h4>
 
-          <div class="messages-box" id="messages-box" data-inquiry-subscription-target="messages" style="height: 100vh; overflow-y: scroll;">
+          <div class="messages-box p-3" id="messages-box" data-inquiry-subscription-target="messages" style="height: 100vh; overflow-y: scroll;">
             <% @inquiry.messages.each do |message| %>
               <div class="message <%= message.user == current_user ? 'mine' : 'yours' %>">
               </div>
@@ -60,13 +57,13 @@
               placeholder: "Type here",
               wrapper_html: {class: "flex-grow-1"}
             %>
-            <%= f.submit "Send", class: "button-airplanes mb-3", style: "padding: 0;" %>
+            <%= f.submit "Send", class: "button-airplanes-inquiry mb-3", style: "padding: 0;" %>
 
           <% end %>
 
         </div>
       </div>
-      <div class="airplane-card col-md-6 mt-4 flex-grow-1">
+      <div class="airplane-card col-4 flex-grow-1">
         <div class="card text-center d-flex flex-column">
                 <% if @inquiry.airplane.photos.attached? %>
                     <img src="<%= cl_image_path @inquiry.airplane.photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
@@ -96,10 +93,7 @@
     </div>
   </div>
   <script>
-  var messagesBox = document.getElementById("messages-box");
-  messagesBox.scrollTop = messagesBox.scrollHeight;
-</script>
-
-<script>
-</script>
+    var messagesBox = document.getElementById("messages-box");
+    messagesBox.scrollTop = messagesBox.scrollHeight;
+  </script>
 </div>
