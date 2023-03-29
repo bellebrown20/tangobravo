@@ -55,7 +55,7 @@
       <div class="d-flex flex-row justify-content-between">
         <%= link_to "Back to all available planes", airplanes_path, class: "button-airplanes mt-4 mb-2 w-25" %>
         <% if @airplane.user != current_user %>
-        <%= link_to "View airplane owner's profile", user_path(@airplane.user), class: "button-airplanes mt-4 mb-2 w-25"%>
+          <%= link_to "View airplane owner's profile", user_path(@airplane.user), class: "button-airplanes mt-4 mb-2 w-25"%>
         <% end %>
       </div>
     </div>
