@@ -14,7 +14,7 @@
           <h6 class= "mt-2">Wet Rate per Hour: $<%= @airplane.price_per_hour %></h6>
           <p class="text-muted mt-3"><%= @airplane.description%></p>
           <div class="d-flex justify-content-space-around">
-          <%= button_to "Destroy plane", @airplane, method: :delete, class: "button-airplanes m-4 w-100" if current_user == @airplane.user %>
+          <%= link_to "Delete", airplane_path(@airplane), class: "button-airplanes m-4 w-50" , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if current_user == @airplane.user %>
           <%= link_to "Edit this airplane", edit_airplane_path(@airplane), class: "button-airplanes m-4", style:"width:200px" if current_user == @airplane.user %>
         </div>
 
