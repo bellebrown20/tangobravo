@@ -1,1 +1,30 @@
-@import "home";
+.back-text{
+  color: #173288;
+}
+
+.back-text:hover{
+  color: #0c1841;
+}
+
+.back {
+  display: flex;
+  align-items: center;
+}
+
+.back i {
+  margin-right: 10px;
+  color: #173288;
+  transition: color 0.3s ease;
+}
+
+.back-text:hover i {
+  color: #ff0000; /* Change the color on hover */
+}
+
+.text-left h6 b{
+  color: #173288;
+}
+
+.text-left li b{
+  color: #173288;
+}

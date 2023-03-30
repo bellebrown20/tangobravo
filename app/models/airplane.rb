@@ -38,8 +38,8 @@ pg_search_scope :search_by_make_and_engines,
   using: {
     tsearch: { prefix: true },
     trigram: {
-      threshold: 0.01,
-      only: [:make, :engines]
+      threshold: 0.02,
+      only: [:make]
     }
   }
 
