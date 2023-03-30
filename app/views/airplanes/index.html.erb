@@ -30,25 +30,28 @@
   </div>
 </div>
 
-  <h4 class=text-center>
-    <div>
+
+<div class="text-center">
       <% if params[:query].blank? %>
-        <%= pluralize @airplanes.count, "airplane" %> available
+      <div class="text-center">
+        <h4> <%= pluralize @airplanes.count, "airplane" %> available </h4>
       <% else %>
-        <%= link_to airplanes_path do %>
+       <h4> <%= link_to airplanes_path do %>
         <i class="fa-solid fa-xmark" style="color: #173288; margin-right: 7px;"></i>
-        <% end %>
-        <%= pluralize @airplanes.count, "airplane" %> for <strong style="color: #173288;"><%= params[:query].capitalize %></strong>
+        <% end %> <%= pluralize @airplanes.count, "airplane" %> for <strong style="color: #173288;"><%= params[:query].capitalize %></strong> </h4>
       <% end %>
-    </div>
-    <div>
+
+
+
+    <div class="mt-4">
       <p> Sort by:
       <%= link_to "Reviews", airplanes_path(sort: "review_average", query: params[:query]), class: "back-text sort-button" %>
       or
       <%= link_to "Price", airplanes_path(sort: "price", query: params[:query]), class: "back-text sort-button" %>
       </p>
     </div>
-  </h4>
+
+    </div>
 
 <div class="row justify-content-center">
     <% @airplanes.each do |airplane| %>
