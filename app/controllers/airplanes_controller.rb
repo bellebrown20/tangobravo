@@ -6,8 +6,21 @@ class AirplanesController < ApplicationController
 
     if params[:query].present?
       @airplanes = policy_scope(Airplane.search_by_make_and_engines(params[:query]))
+      if params[:sort] == "review_average"
+        @planes = Airplane.order(review_average: :desc)
+        @airplanes = @planes.search_by_make_and_engines(params[:query])
+
+      elsif params[:sort] == "price"
+        @planes = Airplane.order(price_per_hour: :asc)
+        @airplanes = @planes.search_by_make_and_engines(params[:query])
+      end
     else
       @airplanes = policy_scope(Airplane.all)
+      if params[:sort] == "review_average"
+        @airplanes = @airplanes.order(review_average: :desc)
+      elsif params[:sort] == "price"
+        @airplanes = @airplanes.order(price_per_hour: :asc)
+      end
     end
 
     @markers = @airplanes.geocoded.map do |airplane|

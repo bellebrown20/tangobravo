@@ -17,7 +17,7 @@ class Airplane < ApplicationRecord
       end
       (total / reviews.size).to_f
     else
-      return 'N/A'
+      return 0
     end
   end
 
