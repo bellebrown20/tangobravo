@@ -11,15 +11,15 @@
           <h5 class= "mb-4"><%= @airplane.ownership %></h5>
           <h5 class= "mb-4"> <u>Qualifications to Rent</u></h5>
 
-          <li class= "mt-2", style="display: block;"><b>Total Hours:</b> <%= @airplane.minimum_hours %> </li>
-          <li class= "mt-2", style="display: block;"><b>PIC Hours in Same Type:</b> <%=(@airplane.minimum_hours)/3%></li>
-          <li class= "mt-2", style="display: block;"><b>Minimum License:</b> <%= @airplane.required_licenses %></li>
+              <li style="display: block;"><b>Total Hours:</b> <%= @airplane.minimum_hours %> </li>
+              <li style="display: block;"><b>PIC Hours in Same Type:</b> <%=(@airplane.minimum_hours)/3%></li>
+              <li style="display: block;"><b>Minimum License:</b> <%= @airplane.required_licenses %></li>
 
           <h6 class= "mt-2"><b> Wet Rate per Hour: </b> $<%= @airplane.price_per_hour %></h6>
           <p class="mt-4"><%= @airplane.description%></p>
           <div class="d-flex justify-content-space-around">
-          <%= button_to "Destroy plane", @airplane, method: :delete, class: "button-airplanes m-4 w-100" if current_user == @airplane.user %>
-          <%= link_to "Edit this airplane", edit_airplane_path(@airplane), class: "button-airplanes m-4", style:"width:200px" if current_user == @airplane.user %>
+          <%= link_to "Delete this airplane", airplane_path(@airplane), class: "button-airplanes m-4 w-50" , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if current_user == @airplane.user %>
+          <%= link_to "Edit this airplane", edit_airplane_path(@airplane), class: "button-airplanes m-4 w-50", style:"width:200px" if current_user == @airplane.user %>
         </div>
 
         </div>
