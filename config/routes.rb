@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :inquiries, only: [:create, :new]
     resources :reviews, only: :create
   end
-  resources :inquiries, only: [:index, :show, :edit, :update]  do
+  resources :inquiries, only: [:show, :edit, :update]  do
     resources :messages, only: [:create, :update]
   end
   resources :reviews, only: :destroy
