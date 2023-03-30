@@ -14,30 +14,39 @@
 </div>
 
 <script>
-  // Set up the text to be typed
-var text = "Discover airplanes";
 
-// Set up the typing speed in milliseconds
-var typingSpeed = 100;
-
-// Get the H1 element to be typed
-var typingElement = document.getElementById("typing-text");
 
 // Set up the typing animation function
 function typeWriter() {
-  if (i < text.length) {
-    typingElement.innerHTML += text.charAt(i);
-    typingElement.style.color = 'rgb(207, 207, 207)'; // Set the typing color
-    i++;
-    setTimeout(typeWriter, typingSpeed);
-  } else {
-    typingElement.style.color = '#ffffff'; // Set the final color
+  // Set up the text to be typed
+  var text = "Discover airplanes";
+
+  // Set up the typing speed in milliseconds
+  var typingSpeed = 100;
+
+  // Get the H1 element to be typed
+  var typingElement = document.getElementById("typing-text");
+
+  // Set up the typing animation
+  var i = 0;
+  function animateTyping() {
+    if (i < text.length) {
+      typingElement.innerHTML += text.charAt(i);
+      typingElement.style.color = 'rgb(207, 207, 207)'; // Set the typing color
+      i++;
+      setTimeout(animateTyping, typingSpeed);
+    } else {
+      typingElement.style.color = '#ffffff'; // Set the final color
+    }
   }
+
+  // Start the typing animation
+  animateTyping();
 }
 
-// Start the typing animation on page load
-var i = 0;
-window.onload = typeWriter;
+// Call the typing animation function on page load
+typeWriter();
+
 
 </script>
 
