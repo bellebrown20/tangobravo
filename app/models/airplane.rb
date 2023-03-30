@@ -17,7 +17,7 @@ class Airplane < ApplicationRecord
       end
       (total / reviews.size).to_f
     else
-      return 'N/A'
+      return 0
     end
   end
 
@@ -39,7 +39,7 @@ pg_search_scope :search_by_make_and_engines,
     tsearch: { prefix: true },
     trigram: {
       threshold: 0.02,
-      only: [:make, :engines]
+      only: [:make]
     }
   }
 

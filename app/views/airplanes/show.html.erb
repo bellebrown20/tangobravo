@@ -1,3 +1,7 @@
+<% content_for :meta_title, "#{@airplane.make} is on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @airplane.description %>
+<% content_for :meta_image, cl_image_path(@airplane.photos.first.key) if @airplane.photos.attached? %>
+
  <div class="back" style= "margin-top:40px; margin-left: 180px;">
  <i class="fa-solid fa-angle-left"></i>
  <%= link_to "Back to available planes", airplanes_path, class: "back-text" %>
