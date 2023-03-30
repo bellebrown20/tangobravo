@@ -60,7 +60,7 @@
     <% end %>
     <% @existing_inquiry = Inquiry.where(user: current_user).joins(:airplane).where(airplane: @airplane).last %>
     <% if current_user.inquiries.where(airplane: @airplane).count >= 1 %>
-      <div class="col-8">
+      <div class="col-4">
         <%= link_to "Go to inquiry about plane", inquiry_path(@existing_inquiry), class: "button-airplanes mt-4 mb-4 w-100" %>
       </div>
     <% end %>
@@ -78,13 +78,13 @@
 
   </div>
   <hr class="">
-    <div class="container mt-0">
+    <div class="container mt-0 div">
       <div class="row">
         <div class="col-12">
           <% @total = 0 %>
 
           <% if @airplane.reviews.size >= 1 %>
-            <h3 style="color:#173288">Reviews&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<% @airplane.review_average.round().times do %>
+            <h3 class="mb-5" style="color:#173288">Reviews&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<% @airplane.review_average.round().times do %>
                   <i class="fas fa-star star-yellow"></i>
             <% end %>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
@@ -105,7 +105,7 @@
                 <i class="fas fa-star", style="color:#173288"></i>
               <% end %>
               <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
-              <p class="mb-0"><%= review.content %>  <small><em class="text-muted"> by <%= review.user.name %></em></small></p>
+              <p class=" mt-2 mb-0"><%= review.content %>  <small><em class="text-muted"> by <%= review.user.name %></em></small></p>
             </div>
             <hr>
           <% end %>
@@ -115,12 +115,12 @@
           <% @existing_review = Review.where(user: current_user).joins(:airplane).where(airplane: @airplane) %>
           <% if current_user != @airplane.user && @existing_inquiry.status == true && @existing_review.size == 0  %>
             <div class="col-12">
-              <div class="bg-white rounded p-3">
-                <h5>Add your review</h5>
+              <div class="div-shadow rounded p-3 mt-4 text-center mb-5">
+                <h4 class="mt-4 mb-5">Add your review</h4>
                 <%= simple_form_for [@airplane, @review] do |f| %>
-                  <%= f.input :content, placeholder: "Add your review here..." %>
+                 </span> <%= f.input :content, placeholder: "Add your review here..." %>
                   <%= f.input :score, as: :select, collection: (1..5), required: true, prompt: "What's your rating", input_html: { data: { controller: "star-rating" } } %>
-                  <%= f.submit class:"btn btn-airplanes" %>
+                  <%= f.submit class:"btn button-update w-25 my-4" %>
                 <% end %>
               </div>
             </div>
