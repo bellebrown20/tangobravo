@@ -1,42 +1,79 @@
-<div class="ms-5 mt-4 w-25">
+<div class="container">
+
+
+  <div class="row justify-content-center">
+
   <%= simple_form_for(@airplane, html: { multipart: true }) do |f| %>
+  <div class="row mt-0">
+    <div class="col-md-6 text-white">
     <%= f.input :make,
         required:true %>
+        </div>
+        <div class= "col-md-6 text-white">
     <%= f.input :engines,
         required:true %>
-    <%= f.input :tailnumber,
+        </div>
+        </div>
+
+    <div class="row mt-4">
+      <div class="col-md-6 text-white">
+      <%= f.input :tailnumber,
         required:true %>
-    <%= f.input :ownership, placeholder: "Enter whether you are a flight school or a private owner" %>
+        </div>
+        <div class="col-md-6 text-white">
+      <%= f.input :ownership, placeholder: "Flight school or a private owner?" %>
+      </div>
+        </div>
+
+    <div class="row mt-4">
+    <div class="col-md-6 text-white">
     <%= f.input :minimum_hours,
         required:true %>
+        </div>
+        <div class="col-md-6 text-white">
     <%= f.input :required_licenses, collection: ["Private Pilot", "Commercial Pilot"], required:true %>
         <%# i cant add multiple true because the required license is a string and it not save %>
+ </div>
+        </div>
+
+
+        <div class="row mt-4">
+    <div class="col-md-6 text-white">
     <%= f.input :description,
         required:true %>
+        </div>
+        <div class="col-md-6 text-white">
     <%= f.input :price_per_hour,
         required:true %>
-    <%= f.input :home_airport, placeholder: "Enter the name of the airport..",
+ </div>
+        </div>
+
+
+        <div class="row mt-4">
+    <div class="col-md-6 text-white">
+    <%= f.input :home_airport, placeholder: "Airport's name",
         required: true %>
-    <%= f.input :address,
+        </div>
+        <div class="col-md-6 text-white">
+            <%= f.input :address,
       required: true ,
       input_html: {class: "d-none", data: {address_autocomplete_target: "address"}},
       wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAP_BOX_KEY"]}}%>
-
-    <% # Existing photos %>
-      <%= f.simple_fields_for :photos_fields do |posts| %>
-    <% @airplane.photos.each_with_index do |photo, index| %>
-      <div class="mb-3">
-        <%= cl_image_tag photo.key, class: "d-block w-100", crop: :fill %>
-        <%= posts.check_box (photo.id).to_s, { value: photo.id } %>
-        <%= posts.label :photos, "Save this photo" %>
-      </div>
-      <% end %>
-    <% end %>
+ </div>
+        </div>
 
 
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6 text-white">
     <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-    <%= f.submit "Create/Update plane", class: "button-airplanes mt-3 mb-3" %>
+    </div>
+    </div>
+
+    <%= f.submit "Create/Update plane", class: "button-airplanes w-25 my-5" %>
   <% end %>
 
 
+</div>
+</div>
 </div>
