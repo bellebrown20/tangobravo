@@ -2,21 +2,25 @@
 <% content_for :meta_description, @airplane.description %>
 <% content_for :meta_image, cl_image_path(@airplane.photos.first.key) if @airplane.photos.attached? %>
 
+ <div class="back" style= "margin-top:40px; margin-left: 180px;">
+ <i class="fa-solid fa-angle-left"></i>
+ <%= link_to "Back to available planes", airplanes_path, class: "back-text" %>
+</div>
 <div class="container">
   <div class="d-flex justify-content-around  border-dark">
     <div class="align-self-center w-50">
         <div class="text-left" >
-            <h3><%= @airplane.tailnumber %></h3>
-             <h4><%= "#{@airplane.engines} #{@airplane.make} based at #{@airplane.home_airport}"%></h4>
-             <h5><%= @airplane.ownership %></h5>
-             <h5> <u>Qualifications to Rent</u></h5>
+          <h2 class="mb-2" style="color: #173288"><%= @airplane.tailnumber %></h2>
+          <h4 class= "mb-4" style="color: #173288"><%= "#{@airplane.engines} #{@airplane.make} based at #{@airplane.home_airport}"%></h4>
+          <h5 class= "mb-4"><%= @airplane.ownership %></h5>
+          <h5 class= "mb-4"> <u>Qualifications to Rent</u></h5>
 
               <li style="display: block;"><b>Total Hours:</b> <%= @airplane.minimum_hours %> </li>
               <li style="display: block;"><b>PIC Hours in Same Type:</b> <%=(@airplane.minimum_hours)/3%></li>
               <li style="display: block;"><b>Minimum License:</b> <%= @airplane.required_licenses %></li>
 
-          <h6 class= "mt-2">Wet Rate per Hour: $<%= @airplane.price_per_hour %></h6>
-          <p class="text-muted mt-3"><%= @airplane.description%></p>
+          <h6 class= "mt-2"><b> Wet Rate per Hour: </b> $<%= @airplane.price_per_hour %></h6>
+          <p class="mt-4"><%= @airplane.description%></p>
           <div class="d-flex justify-content-space-around">
           <%= link_to "Delete this airplane", airplane_path(@airplane), class: "button-airplanes m-4 w-50" , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if current_user == @airplane.user %>
           <%= link_to "Edit this airplane", edit_airplane_path(@airplane), class: "button-airplanes m-4 w-50", style:"width:200px" if current_user == @airplane.user %>
@@ -44,25 +48,35 @@
     </div>
 
 
-    <div>
-      <% if current_user %>
-        <% if current_user.inquiries.where(airplane: @airplane).count == 0 && @airplane.user != current_user %>
-          <%= simple_form_for [@airplane, @inquiry] do |f| %>
+ <div class="row d-flex justify-content-center mt-4 text-center">
+  <% if current_user %>
+    <% if current_user.inquiries.where(airplane: @airplane).count == 0 && @airplane.user != current_user %>
+      <div class="col-4 me-4">
+        <%= simple_form_for [@airplane, @inquiry] do |f| %>
           <%= f.hidden_field :user, :value => current_user %>
-          <%= f.button :submit, value: "Inquire about this plane", class: "button-airplanes mt-4 mb-4 w-50" %>
-        <% end %>
-      <% end %>
-      <% @existing_inquiry = Inquiry.where(user: current_user).joins(:airplane).where(airplane: @airplane).last %>
-      <%= link_to "Go to inquiry about plane", inquiry_path(@existing_inquiry), class: "button-airplanes mt-4 mb-4 w-50" if current_user.inquiries.where(airplane: @airplane).count >= 1 %>
-      <% end %>
-
-      <div class="d-flex flex-row justify-content-between">
-        <%= link_to "Back to all available planes", airplanes_path, class: "button-airplanes mt-4 mb-2 w-25" %>
-        <% if @airplane.user != current_user %>
-        <%= link_to "View airplane owner's profile", user_path(@airplane.user), class: "button-airplanes mt-4 mb-2 w-25"%>
+          <%= f.button :submit, value: "Inquire about this plane", class: "button-airplanes mt-4 mb-4 w-100" %>
         <% end %>
       </div>
-    </div>
+    <% end %>
+    <% @existing_inquiry = Inquiry.where(user: current_user).joins(:airplane).where(airplane: @airplane).last %>
+    <% if current_user.inquiries.where(airplane: @airplane).count >= 1 %>
+      <div class="col-8">
+        <%= link_to "Go to inquiry about plane", inquiry_path(@existing_inquiry), class: "button-airplanes mt-4 mb-4 w-100" %>
+      </div>
+    <% end %>
+    <% if @airplane.user != current_user %>
+      <div class="col-4">
+        <%= link_to "View airplane owner's profile", user_path(@airplane.user), class: "button-airplanes mt-4 mb-2 w-100"%>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+      .
+
+
+
+
   </div>
   <hr class="">
     <div class="container mt-0">
@@ -76,9 +90,10 @@
             <% end %>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
           <% end %>
-
+                                        <div class="mb-5">
           <% if @airplane.reviews.empty? %>
             <p><em class="text-muted">No reviews yet for this plane</em></p>
+            </div>
             <% if current_user && @existing_inquiry %>
               <% if current_user != @airplane.user && @existing_inquiry.status == true  %>
                 <small><em class="text-muted">Be the first one to review this airplane</em></small>
