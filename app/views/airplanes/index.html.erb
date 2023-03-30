@@ -35,16 +35,16 @@
       <%= pluralize @airplanes.count, "airplane" %> available
     <% else %>
       <%= link_to airplanes_path do %>
-       <i class="fa-solid fa-xmark" style="color: #173288;"></i>
+       <i class="fa-solid fa-xmark" style="color: #173288; margin-right: 7px;"></i>
       <% end %>
-      <%= pluralize @airplanes.count, "airplane" %> for <strong style="color: #173288"><%= params[:query] %></strong>
+      <%= pluralize @airplanes.count, "airplane" %> for <strong style="color: #173288;"><%= params[:query].capitalize %></strong>
     <% end %>
   </h4>
 
 <div class="row justify-content-center">
     <% @airplanes.each do |airplane| %>
       <div class="col-sm-6 col-md-3 mt-3 cards-airplane">
-      <%= link_to airplane_path(airplane), class: "text-decoration-none" do %>
+      <%= link_to airplane_path(airplane), class: "text-decoration-none container-hover" do %>
         <div class="card mb-5">
           <% if airplane.photos.attached? %>
             <img src="<%= cl_image_path airplane.photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
@@ -52,7 +52,7 @@
             <img src="https://images.unsplash.com/photo-1604285861770-54cb117a3f5a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Product Image">
           <% end %>
 
-          <h2 class="mt-1 text-center"><%= "#{airplane.make} #{airplane.tailnumber}" %> </h2>
+          <h2 class="mt-1 text-center blue-h2"><%= "#{airplane.make} #{airplane.tailnumber}" %> </h2>
 
           <p class="mt-1 text-center"><%= truncate("#{airplane.description}", length: 50) %></p>
           <ul class="d-flex justify-content-center mt-2">
