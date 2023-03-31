@@ -9,15 +9,15 @@ class Airplane < ApplicationRecord
   has_many :users, through: :inquiries
   has_many :reviews, dependent: :destroy
 
-  def review_average
-    total = 0
+  def calculate_review_average
+    review_average = 0.0
     if reviews.count.positive?
-      reviews.each do |review|
-        total += review.score
+      reviews.reload.each do |review|
+        review_average += review.score
       end
-      (total / reviews.size).to_f
+      review_average = (review_average / reviews.size).to_f
     else
-      return 0
+      0.0
     end
   end
 

@@ -15,11 +15,50 @@
       <span><%= @user.role %></span>
 
       <div class="px-5">
-        <p class="content_user">Contact me: <%= "#{@user.email}" %>.</p>
-
-        <%= link_to "Contact", "mailto:#{@user.email}", class: "button-owner follow" %>
+        <p class="content_user">Licenses Held: <%= "#{@user.license}" %></p>
+        <p class="content_user">Recorded flight hours: <%= "#{@user.fly_hours}" %></p>
       </div>
     </div>
 
   </div>
 </div>
+
+    <% if @user.airplanes.size >= 1 %>
+
+  <div class="container">
+    <% @user.airplanes.in_groups_of(2, false).each do |group| %>
+      <div class="row justify-content-around text-center">
+        <% group.compact.each do |airplane| %>
+          <div class="col-sm-6 col-md-4 mt-3 cards-airplane">
+            <%= link_to airplane_path(airplane), class: "text-decoration-none container-hover" do %>
+              <div class="card mb-5">
+                <% if airplane.photos.attached? %>
+                  <img src="<%= cl_image_path airplane.photos[0].key, height: 350, width: 400, crop: :fill %>" alt="Product Image">
+                <% else %>
+                  <img src="https://images.unsplash.com/photo-1604285861770-54cb117a3f5a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Product Image">
+                <% end %>
+
+                <h2 class="mt-1 text-center blue-h2"><%= "#{airplane.make} #{airplane.tailnumber}" %> </h2>
+
+                <p class="mt-1 text-center"><%= truncate("#{airplane.description}", length: 50) %></p>
+                <ul class="d-flex justify-content-center mt-2">
+                  <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= airplane.home_airport.upcase %></li>
+                  <li><i class="fa-solid fa-dollar-sign" ></i> <%= airplane.price_per_hour %> /hour</li>
+                </ul>
+                <% if airplane.reviews.size >= 1 %>
+                  <p class="text-center" style="color:#173288"><% airplane.review_average.round().times do %>
+                        <i class="fa-solid fa-star fa-sm"></i>
+                  <% end %></p>
+                <% else %>
+                  <p class="text-center">No reviews available</p>
+                <% end %>
+                <%= link_to "More Details", airplane_path(airplane), class: "mt-1 button-airplanes" %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+<% end %>
