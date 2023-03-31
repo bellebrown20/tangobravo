@@ -96,6 +96,13 @@ typeWriter();
                   <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= Airplane.find_by(tailnumber: "N423SC").home_airport.upcase %></li>
                   <li><i class="fa-solid fa-dollar-sign" ></i> <%= Airplane.find_by(tailnumber: "N423SC").price_per_hour %> /hour</li>
                 </ul>
+                 <% if Airplane.find_by(tailnumber: "N423SC").reviews.size >= 1 %>
+                  <p class="text-center" style="color:#173288"><% Airplane.find_by(tailnumber: "N423SC").review_average.round().times do %>
+                        <i class="fa-solid fa-star fa-sm"></i>
+                  <% end %></p>
+                <% else %>
+                  <p class="text-center">No reviews available</p>
+                <% end %>
                 <%= link_to "More Details", airplane_path(Airplane.find_by(tailnumber: "N423SC")), class: "mt-1 button-airplanes" %>
               <% end %>
             </div>
@@ -110,6 +117,13 @@ typeWriter();
                   <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= Airplane.find_by(tailnumber: "N987SC").home_airport.upcase %></li>
                   <li><i class="fa-solid fa-dollar-sign" ></i> <%= Airplane.find_by(tailnumber: "N987SC").price_per_hour %> /hour</li>
                 </ul>
+                <% if Airplane.find_by(tailnumber: "N987SC").reviews.size >= 1 %>
+                  <p class="text-center" style="color:#173288"><% Airplane.find_by(tailnumber: "N987SC").review_average.round().times do %>
+                        <i class="fa-solid fa-star fa-sm"></i>
+                  <% end %></p>
+                <% else %>
+                  <p class="text-center">No reviews available</p>
+                <% end %>
                 <%= link_to "More Details", airplane_path(Airplane.find_by(tailnumber: "N987SC")), class: "mt-1 button-airplanes" %>
               <% end %>
             </div>
@@ -124,6 +138,13 @@ typeWriter();
                   <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= Airplane.find_by(tailnumber: "N124GS").home_airport.upcase %></li>
                   <li><i class="fa-solid fa-dollar-sign" ></i> <%= Airplane.find_by(tailnumber: "N124GS").price_per_hour %> /hour</li>
                 </ul>
+                <% if Airplane.find_by(tailnumber: "N124GS").reviews.size >= 1 %>
+                  <p class="text-center" style="color:#173288"><% Airplane.find_by(tailnumber: "N124GS").review_average.round().times do %>
+                        <i class="fa-solid fa-star fa-sm"></i>
+                  <% end %></p>
+                <% else %>
+                  <p class="text-center">No reviews available</p>
+                <% end %>
                 <%= link_to "More Details", airplane_path(Airplane.find_by(tailnumber: "N124GS")), class: "mt-1 button-airplanes" %>
               <% end %>
             </div>

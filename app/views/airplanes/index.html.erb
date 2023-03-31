@@ -71,6 +71,13 @@
             <li><i class="fa-solid fa-location-dot" style="margin-right:6px"></i><%= airplane.home_airport.upcase %></li>
             <li><i class="fa-solid fa-dollar-sign" ></i> <%= airplane.price_per_hour %> /hour</li>
           </ul>
+          <% if airplane.reviews.size >= 1 %>
+            <p class="text-center" style="color:#173288"><% airplane.review_average.round().times do %>
+                  <i class="fa-solid fa-star fa-sm"></i>
+            <% end %></p>
+          <% else %>
+            <p class="text-center">No reviews available</p>
+          <% end %>
           <%= link_to "More Details", airplane_path(airplane), class: "mt-1 button-airplanes" %>
         </div>
         <% end %>
