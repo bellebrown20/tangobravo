@@ -261,8 +261,88 @@ Airplane.create!([{
   price_per_hour: 140,
   ownership: "Private Owner - see profile",
   address: "1751 Shuttle Columbia Dr, El Paso, Texas 79925, United States"
+},
+{
+  make: "C172S",
+  engines: "Single-Engine",
+  tailnumber: "N653SM",
+  home_airport: "KOKC",
+  minimum_hours: 50,
+  required_licenses: "Private Pilot",
+  user_id: user1.id,
+  description: "1999 Cessna 172 with steam gauge six pack. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
+  price_per_hour: 140,
+  ownership: "Private Owner - see profile",
+  address: "7100 Terminal Dr, Oklahoma City, Oklahoma 73159, United States"
+},
+{
+  make: "C172S",
+  engines: "Single-Engine",
+  tailnumber: "N190CS",
+  home_airport: "KDEN",
+  minimum_hours: 50,
+  required_licenses: "Private Pilot",
+  user_id: user3.id,
+  description: "1999 Cessna 172 with steam gauge six pack. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
+  price_per_hour: 140,
+  ownership: "Private Owner - see profile",
+  address: "8500 Peña Blvd, Denver, Colorado 80249, United States"
+},
+{
+  make: "C172S",
+  engines: "Single-Engine",
+  tailnumber: "N427AM",
+  home_airport: "KOMA",
+  minimum_hours: 50,
+  required_licenses: "Private Pilot",
+  user_id: user1.id,
+  description: "1999 Cessna 172 with steam gauge six pack. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
+  price_per_hour: 140,
+  ownership: "Private Owner - see profile",
+  address: "4501 Abbott Dr, Omaha, Nebraska 68110, United States"
+},
+{
+  make: "C172S",
+  engines: "Single-Engine",
+  tailnumber: "N181AB",
+  home_airport: "KCOD",
+  minimum_hours: 50,
+  required_licenses: "Private Pilot",
+  user_id: user5.id,
+  description: "2004 Cessna 172 with steam gauge six pack. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
+  price_per_hour: 140,
+  ownership: "Private Owner - see profile",
+  address: "2101 Roger Sedam Drive, Cody, WY 82414"
+},
+{
+  make: "C172S",
+  engines: "Single-Engine",
+  tailnumber: "N321EP",
+  home_airport: "KORD",
+  minimum_hours: 50,
+  required_licenses: "Private Pilot",
+  user_id: user5.id,
+  description: "2004 Cessna 172 with steam gauge six pack. Lycoming IO-360 180HP fuel injected engine. 53 US gallons usable fuel capacity.",
+  price_per_hour: 140,
+  ownership: "Private Owner - see profile",
+  address: "10000 W Balmoral Ave, Chicago, IL 60666"
+},
+{
+  make: "PA-28",
+  engines: "Single-Engine",
+  tailnumber: "N411PB",
+  home_airport: "KGNF",
+  minimum_hours: 50,
+  required_licenses: "Private Pilot",
+  user_id: user5.id,
+  description: "2016 Piper Cherokee with tradional six pack. Lycoming IO-360-B1E 180HP fuel injected engine. 48 US gallons usable fuel capacity.",
+  price_per_hour: 140,
+  ownership: "Private Owner - see profile",
+  address: "1995 Air Industrial Park Rd, Grenada, MS 38901"
 }
 ])
+
+
 
 a = Airplane.find_by(tailnumber: "N423SC")
 file = URI.open("https://sierracharlieaviation.com/wp-content/uploads/2022/09/SierraCharlie_Cessna-172-Skyhawk_Gallery_Resilient-Airframe-1.jpg")
@@ -393,5 +473,34 @@ bc = Airplane.find_by(tailnumber: "N716TT")
 file = URI.open("https://cdn.planeandpilotmag.com/2018/03/cessna-jt-a-1.jpg")
 bc.photos.attach(io: file, filename: "tangotango.jpg", content_type: "image/jpg")
 bc.save
+one = Airplane.find_by(tailnumber: "N653SM")
+file = URI.open("https://sierracharlieaviation.com/wp-content/uploads/2022/09/SierraCharlie_Cessna-172-Skyhawk_Gallery_Resilient-Airframe-1.jpg")
+one.photos.attach(io: file, filename: "last.jpg", content_type: "image/jpg")
+one.save
+
+two = Airplane.find_by(tailnumber: "N190CS")
+file = URI.open("https://www.vaughn.edu/wp-content/uploads/2021/08/Heritage-Flight-Academy-1200x630-1.jpg")
+two.photos.attach(io: file, filename: "heritage.jpg", content_type: "image/jpg")
+two.save
+
+three = Airplane.find_by(tailnumber: "N427AM")
+file = URI.open("https://images.flyingmag.com/flyingma/wp-content/uploads/2021/08/25162148/FLY0820_APP__002-1.jpg")
+three.photos.attach(io: file, filename: "skycatcher.jpg", content_type: "image/jpg")
+three.save
+
+four = Airplane.find_by(tailnumber: "N181AB")
+file = URI.open("https://flyer.co.uk/wp-content/uploads/2019/07/G1000-NXi-Cessna-206-scaled.jpg")
+four.photos.attach(io: file, filename: "scacessnafour.jpg", content_type: "image/jpg")
+four.save
+
+five = Airplane.find_by(tailnumber: "N321EP")
+file = URI.open("https://pbs.twimg.com/media/EzDqSRqWgAE2riA.jpg")
+five.photos.attach(io: file, filename: "heritagethree.jpg", content_type: "image/jpg")
+five.save
+
+six = Airplane.find_by(tailnumber: "N411PB")
+file = URI.open("https://www.dandjaviation.com/uploads/b/c27108abc586cb2ffe70f41643b5b1c9ab552e1c60e25f091451fc6e88a521c3/F38BBBD7-0394-4843-A22A-2385D396C5D0_1_105_c_1617131974.jpeg")
+six.photos.attach(io: file, filename: "chertwo.jpg", content_type: "image/jpg")
+six.save
 
 puts "All done"
