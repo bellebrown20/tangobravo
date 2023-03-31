@@ -6,6 +6,7 @@ class ReviewsController < ApplicationController
     @review.airplane = @airplane
     @review.user = current_user
     if @review.save
+      @airplane.calculate_review_average
       redirect_to airplane_path(@airplane)
       flash[:alert] = "Review submitted"
     else

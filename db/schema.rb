@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_30_174947) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_31_151618) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
   enable_extension "pg_trgm"
@@ -64,7 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_174947) do
     t.text "engines_dmetaphone"
     t.text "tailnumber_dmetaphone"
     t.text "home_airport_dmetaphone"
-    t.float "review_average"
+    t.float "review_average", default: 0.0
     t.index ["engines_dmetaphone"], name: "airplanes_engines_dmetaphone_idx", opclass: :gin_trgm_ops, using: :gin
     t.index ["home_airport_dmetaphone"], name: "airplanes_home_airport_dmetaphone_idx", opclass: :gin_trgm_ops, using: :gin
     t.index ["make_dmetaphone"], name: "airplanes_make_dmetaphone_idx", opclass: :gin_trgm_ops, using: :gin

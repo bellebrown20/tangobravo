@@ -17,9 +17,9 @@ class AirplanesController < ApplicationController
     else
       @airplanes = policy_scope(Airplane.all)
       if params[:sort] == "review_average"
-        @airplanes = @airplanes.order(review_average: :desc)
+        @airplanes = Airplane.order(review_average: :desc)
       elsif params[:sort] == "price"
-        @airplanes = @airplanes.order(price_per_hour: :asc)
+        @airplanes = Airplane.order(price_per_hour: :asc)
       end
     end
 
